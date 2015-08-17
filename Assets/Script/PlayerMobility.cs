@@ -4,8 +4,12 @@ using System.Collections;
 public class PlayerMobility : MonoBehaviour {
 
 	public float speed;
-	public int playerHP = 5; 
+	 int playerHP = 20; 
+
+	int score;
 	pSpaceship spaceship;
+
+
 
 	IEnumerator attk() {
 
@@ -23,7 +27,7 @@ public class PlayerMobility : MonoBehaviour {
 
 		transform.rotation = roit;
 		transform.eulerAngles = new Vector3 (0, 0, transform.eulerAngles.z);
-		GetComponent<Rigidbody2D>().angularVelocity = 0;
+		GetComponent<Rigidbody2D>().angularVelocity = 1;
 			float verticalInput = Input.GetAxis ("Vertical");
 			float horizontalInput = Input.GetAxis ("Horizontal"); 
 		GetComponent<Rigidbody2D>().AddForce (gameObject.transform.up * speed * verticalInput);
@@ -48,24 +52,37 @@ public class PlayerMobility : MonoBehaviour {
 
 
 		if (layerName == "enemyBullet") {
-
-								Destroy (c.gameObject);
 								
+								Destroy (c.gameObject);
+							playerHP -= 1;
 						}
+
+		if (playerHP <= 1) {
+					
+			Destroy(this.gameObject);
+			Application.LoadLevel(Application.loadedLevel);
+					
+				}
 				
-		if (layerName == "Enermy" || layerName == "enemyBullet") {
+		if (layerName == "Enermy" ) {
 			//add explosion
 				
 			//FindObjectOfType<Manager>().GameOver();
-				
+			playerHP -= 2;	
 			Destroy(c.gameObject);
-			Destroy (gameObject);
 
-			Application.LoadLevel(Application.loadedLevel);
+			//Destroy (gameObject);
+
+			//Application.LoadLevel(Application.loadedLevel);
 
 		}
 
 		
 }
+
+	void OnGUI(){
+		
+				GUI.Label (new Rect (10, 250, 200, 60), "HP :  " + playerHP.ToString());
+		}
 }
 	

@@ -82,7 +82,7 @@ public class PlayerMobility : MonoBehaviour {
 
 	void OnGUI(){
 		
-				GUI.Label (new Rect (10, 250, 200, 60), "HP :  " + playerHP.ToString());
+				GUI.Label (new Rect (10, 250, 200, 60), "HP :  " + playerHP.ToString()); //display hp
 		}
 }
 	

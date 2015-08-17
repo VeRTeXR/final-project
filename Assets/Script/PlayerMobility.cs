@@ -57,12 +57,7 @@ public class PlayerMobility : MonoBehaviour {
 							playerHP -= 1;
 						}
 
-		if (playerHP <= 1) {
-					
-			Destroy(this.gameObject);
-			Application.LoadLevel(Application.loadedLevel);
-					
-				}
+	
 				
 		if (layerName == "Enermy" ) {
 			//add explosion
@@ -82,7 +77,22 @@ public class PlayerMobility : MonoBehaviour {
 
 	void OnGUI(){
 		
-				GUI.Label (new Rect (10, 250, 200, 60), "HP :  " + playerHP.ToString()); //display hp
+		GUI.Label (new Rect (10, 250, 200, 60), "HP :  " + playerHP.ToString()); //display hp
+		GUI.Label (new Rect (10, 100, 200, 60), "PRESS R TO RESTART" );		
+		if (playerHP < 1) {
+			
+					Destroy(this.gameObject);
+					//Application.LoadLevel(Application.loadedLevel);
+			//GUI.Label (new Rect (10, 100, 200, 60), "PRESS R TO RESTART" );
+			
+			}
+		if (Input.GetKey (KeyCode.R)) {
+
+					Application.LoadLevel(Application.loadedLevel);
+
+
+		}
+
 		}
 }
 	

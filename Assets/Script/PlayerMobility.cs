@@ -61,8 +61,7 @@ public class PlayerMobility : MonoBehaviour {
 				
 		if (layerName == "Enermy" ) {
 			//add explosion
-				
-			//FindObjectOfType<Manager>().GameOver();
+			
 			playerHP -= 2;	
 			Destroy(c.gameObject);
 
@@ -77,11 +76,11 @@ public class PlayerMobility : MonoBehaviour {
 
 	void OnGUI(){
 		
-		GUI.Label (new Rect (10, 250, 200, 60), "HP :  " + playerHP.ToString()); //display hp
-		GUI.Label (new Rect (10, 100, 200, 60), "PRESS R TO RESTART" );		
+		GUI.Label (new Rect (10, 250, 200, 60), "HP :  " + playerHP.ToString()); //display hp	
 		if (playerHP < 1) {
 			
 					Destroy(this.gameObject);
+					FindObjectOfType<Manager>().GameOver();
 					//Application.LoadLevel(Application.loadedLevel);
 			//GUI.Label (new Rect (10, 100, 200, 60), "PRESS R TO RESTART" );
 			

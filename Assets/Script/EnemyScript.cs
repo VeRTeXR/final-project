@@ -5,6 +5,7 @@ public class EnemyScript : MonoBehaviour {
 
 	public float speed;
 	public Transform player;
+	public int point = 100;
 
 	Spaceship spaceship;
 
@@ -38,7 +39,7 @@ public class EnemyScript : MonoBehaviour {
 
 	void OnTriggerEnter2D (Collider2D c) {
 		Destroy (c.gameObject);
-		
 		Destroy (gameObject);
+		FindObjectOfType<Score> ().AddPoint (point);
 	}
 }

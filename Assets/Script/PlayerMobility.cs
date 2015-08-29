@@ -81,17 +81,14 @@ public class PlayerMobility : MonoBehaviour {
 			
 					Destroy(this.gameObject);
 					FindObjectOfType<Manager>().GameOver();
-					//Application.LoadLevel(Application.loadedLevel);
+					FindObjectOfType<Spawn>().CancelInvoke("Spawner");
+			//Application.LoadLevel(Application.loadedLevel);
 			//GUI.Label (new Rect (10, 100, 200, 60), "PRESS R TO RESTART" );
 			
 			}
 		if (Input.GetKey (KeyCode.R)) {
-
 					Application.LoadLevel(Application.loadedLevel);
-
-
-		}
-
+			}
 		}
 }
 	

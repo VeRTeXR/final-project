@@ -3,8 +3,10 @@ using System.Collections;
 
 public class PlayerMobility : MonoBehaviour {
 
+	public float speedY;
+
 	public float speed;
-	 int playerHP = 20; 
+	 int playerHP = 10; 
 
 	int score;
 	pSpaceship spaceship;
@@ -22,16 +24,22 @@ public class PlayerMobility : MonoBehaviour {
 		
 	void FixedUpdate() 
 	{
+
+
+		////////////////////////////////////////////////////////////////////
 		var mousePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 		Quaternion roit = Quaternion.LookRotation (transform.position - mousePosition, Vector3.forward);
 
 		transform.rotation = roit;
 		transform.eulerAngles = new Vector3 (0, 0, transform.eulerAngles.z);
 		GetComponent<Rigidbody2D>().angularVelocity = 1;
+			
 			float verticalInput = Input.GetAxis ("Vertical");
+			
 			float horizontalInput = Input.GetAxis ("Horizontal"); 
-		GetComponent<Rigidbody2D>().AddForce (gameObject.transform.up * speed * verticalInput);
-		GetComponent<Rigidbody2D>().AddForce (gameObject.transform.right * speed * horizontalInput);
+
+		GetComponent<Rigidbody2D>().AddForce (gameObject.transform.up * speedY * verticalInput*2*(Time.deltaTime));
+		GetComponent<Rigidbody2D>().AddForce (gameObject.transform.right * speed * horizontalInput*2*(Time.deltaTime));
 
 		if (Input.GetMouseButtonDown(0)) {
 					StartCoroutine ("attk");
@@ -76,7 +84,7 @@ public class PlayerMobility : MonoBehaviour {
 
 	void OnGUI(){
 		
-		GUI.Label (new Rect (10, 250, 200, 60), "HP :  " + playerHP.ToString()); //display hp	
+		GUI.Label (new Rect (10, 280, 200, 60), "HP :  " + playerHP.ToString()); //display hp	
 		if (playerHP < 1) {
 			
 					Destroy(this.gameObject);

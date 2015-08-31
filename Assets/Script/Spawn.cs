@@ -2,16 +2,21 @@
 using System.Collections;
 
 public class Spawn : MonoBehaviour {
-	public int start = 1;
+	public int start = 0;
 	public float spawnTime;
 	public float spawnDelay;
-	public float enemyCount;
+	public int enemyCount;
 	public GameObject enemy;
+
+
 	// Use this for initialization
 	void Start () {
-			InvokeRepeating ("Spawner", spawnDelay, spawnTime);
+
+		enemyCount = Random.Range (5,15); //random enemy count
+		//Debug.Log (enemyCount);	
+		InvokeRepeating ("Spawner", spawnDelay, spawnTime);
 			
-		Debug.Log (start);
+		//Debug.Log (start);
 	}
 	void Update () {
 		if (start > enemyCount) {
@@ -32,6 +37,12 @@ public class Spawn : MonoBehaviour {
 
 	void stopSpawn () {
 		CancelInvoke("Spawner");
+	}
+
+	void OnGUI(){
+		
+		GUI.Label (new Rect (10, 240, 200, 60), "enemy :  " + enemyCount.ToString()); //display enemy by random	
+
 	}
 
 }

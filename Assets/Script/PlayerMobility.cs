@@ -3,10 +3,12 @@ using System.Collections;
 
 public class PlayerMobility : MonoBehaviour {
 
+	public GameObject healthBar;
+
 	public float speedY;
 
 	public float speed;
-	 int playerHP = 10; 
+	public int playerHP = 10; 
 
 	int score;
 	pSpaceship spaceship;
@@ -60,18 +62,21 @@ public class PlayerMobility : MonoBehaviour {
 
 
 		if (layerName == "enemyBullet") {
+			playerHP -= 1;
+			Destroy (c.gameObject);
+			FindObjectOfType<PlayerHp>().decreaseHp();
+
 								
-								Destroy (c.gameObject);
-							playerHP -= 1;
 						}
 
 	
 				
 		if (layerName == "Enermy" ) {
 			//add explosion
-			
+
 			playerHP -= 2;	
 			Destroy(c.gameObject);
+			FindObjectOfType<PlayerHp>().decreaseHp();
 
 			//Destroy (gameObject);
 

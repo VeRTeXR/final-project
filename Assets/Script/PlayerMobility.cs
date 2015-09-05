@@ -42,36 +42,32 @@ public class PlayerMobility : MonoBehaviour {
 
 	}
 
+	void OnCollisionEnter2D (Collision2D c) {
+		
+	}
+
 
 	void OnTriggerEnter2D (Collider2D c) {
-
+					/*if (c.gameObject.tag == "Enemy") {
+					playerHP -=2;
+					//Destroy(c.gameObject);
+		}				
+					if (c.gameObject.tag == "enemyBullet") {
+			Destroy(c.gameObject);
+			playerHP -= 1; 
+		}*/
 		string layerName = LayerMask.LayerToName (c.gameObject.layer);
-
-		//Transform enemyBulletTransform = transform.parent;
-		//Bullet bullet = enemyBulletTransform.GetComponent<Bullet> ();
-
-
 		if (layerName == "enemyBullet") {
 								
-								Destroy (c.gameObject);
+							Destroy (c.gameObject);
 							playerHP -= 1;
-						}
-
-	
-				
-		if (layerName == "Enermy" ) {
+						}			
+		if (layerName == "Enemy" ) {
 			//add explosion
-			
 			playerHP -= 2;	
 			Destroy(c.gameObject);
 
-			//Destroy (gameObject);
-
-			//Application.LoadLevel(Application.loadedLevel);
-
 		}
-
-		
 }
 
 	void OnGUI(){

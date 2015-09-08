@@ -22,10 +22,10 @@ public class PlayerBound : MonoBehaviour {
 		
 		target = GameObject.FindWithTag("Player").transform;
 		
-		leftBound = (float)(horzExtent - spriteBounds.sprite.bounds.size.x / 1.2f);
-		rightBound = (float)(spriteBounds.sprite.bounds.size.x / 1.2f - horzExtent);
-		bottomBound = (float)(vertExtent - spriteBounds.sprite.bounds.size.y / 1.2f);
-		topBound = (float)(spriteBounds.sprite.bounds.size.y / 1.2f - vertExtent);
+		leftBound = (float)(horzExtent - spriteBounds.sprite.bounds.size.x / 1.15f);
+		rightBound = (float)(spriteBounds.sprite.bounds.size.x / 1.15f - horzExtent);
+		bottomBound = (float)(vertExtent - spriteBounds.sprite.bounds.size.y / 1.4f);
+		topBound = (float)(spriteBounds.sprite.bounds.size.y / 1.4f - vertExtent);
 		
 	}
 	// Update is called once per frame

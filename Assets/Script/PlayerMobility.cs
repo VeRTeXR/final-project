@@ -57,6 +57,8 @@ public class PlayerMobility : MonoBehaviour {
 			playerHP -= 1; 
 		}*/
 		string layerName = LayerMask.LayerToName (c.gameObject.layer);
+		if (layerName == "playerBullet") {
+		}
 		if (layerName == "enemyBullet") {
 								
 							Destroy (c.gameObject);
@@ -64,7 +66,9 @@ public class PlayerMobility : MonoBehaviour {
 						}			
 		if (layerName == "Enemy" ) {
 			//add explosion
+			float force = 10;
 			playerHP -= 2;	
+			transform.Translate(-Vector2.up *force*Time.deltaTime);
 			Destroy(c.gameObject);
 
 		}

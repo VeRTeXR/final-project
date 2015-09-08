@@ -33,6 +33,7 @@ public class Manager : MonoBehaviour {
 	public void GameOver ()
 	{
 		// When the game ends, show the title.
+		FindObjectOfType<Score> ().Save ();
 		title.SetActive (true);
 	}
 	

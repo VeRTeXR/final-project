@@ -37,12 +37,13 @@ public class EnemyScript : MonoBehaviour {
 		GetComponent<Rigidbody2D>().AddForce (gameObject.transform.up * speed);
 
 		if (enemyHP <= 0) {
+			FindObjectOfType<Score> ().AddPoint (point);
 			Destroy(gameObject);
 		}
 		}
 
 	void OnTriggerEnter2D (Collider2D c) {
-		FindObjectOfType<Score> ().AddPoint (point);
+
 		string layerName = LayerMask.LayerToName (c.gameObject.layer);
 		if (layerName == "playerBullet") {
 			float force = 10;

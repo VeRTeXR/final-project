@@ -9,6 +9,7 @@ public class CameraFollow : MonoBehaviour {
 		// Update is called once per frame
 		void Update ()
 		{
+			target = GameObject.FindWithTag("Player").transform;
 			if (target)
 			{
 				Vector3 point = GetComponent<Camera>().WorldToViewportPoint(target.position);

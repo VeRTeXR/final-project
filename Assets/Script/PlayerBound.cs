@@ -38,7 +38,7 @@ public class PlayerBound : MonoBehaviour {
 		pos.y = Mathf.Clamp(pos.y, bottomBound, topBound);
 		transform.position = pos;
 	}
-	 
+	
 	void OnLevelWasLoaded()
 	{
 		Start();

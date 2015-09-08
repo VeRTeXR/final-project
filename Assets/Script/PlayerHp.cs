@@ -28,7 +28,7 @@ public class PlayerHp : MonoBehaviour {
 	
 	public void decreaseHp(){
 		
-		cur_Hp -= 15f;
+		cur_Hp -= 1.45f;
 		float calc_Hp = cur_Hp / max_Hp;
 		SetHealthBar (calc_Hp);
 	}

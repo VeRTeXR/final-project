@@ -74,7 +74,7 @@ public class PlayerMobility : MonoBehaviour {
 		if (layerName == "Enermy" ) {
 			//add explosion
 
-			playerHP -= 2;	
+			playerHP -= 1;	
 			Destroy(c.gameObject);
 			FindObjectOfType<PlayerHp>().decreaseHp();
 

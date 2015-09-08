@@ -3,6 +3,7 @@ using System.Collections;
 
 public class EnemyScript : MonoBehaviour {
 
+	public int enemyHP;
 	public float speed;
 	public Transform player;
 	public int point = 100;
@@ -35,11 +36,22 @@ public class EnemyScript : MonoBehaviour {
 		transform.eulerAngles = new Vector3 (0, 0, z);
 		GetComponent<Rigidbody2D>().AddForce (gameObject.transform.up * speed);
 
+		if (enemyHP <= 0) {
+			Destroy(gameObject);
+		}
 		}
 
 	void OnTriggerEnter2D (Collider2D c) {
-		Destroy (c.gameObject);
-		Destroy (gameObject);
 		FindObjectOfType<Score> ().AddPoint (point);
+		string layerName = LayerMask.LayerToName (c.gameObject.layer);
+		if (layerName == "playerBullet") {
+			float force = 10;
+			enemyHP -= 1;	
+			transform.Translate(-Vector2.up *force*Time.deltaTime);
+						Destroy (c.gameObject);
+				} 
+		else {
+			Destroy (gameObject);
+				}
 	}
 }

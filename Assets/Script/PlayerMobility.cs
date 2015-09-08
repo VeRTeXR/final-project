@@ -84,6 +84,13 @@ public class PlayerMobility : MonoBehaviour {
 
 		}
 
+		if(c.CompareTag ("heal") ){
+
+			playerHP += 5;
+
+
+		}
+
 		
 }
 

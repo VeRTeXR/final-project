@@ -8,6 +8,8 @@ public class Spawn : MonoBehaviour {
 	public int enemyCount;
 	public GameObject enemy;
 
+	public GameObject heal;
+	public int healCount;
 
 	// Use this for initialization
 	void Start () {
@@ -15,13 +17,20 @@ public class Spawn : MonoBehaviour {
 		enemyCount = Random.Range (5,15); //random enemy count
 		//Debug.Log (enemyCount);	
 		InvokeRepeating ("Spawner", spawnDelay, spawnTime);
-			
+
+		InvokeRepeating ("SpawnerHeal", spawnDelay*3, spawnTime*3);
+
+
 		//Debug.Log (start);
 	}
 	void Update () {
 		if (start > enemyCount) {
 			CancelInvoke("Spawner");
 		}
+		if (healCount == 0) {
+			CancelInvoke("SpawnerHeal");
+		}
+
 	}
 
 	void Spawner () {
@@ -33,6 +42,18 @@ public class Spawn : MonoBehaviour {
 		Instantiate(enemy, spawnPoint, Quaternion.identity);
 		start = start + 1;
 		Debug.Log (start);
+	}
+
+	void SpawnerHeal () {
+		var x1 = transform.position.x - GetComponent<Renderer>().bounds.size.x/2;
+		var x2 = transform.position.x + GetComponent<Renderer>().bounds.size.x/2;
+		var spawnPoint = new Vector2 (Random.Range (x1, x2), transform.position.y);
+		
+		// Create an enemy at the 'spawnPoint' position
+		Instantiate(heal, spawnPoint, Quaternion.identity);
+
+		healCount -= 1;
+
 	}
 
 	void stopSpawn () {

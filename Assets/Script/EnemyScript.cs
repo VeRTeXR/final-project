@@ -38,8 +38,10 @@ public class EnemyScript : MonoBehaviour {
 		}
 
 	void OnTriggerEnter2D (Collider2D c) {
+
 		Destroy (c.gameObject);
 		Destroy (gameObject);
 		FindObjectOfType<Score> ().AddPoint (point);
+
 	}
 }

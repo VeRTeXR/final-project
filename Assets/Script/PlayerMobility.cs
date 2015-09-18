@@ -12,6 +12,7 @@ public class PlayerMobility : MonoBehaviour {
 
 	int score;
 	pSpaceship spaceship;
+	float timeSpeedCountdown = Mathf.Infinity;
 
 
 
@@ -33,8 +34,10 @@ public class PlayerMobility : MonoBehaviour {
 		Quaternion roit = Quaternion.LookRotation (transform.position - mousePosition, Vector3.forward);
 
 		transform.rotation = roit;
+
+
 		transform.eulerAngles = new Vector3 (0, 0, transform.eulerAngles.z);
-		GetComponent<Rigidbody2D>().angularVelocity = 1;
+		GetComponent<Rigidbody2D>().angularVelocity = 0.5f;
 			
 			float verticalInput = Input.GetAxis ("Vertical");
 			
@@ -43,10 +46,13 @@ public class PlayerMobility : MonoBehaviour {
 		GetComponent<Rigidbody2D>().AddForce (gameObject.transform.up * speedY * verticalInput*2*(Time.deltaTime));
 		GetComponent<Rigidbody2D>().AddForce (gameObject.transform.right * speed * horizontalInput*2*(Time.deltaTime));
 
-		if (Input.GetMouseButtonDown(0)) {
+		if (Input.GetKeyDown(KeyCode.Space)) {
 					StartCoroutine ("attk");
 
 		}
+
+
+
 
 
 
@@ -84,15 +90,47 @@ public class PlayerMobility : MonoBehaviour {
 
 		}
 
-		if(c.CompareTag ("heal") ){
+		if(c.CompareTag ("Heal") ){
 
 			playerHP += 5;
-
+			Destroy(c.gameObject);
 
 		}
 
+		if(c.CompareTag ("speedUp") ){
+			
+			speedY += 2000;
+
+
+
+			Destroy(c.gameObject);
+
+
+			Debug.Log(speedY);
+
+		}
+		if (speedY > 2500) {
+			
+			timeSpeedCountdown += Time.time + 0.5f;
+			
+			
+			Debug.Log(timeSpeedCountdown);
+			
+		}
+		if(timeSpeedCountdown == 300f){
+			
+			speedY -= 2000;
+			Debug.Log(speedY);
+			
+		}
 		
 }
+
+	void TimeCount(){
+		
+		//timeSpeedCountdown += Time.deltaTime;
+
+	}
 
 	void OnGUI(){
 		

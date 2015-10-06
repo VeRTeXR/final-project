@@ -12,7 +12,7 @@ public class Spawn : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		enemyCount = Random.Range (5,15); //random enemy count
+		enemyCount = Random.Range (10,30); //random enemy count
 		//Debug.Log (enemyCount);	
 		InvokeRepeating ("Spawner", spawnDelay, spawnTime);
 			

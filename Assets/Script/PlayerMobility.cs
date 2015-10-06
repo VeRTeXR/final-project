@@ -5,6 +5,7 @@ public class PlayerMobility : MonoBehaviour {
 	
 	public float speedY;
 	public float speed;
+	public float delay = 0.2f;
 	public int playerHP = 10; 
 
 	int score;
@@ -12,18 +13,15 @@ public class PlayerMobility : MonoBehaviour {
 	
 
 	IEnumerator attk() {
-
-				spaceship = GetComponent<pSpaceship> ();
-
+		yield return new WaitForSeconds(0.1f);
+		spaceship = GetComponent<pSpaceship> ();
 						spaceship.Shot (transform);
-						yield return new WaitForSeconds (0);
-				
-		}
+		StopCoroutine("attk");
+	}
 		
 	void FixedUpdate() {
 		var mousePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 		Quaternion roit = Quaternion.LookRotation (transform.position - mousePosition, Vector3.forward);
-
 		transform.rotation = roit;
 		transform.eulerAngles = new Vector3 (0, 0, transform.eulerAngles.z);
 		GetComponent<Rigidbody2D>().angularVelocity = 1;
@@ -32,9 +30,12 @@ public class PlayerMobility : MonoBehaviour {
 		GetComponent<Rigidbody2D>().AddForce (gameObject.transform.up * speedY * verticalInput*2*(Time.deltaTime));
 		GetComponent<Rigidbody2D>().AddForce (gameObject.transform.right * speed * horizontalInput*2*(Time.deltaTime));
 
-		if (Input.GetMouseButtonDown(0)) {
-					StartCoroutine ("attk");
-		}
+
+			if (Input.GetMouseButton(0)) {
+				StartCoroutine ("attk");
+
+			}
+
 	}
 	
 	void OnTriggerEnter2D (Collider2D c) {

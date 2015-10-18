@@ -30,6 +30,11 @@ public class PlayerMobility : MonoBehaviour {
 		GetComponent<Rigidbody2D>().AddForce (gameObject.transform.up * speedY * verticalInput*2*(Time.deltaTime));
 		GetComponent<Rigidbody2D>().AddForce (gameObject.transform.right * speed * horizontalInput*2*(Time.deltaTime));
 
+		//get button player.input.up
+		//findwithtag.object(player) transform up 
+		//get button player.input.down
+		//get button player.input.left
+		//get button player.input.right
 
 			if (Input.GetMouseButton(0)) {
 				StartCoroutine ("attk");

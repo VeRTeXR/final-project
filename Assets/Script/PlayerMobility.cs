@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerMobility : MonoBehaviour {
 	
-	public float speedY;
+	//public float speedY;
 	public float speed;
 	public float delay = 0.2f;
 	public int playerHP = 10; 
@@ -27,8 +27,12 @@ public class PlayerMobility : MonoBehaviour {
 		GetComponent<Rigidbody2D>().angularVelocity = 1;
 			float verticalInput = Input.GetAxis ("Vertical");
 			float horizontalInput = Input.GetAxis ("Horizontal"); 
-		GetComponent<Rigidbody2D>().AddForce (gameObject.transform.up * speedY * verticalInput*2*(Time.deltaTime));
-		GetComponent<Rigidbody2D>().AddForce (gameObject.transform.right * speed * horizontalInput*2*(Time.deltaTime));
+		Vector2 movement = new Vector2 (horizontalInput, verticalInput).normalized;
+		GetComponent<Rigidbody2D>().velocity = movement * speed;
+
+		
+		//GetComponent<Rigidbody2D>().AddForce (gameObject.transform.up * speedY * verticalInput*2*(Time.deltaTime));
+		//GetComponent<Rigidbody2D>().AddForce (gameObject.transform.right * speed * horizontalInput*2*(Time.deltaTime));
 
 		//get button player.input.up
 		//findwithtag.object(player) transform up 

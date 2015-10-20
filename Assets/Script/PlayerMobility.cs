@@ -27,8 +27,8 @@ public class PlayerMobility : MonoBehaviour {
 		GetComponent<Rigidbody2D>().angularVelocity = 1;
 			float verticalInput = Input.GetAxis ("Vertical");
 			float horizontalInput = Input.GetAxis ("Horizontal"); 
-		Vector2 movement = new Vector2 (horizontalInput, verticalInput).normalized;
-		GetComponent<Rigidbody2D>().velocity = movement * speed;
+		Vector2 movement = new Vector2 (horizontalInput, verticalInput);
+		GetComponent<Rigidbody2D>().velocity = (movement * speed)*(Time.deltaTime);
 
 		
 		//GetComponent<Rigidbody2D>().AddForce (gameObject.transform.up * speedY * verticalInput*2*(Time.deltaTime));

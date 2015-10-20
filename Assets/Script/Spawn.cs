@@ -27,7 +27,9 @@ public class Spawn : MonoBehaviour {
 	void Spawner () {
 		var x1 = transform.position.x - GetComponent<Renderer>().bounds.size.x/2;
 		var x2 = transform.position.x + GetComponent<Renderer>().bounds.size.x/2;
-		var spawnPoint = new Vector2 (Random.Range (x1, x2), transform.position.y);
+		var y1 = transform.position.y - GetComponent<Renderer> ().bounds.size.y / 2;
+		var y2 = transform.position.y + GetComponent<Renderer> ().bounds.size.y / 2;  
+		var spawnPoint = new Vector2 (Random.Range (x1, x2), Random.Range (y1,y2));
 		
 		// Create an enemy at the 'spawnPoint' position
 		Instantiate(enemy, spawnPoint, Quaternion.identity);

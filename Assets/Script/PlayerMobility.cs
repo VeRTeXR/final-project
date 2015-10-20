@@ -8,7 +8,9 @@ public class PlayerMobility : MonoBehaviour {
 	public float speedY;
 
 	public float speed;
-	public int playerHP = 10; 
+	public int maxHP = 20;
+	public int playerHP ; 
+
 
 	int score;
 	pSpaceship spaceship;
@@ -24,6 +26,11 @@ public class PlayerMobility : MonoBehaviour {
 						yield return new WaitForSeconds (0);
 				
 		}
+	void Start(){
+		playerHP = maxHP;
+
+	}
+
 		
 	void FixedUpdate() 
 	{
@@ -46,7 +53,7 @@ public class PlayerMobility : MonoBehaviour {
 		GetComponent<Rigidbody2D>().AddForce (gameObject.transform.up * speedY * verticalInput*2*(Time.deltaTime));
 		GetComponent<Rigidbody2D>().AddForce (gameObject.transform.right * speed * horizontalInput*2*(Time.deltaTime));
 
-		if (Input.GetKeyDown(KeyCode.Space)) {
+		if (Input.GetMouseButtonDown(0)) {
 					StartCoroutine ("attk");
 
 		}
@@ -92,6 +99,8 @@ public class PlayerMobility : MonoBehaviour {
 
 		if(c.CompareTag ("Heal") ){
 
+			if(playerHP >= maxHP){playerHP = maxHP;}
+
 			playerHP += 5;
 			Destroy(c.gameObject);
 
@@ -109,20 +118,17 @@ public class PlayerMobility : MonoBehaviour {
 			Debug.Log(speedY);
 
 		}
-		if (speedY > 2500) {
-			
-			timeSpeedCountdown += Time.time + 0.5f;
-			
-			
-			Debug.Log(timeSpeedCountdown);
-			
+
+		if (c.CompareTag ("MaxHpUp")) {
+
+			//maxHP += 5;
+
+			Destroy(c.gameObject);
+
 		}
-		if(timeSpeedCountdown == 300f){
-			
-			speedY -= 2000;
-			Debug.Log(speedY);
-			
-		}
+
+
+
 		
 }
 

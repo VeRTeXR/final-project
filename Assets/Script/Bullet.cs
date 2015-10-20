@@ -10,7 +10,12 @@ public class Bullet : MonoBehaviour {
 		GetComponent<Rigidbody2D>().velocity = transform.up.normalized * speed;
 		Destroy (gameObject, lifeTime);
 	}
-	
 
+	void OnTriggerEnter2D (Collider2D c) {
+		Vector3 bulletdir = this.gameObject.transform.forward;
+		bulletdir.y = 0;
+		float force = 1000;
 
+		c.gameObject.GetComponent<Rigidbody2D>().AddForce (bulletdir.normalized * force);
+	}
 }

@@ -23,13 +23,17 @@ public class Spawn : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+
 		randomHealtime = Random.Range(100,300);
 
 		randomSpeedUptime = Random.Range(200,400);
 
 		randommaxHpUptime = Random.Range(300,600);
 
-		enemyCount = Random.Range (5,15); //random enemy count
+
+
+		enemyCount = Random.Range (10,30); //random enemy count
+
 		//Debug.Log (enemyCount);	
 		InvokeRepeating ("Spawner", spawnDelay, spawnTime);
 
@@ -61,7 +65,9 @@ public class Spawn : MonoBehaviour {
 	void Spawner () {
 		var x1 = transform.position.x - GetComponent<Renderer>().bounds.size.x/2;
 		var x2 = transform.position.x + GetComponent<Renderer>().bounds.size.x/2;
-		var spawnPoint = new Vector2 (Random.Range (x1, x2), transform.position.y);
+		var y1 = transform.position.y - GetComponent<Renderer> ().bounds.size.y / 2;
+		var y2 = transform.position.y + GetComponent<Renderer> ().bounds.size.y / 2;  
+		var spawnPoint = new Vector2 (Random.Range (x1, x2), Random.Range (y1,y2));
 		
 		// Create an enemy at the 'spawnPoint' position
 		Instantiate(enemy, spawnPoint, Quaternion.identity);

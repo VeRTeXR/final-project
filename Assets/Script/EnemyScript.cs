@@ -51,15 +51,17 @@ public class EnemyScript : MonoBehaviour {
 
 
 		string layerName = LayerMask.LayerToName (c.gameObject.layer);
+
 		if (layerName == "playerBullet") {
 			float force = 10;
-			enemyHP -= 1;	
+			enemyHP -= 1;
 			transform.Translate(-Vector2.up *force*Time.deltaTime);
-						Destroy (c.gameObject);
-				} 
+			Destroy (c.gameObject);
+		} 
 		else {
 			Destroy (gameObject);
 				}
 
+		spaceship.getAnimator().SetTrigger("Damage");
 	}
 }

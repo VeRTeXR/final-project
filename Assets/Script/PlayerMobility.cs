@@ -22,45 +22,16 @@ public class PlayerMobility : MonoBehaviour {
 				
 		}
 
+	public GameObject chargeFx;
+	public float chargeTime;
+
 	void Start(){
 	playerHP = maxHP;
 	
 }
 
 		
-	void FixedUpdate() {
-		var mousePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-		Quaternion roit = Quaternion.LookRotation (transform.position - mousePosition, Vector3.forward);
-		transform.rotation = roit;
 
-
-		transform.eulerAngles = new Vector3 (0, 0, transform.eulerAngles.z);
-
-		GetComponent<Rigidbody2D>().angularVelocity = 0.5f;
-			float verticalInput = Input.GetAxis ("Vertical");
-			float horizontalInput = Input.GetAxis ("Horizontal"); 
-		Vector2 movement = new Vector2 (horizontalInput, verticalInput);
-		GetComponent<Rigidbody2D>().velocity = (movement * speed)*(Time.deltaTime);
-
-		
-		//GetComponent<Rigidbody2D>().AddForce (gameObject.transform.up * speedY * verticalInput*2*(Time.deltaTime));
-		//GetComponent<Rigidbody2D>().AddForce (gameObject.transform.right * speed * horizontalInput*2*(Time.deltaTime));
-
-		//get button player.input.up
-		//findwithtag.object(player) transform up 
-		//get button player.input.down
-		//get button player.input.left
-		//get button player.input.right
-
-			if (Input.GetMouseButton(0)) {
-				StartCoroutine ("attk");
-
-			}
-
-
-
-
-	}
 	
 	void OnTriggerEnter2D (Collider2D c) {
 
@@ -107,6 +78,7 @@ public class PlayerMobility : MonoBehaviour {
 
 
 
+
 			Destroy (c.gameObject);
 
 
@@ -121,6 +93,55 @@ public class PlayerMobility : MonoBehaviour {
 			Destroy (c.gameObject);
 
 		}
+	}
+
+	void FixedUpdate() {
+		var mousePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+		Quaternion roit = Quaternion.LookRotation (transform.position - mousePosition, Vector3.forward);
+		transform.rotation = roit;
+		
+		
+		transform.eulerAngles = new Vector3 (0, 0, transform.eulerAngles.z);
+		
+		GetComponent<Rigidbody2D>().angularVelocity = 0.5f;
+		float verticalInput = Input.GetAxis ("Vertical");
+		float horizontalInput = Input.GetAxis ("Horizontal"); 
+		Vector2 movement = new Vector2 (horizontalInput, verticalInput);
+		GetComponent<Rigidbody2D>().velocity = (movement * speed)*(Time.deltaTime);
+		
+		
+		//GetComponent<Rigidbody2D>().AddForce (gameObject.transform.up * speedY * verticalInput*2*(Time.deltaTime));
+		//GetComponent<Rigidbody2D>().AddForce (gameObject.transform.right * speed * horizontalInput*2*(Time.deltaTime));
+		
+		//get button player.input.up
+		//findwithtag.object(player) transform up 
+		//get button player.input.down
+		//get button player.input.left
+		//get button player.input.right
+		
+		if (Input.GetMouseButton(0)) {
+			StartCoroutine ("attk");
+			
+		}
+		if (speed > 450) {
+			
+			chargeTime += Time.deltaTime;
+			
+			
+		}
+		
+		if (chargeTime >= 3) {
+			
+			speed -= 50;
+			
+			chargeTime = 0;
+			
+			
+		}
+		
+		
+		
+		
 	}
 
 

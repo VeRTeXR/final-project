@@ -1,11 +1,14 @@
 fileFormatVersion: 2
-guid: a3b2f1251dba47049918418cfb9b8047
+guid: 2e284109a1606084aadb68d6bd6d8ff3
+timeCreated: 1441697993
+licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: 10816062_4768308982058_852258597_n_0
-    21300002: 10816062_4768308982058_852258597_n_9
-    21300004: 10816062_4768308982058_852258597_n_10
-    21300006: 10816062_4768308982058_852258597_n_7
+    21300000: artifact-sprites_0
+    21300002: artifact-sprites_1
+    21300004: artifact-sprites_2
+    21300006: artifact-sprites_3
+    21300008: artifact-sprites_4
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -24,9 +27,12 @@ TextureImporter:
   isReadable: 0
   grayScaleToAlpha: 0
   generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 8
+  cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
   textureFormat: -1
-  maxTextureSize: 1024
+  maxTextureSize: 2048
   textureSettings:
     filterMode: -1
     aniso: 16
@@ -34,6 +40,7 @@ TextureImporter:
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
+  rGBM: 0
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
@@ -47,45 +54,57 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: 10816062_4768308982058_852258597_n_0
+    - name: artifact-sprites_0
       rect:
         serializedVersion: 2
-        x: 151
-        y: 0
-        width: 144
-        height: 132
+        x: 2
+        y: 14
+        width: 45
+        height: 45
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: 10816062_4768308982058_852258597_n_9
+    - name: artifact-sprites_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 148
-        height: 138
+        x: 52
+        y: 14
+        width: 45
+        height: 30
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: 10816062_4768308982058_852258597_n_10
+    - name: artifact-sprites_2
       rect:
         serializedVersion: 2
-        x: 452
-        y: 0
-        width: 144
-        height: 124
+        x: 113
+        y: 14
+        width: 30
+        height: 45
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: 10816062_4768308982058_852258597_n_7
+    - name: artifact-sprites_3
       rect:
         serializedVersion: 2
-        x: 297
-        y: 4
-        width: 142
-        height: 122
+        x: 158
+        y: 14
+        width: 35
+        height: 35
       alignment: 0
-      pivot: {x: .5, y: .5}
-      border: {x: 6, y: 0, z: 0, w: 0}
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: artifact-sprites_4
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 14
+        width: 40
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
+  assetBundleName: 
+  assetBundleVariant: 

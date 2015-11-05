@@ -7,12 +7,16 @@ public class Manager : MonoBehaviour {
 	
 	// Title
 	private GameObject title;
-	
+	public Texture2D crosshair;
+	public CursorMode cMode = CursorMode.Auto;
+	public Vector2 hotSpot = Vector2.zero;
+
 	void Start ()
 	{
 		// Search for the Title game object, and save it
 		title = GameObject.Find ("Title");
 		title.SetActive (false);
+		Cursor.SetCursor (crosshair,hotSpot,cMode);
 	}
 	
 	void Update ()

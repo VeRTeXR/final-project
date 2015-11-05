@@ -37,9 +37,13 @@ public class PlayerMobility : MonoBehaviour {
 
 		if (c.gameObject.tag == "Enemy") {
 					playerHP -=2;
-					//Destroy(c.gameObject);
+					FindObjectOfType<PlayerHp> ().decreaseHp ();
+					Destroy(c.gameObject);
+					
 		}				
-					if (c.gameObject.tag == "enemyBullet") {
+
+		if (c.gameObject.tag == "enemyBullet") {
+			FindObjectOfType<PlayerHp> ().decreaseHp ();
 			Destroy(c.gameObject);
 			playerHP -= 1; 
 		}
@@ -63,9 +67,7 @@ public class PlayerMobility : MonoBehaviour {
 
 		if (c.CompareTag ("Heal")) {
 
-			if (playerHP >= maxHP) {
-				playerHP = maxHP;
-			}
+
 
 			playerHP += 5;
 			Destroy (c.gameObject);
@@ -137,6 +139,10 @@ public class PlayerMobility : MonoBehaviour {
 			chargeTime = 0;
 			
 			
+		}
+
+		if (playerHP >= maxHP) {
+			playerHP = maxHP;
 		}
 		
 		

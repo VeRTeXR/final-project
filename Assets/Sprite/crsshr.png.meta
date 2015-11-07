@@ -29,7 +29,11 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
+<<<<<<< HEAD
     filterMode: 0
+=======
+    filterMode: -1
+>>>>>>> 0f81055b2758ec064acb290fbc263565cba1c902
     aniso: 1
     mipBias: -1
     wrapMode: 1
@@ -37,7 +41,10 @@ TextureImporter:
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
+<<<<<<< HEAD
   allowsAlphaSplitting: 0
+=======
+>>>>>>> 0f81055b2758ec064acb290fbc263565cba1c902
   spriteMode: 0
   spriteExtrude: 1
   spriteMeshType: 1

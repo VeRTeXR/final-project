@@ -5,7 +5,7 @@ public class PlayerMobility : MonoBehaviour {
 	
 	//public float speedY;
 	public float speed;
-	public int maxHP = 20;
+	public int maxHP = 100;
 	public int playerHP ; 
 	public float delay = 0.2f;
 	private float force = 0.5f;
@@ -37,13 +37,18 @@ public class PlayerMobility : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D c) {
 
 		if (c.gameObject.tag == "Enemy") {
-				playerHP -=2;
-				transform.Translate(-Vector2.up *force*Time.deltaTime);
-					//Destroy(c.gameObject);
+
+					playerHP -=2;
+					FindObjectOfType<BarController> ().decresebar2 ();
+					Destroy(c.gameObject);
+					
 		}				
+
 		if (c.gameObject.tag == "enemyBullet") {
-				Destroy(c.gameObject);
-				playerHP -= 1; 
+			FindObjectOfType<BarController> ().decresebar ();
+			Destroy(c.gameObject);
+			playerHP -= 1; 
+
 		}
 
 		/*string layerName = LayerMask.LayerToName (c.gameObject.layer);
@@ -65,11 +70,14 @@ public class PlayerMobility : MonoBehaviour {
 
 		if (c.CompareTag ("Heal")) {
 
+
 			if (playerHP >= maxHP) {
 				playerHP = maxHP;
 			}
+
 			playerHP += 5;
 			Destroy (c.gameObject);
+			FindObjectOfType<BarController> ().increseBar ();
 
 		}
 
@@ -112,6 +120,7 @@ public class PlayerMobility : MonoBehaviour {
 			speed -= 50;
 			chargeTime = 0;
 		}
+
 	}
 
 

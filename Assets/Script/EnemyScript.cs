@@ -8,6 +8,8 @@ public class EnemyScript : MonoBehaviour {
 	public Transform player;
 	public int point = 100;
 
+	public AudioClip explosion;
+
 	Spaceship spaceship;
 
 	IEnumerator Start() {

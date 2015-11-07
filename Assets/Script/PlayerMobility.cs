@@ -14,6 +14,9 @@ public class PlayerMobility : MonoBehaviour {
 	pSpaceship spaceship;
 	float timeSpeedCountdown = Mathf.Infinity;
 
+	public AudioClip shoot;
+
+
 	IEnumerator attk() {
 		yield return new WaitForSeconds(0.1f);
 		spaceship = GetComponent<pSpaceship> ();
@@ -112,6 +115,7 @@ public class PlayerMobility : MonoBehaviour {
 		if (Input.GetMouseButton(0)) {
 			StartCoroutine ("attk");
 			transform.Translate(-Vector2.up *force*Time.deltaTime);
+			AudioSource.PlayClipAtPoint(shoot,transform.position);
 		}
 		if (speed > 450) {
 			chargeTime += Time.deltaTime;

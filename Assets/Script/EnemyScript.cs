@@ -7,6 +7,10 @@ public class EnemyScript : MonoBehaviour {
 	public float speed;
 	public Transform player;
 	public int point = 100;
+	public GameObject Explosion;
+	public float explosionLifetime = 3.0f;
+
+	public AudioClip explosion;
 
 	Spaceship spaceship;
 
@@ -37,6 +41,7 @@ public class EnemyScript : MonoBehaviour {
 		GetComponent<Rigidbody2D>().AddForce (gameObject.transform.up * speed);
 
 		if (enemyHP <= 0) {
+			Instantiate(Explosion, transform.position, transform.rotation); 
 			FindObjectOfType<Score> ().AddPoint (point);
 			Destroy(gameObject);
 		}
@@ -53,7 +58,7 @@ public class EnemyScript : MonoBehaviour {
 		string layerName = LayerMask.LayerToName (c.gameObject.layer);
 
 		if (layerName == "playerBullet") {
-			float force = 10;
+			float force = 20;
 			enemyHP -= 1;
 			transform.Translate(-Vector2.up *force*Time.deltaTime);
 			Destroy (c.gameObject);

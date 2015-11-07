@@ -1,11 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class PlayerHp : MonoBehaviour {
 	
 
-	public float max_Hp = 10f;
-	public float cur_Hp = 0f;
+	public float max_Hp = 100f;
+	public float cur_Hp ;
 	public GameObject healthBar;
 	
 	
@@ -21,14 +21,14 @@ public class PlayerHp : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-		
+
+
 		
 	}
-	
+
 	public void decreaseHp(){
 		
-		cur_Hp -= 1.45f;
+		cur_Hp -= 2f;
 		float calc_Hp = cur_Hp / max_Hp;
 		SetHealthBar (calc_Hp);
 	}

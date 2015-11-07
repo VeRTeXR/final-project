@@ -10,14 +10,14 @@ public class Spawn : MonoBehaviour {
 
 	public float randomHealtime ;
 	public GameObject heal;
-	public int healCount;
+	public int healCount ;
 
 	public GameObject speedUp;
-	public int speedUpCount = Random.Range(1,3);
+	public int speedUpCount;
 	public float randomSpeedUptime ;
 
 	public GameObject maxHpUp;
-	public int maxHpUpCount = Random.Range(1,3);
+	public int maxHpUpCount ;
 	public float randommaxHpUptime ;
 
 	// Use this for initialization
@@ -30,6 +30,9 @@ public class Spawn : MonoBehaviour {
 
 		randommaxHpUptime = Random.Range(300,600);
 
+		healCount =  Random.Range(1,3) ;
+		speedUpCount = Random.Range(1,3);
+		maxHpUpCount = Random.Range(1,3);
 
 
 		enemyCount = Random.Range (10,30); //random enemy count

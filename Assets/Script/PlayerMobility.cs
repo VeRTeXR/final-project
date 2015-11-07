@@ -5,13 +5,17 @@ public class PlayerMobility : MonoBehaviour {
 	
 	//public float speedY;
 	public float speed;
-	public int maxHP = 20;
+	public int maxHP = 100;
 	public int playerHP ; 
 	public float delay = 0.2f;
+	private float force = 0.5f;
 
 	int score;
 	pSpaceship spaceship;
 	float timeSpeedCountdown = Mathf.Infinity;
+
+	public AudioClip shoot;
+
 
 	IEnumerator attk() {
 		yield return new WaitForSeconds(0.1f);
@@ -36,12 +40,18 @@ public class PlayerMobility : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D c) {
 
 		if (c.gameObject.tag == "Enemy") {
+
 					playerHP -=2;
-					//Destroy(c.gameObject);
+					FindObjectOfType<BarController> ().decresebar2 ();
+					Destroy(c.gameObject);
+					
 		}				
-					if (c.gameObject.tag == "enemyBullet") {
+
+		if (c.gameObject.tag == "enemyBullet") {
+			FindObjectOfType<BarController> ().decresebar ();
 			Destroy(c.gameObject);
 			playerHP -= 1; 
+
 		}
 
 		/*string layerName = LayerMask.LayerToName (c.gameObject.layer);
@@ -63,33 +73,25 @@ public class PlayerMobility : MonoBehaviour {
 
 		if (c.CompareTag ("Heal")) {
 
+
 			if (playerHP >= maxHP) {
 				playerHP = maxHP;
 			}
 
 			playerHP += 5;
 			Destroy (c.gameObject);
+			FindObjectOfType<BarController> ().increseBar ();
 
 		}
 
 		if (c.CompareTag ("speedUp")) {
-			
 			speed += 50;
-
-
-
-
 			Destroy (c.gameObject);
-
-
-
-
 		}
 
 		if (c.CompareTag ("MaxHpUp")) {
 
 			//maxHP += 5;
-
 			Destroy (c.gameObject);
 
 		}
@@ -99,10 +101,7 @@ public class PlayerMobility : MonoBehaviour {
 		var mousePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 		Quaternion roit = Quaternion.LookRotation (transform.position - mousePosition, Vector3.forward);
 		transform.rotation = roit;
-		
-		
 		transform.eulerAngles = new Vector3 (0, 0, transform.eulerAngles.z);
-		
 		GetComponent<Rigidbody2D>().angularVelocity = 0.5f;
 		float verticalInput = Input.GetAxis ("Vertical");
 		float horizontalInput = Input.GetAxis ("Horizontal"); 
@@ -112,41 +111,21 @@ public class PlayerMobility : MonoBehaviour {
 		
 		//GetComponent<Rigidbody2D>().AddForce (gameObject.transform.up * speedY * verticalInput*2*(Time.deltaTime));
 		//GetComponent<Rigidbody2D>().AddForce (gameObject.transform.right * speed * horizontalInput*2*(Time.deltaTime));
-		
-		//get button player.input.up
-		//findwithtag.object(player) transform up 
-		//get button player.input.down
-		//get button player.input.left
-		//get button player.input.right
-		
+	
 		if (Input.GetMouseButton(0)) {
 			StartCoroutine ("attk");
-			
+			transform.Translate(-Vector2.up *force*Time.deltaTime);
+			AudioSource.PlayClipAtPoint(shoot,transform.position);
 		}
 		if (speed > 450) {
-			
 			chargeTime += Time.deltaTime;
-			
-			
 		}
-		
 		if (chargeTime >= 3) {
-			
 			speed -= 50;
-			
 			chargeTime = 0;
-			
-			
 		}
-		
-		
-		
-		
+
 	}
-
-
-
-		
 
 
 

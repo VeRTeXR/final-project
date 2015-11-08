@@ -44,6 +44,7 @@ public class EnemyScript : MonoBehaviour {
 			Instantiate(Explosion, transform.position, transform.rotation); 
 			FindObjectOfType<Score> ().AddPoint (point);
 			Destroy(gameObject);
+			AudioSource.PlayClipAtPoint(explosion,transform.position);
 		}
 		}
 

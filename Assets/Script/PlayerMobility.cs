@@ -132,13 +132,13 @@ public class PlayerMobility : MonoBehaviour {
 
 	void OnGUI(){
 		
-		GUI.Label (new Rect (10, 280, 200, 60), "HP :  " + playerHP.ToString()); //display hp	
-		if (playerHP < 1) {
+		//GUI.Label (new Rect (10, 280, 200, 60), "HP :  " + playerHP.ToString()); //display hp	
+		if (playerHP <= 0) {
 					Destroy(this.gameObject);
 					FindObjectOfType<Manager>().GameOver();
 					FindObjectOfType<Spawn>().CancelInvoke("Spawner");
 			//Application.LoadLevel(Application.loadedLevel);
-			//GUI.Label (new Rect (10, 100, 200, 60), "PRESS R TO RESTART" );
+			GUI.Label (new Rect (10, 100, 200, 60), "PRESS R TO RESTART" );
 			}
 		if (Input.GetKey (KeyCode.R)) {
 					Application.LoadLevel(Application.loadedLevel);

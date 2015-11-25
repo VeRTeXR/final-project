@@ -6,7 +6,7 @@ public class BarController : MonoBehaviour {
 	public float curHp;
 	public float Maxhp = 20;
 	public GameObject healthBar;
-
+	float minHP = 0;
 	// Use this for initialization
 	void Start () {
 
@@ -34,7 +34,12 @@ public class BarController : MonoBehaviour {
 
 	public void decresebar(){
 
-		curHp -= 1;
+		if (curHp <= minHP) {
+			curHp = minHP;
+		} 
+		else {
+			curHp -= 1;
+		}
 
 		float calHpBar = curHp / Maxhp;
 
@@ -45,7 +50,12 @@ public class BarController : MonoBehaviour {
 
 	public void decresebar2(){
 		
-		curHp -= 2;
+		if (curHp <= minHP) {
+			curHp = minHP;
+		} 
+		else {
+			curHp -= 2;
+		}
 		
 		float calHpBar = curHp / Maxhp;
 		
@@ -56,7 +66,12 @@ public class BarController : MonoBehaviour {
 
 	public void increseBar(){
 		
-		curHp += 5;
+		if (curHp >= Maxhp) {
+			curHp = Maxhp;
+		} 
+		else {
+			curHp += 5;
+		}
 		
 		float calHpBar = curHp / Maxhp;
 		

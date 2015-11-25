@@ -121,7 +121,7 @@ public class Spawn : MonoBehaviour {
 
 	void OnGUI(){
 		
-		GUI.Label (new Rect (10, 240, 200, 60), "enemy :  " + enemyCount.ToString()); //display enemy by random	
+		//GUI.Label (new Rect (10, 240, 200, 60), "enemy :  " + enemyCount.ToString()); //display enemy by random	
 
 	}
 

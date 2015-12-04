@@ -10,6 +10,9 @@ public class PlayerMobility2 : MonoBehaviour {
 	public int playerHP ; 
 	public float delay = 0.2f;
 	private float force = 0.5f;
+
+	public GameObject Explosion;
+	public float explosionLifetime = 3.0f;
 	
 	int score;
 	pSpaceship2 spaceship;
@@ -45,7 +48,9 @@ public class PlayerMobility2 : MonoBehaviour {
 			
 			playerHP -=2;
 			FindObjectOfType<BarController> ().decresebar2 ();
+			Instantiate(Explosion, transform.position, transform.rotation);
 			Destroy(c.gameObject);
+		
 			
 		}				
 		

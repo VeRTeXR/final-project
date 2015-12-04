@@ -7,7 +7,8 @@ public class Spawn : MonoBehaviour {
 	public float spawnDelay;
 	public int enemyCount;
 	public GameObject enemy;
-
+	public GameObject[] enemyArray = new GameObject[4];
+	
 	public float randomHealtime ;
 	public GameObject heal;
 	public int healCount ;
@@ -22,7 +23,6 @@ public class Spawn : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
 
 		randomHealtime = Random.Range(100,300);
 
@@ -71,9 +71,10 @@ public class Spawn : MonoBehaviour {
 		var y1 = transform.position.y - GetComponent<Renderer> ().bounds.size.y / 2;
 		var y2 = transform.position.y + GetComponent<Renderer> ().bounds.size.y / 2;  
 		var spawnPoint = new Vector2 (Random.Range (x1, x2), Random.Range (y1,y2));
-		
+		int spwn_rng = Random.Range (0, enemyArray.Length);
 		// Create an enemy at the 'spawnPoint' position
-		Instantiate(enemy, spawnPoint, Quaternion.identity);
+		Instantiate (enemyArray[spwn_rng], spawnPoint, Quaternion.identity);
+		//Instantiate(enemy, spawnPoint, Quaternion.identity);
 		start = start + 1;
 		Debug.Log (start);
 	}

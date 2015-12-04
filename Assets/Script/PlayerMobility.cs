@@ -10,6 +10,10 @@ public class PlayerMobility : MonoBehaviour {
 	public float delay = 0.2f;
 	private float force = 0.5f;
 
+	public GameObject Explosion;
+	public float explosionLifetime = 3.0f;
+
+
 	int score;
 	pSpaceship spaceship;
 	float timeSpeedCountdown = Mathf.Infinity;
@@ -31,9 +35,8 @@ public class PlayerMobility : MonoBehaviour {
 	public float chargeTime;
 
 	void Start(){
-	playerHP = maxHP;
-	
-}
+				playerHP = maxHP;
+				}
 
 		
 
@@ -44,6 +47,8 @@ public class PlayerMobility : MonoBehaviour {
 
 					playerHP -=2;
 					FindObjectOfType<BarController> ().decresebar2 ();
+					//transform.Translate(-Vector2.up *force*Time.deltaTime);
+					Instantiate(Explosion, transform.position, transform.rotation);
 					Destroy(c.gameObject);
 					
 		}				

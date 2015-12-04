@@ -64,7 +64,7 @@ public class EnemyScript : MonoBehaviour {
 			transform.Translate(-Vector2.up *force*Time.deltaTime);
 			Destroy (c.gameObject);
 		} 
-		else {
+		else { 
 			Destroy (gameObject);
 				}
 

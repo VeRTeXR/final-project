@@ -35,7 +35,7 @@ public class Spawn : MonoBehaviour {
 		maxHpUpCount = Random.Range(1,3);
 
 
-		enemyCount = Random.Range (10,30); //random enemy count
+		enemyCount = Random.Range (10,enemyCount); //random enemy count
 
 		//Debug.Log (enemyCount);	
 		InvokeRepeating ("Spawner", spawnDelay, spawnTime);

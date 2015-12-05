@@ -13,6 +13,7 @@ public class PlayerMobility2 : MonoBehaviour {
 
 	public GameObject Explosion;
 	public float explosionLifetime = 3.0f;
+	public AudioClip explosion;
 	
 	int score;
 	pSpaceship2 spaceship;
@@ -23,10 +24,16 @@ public class PlayerMobility2 : MonoBehaviour {
 	
 	IEnumerator attk() {
 		yield return new WaitForSeconds(0.1f);
-		spaceship = GetComponent<pSpaceship2> ();
-		spaceship.Shot (transform);
-		AudioSource.PlayClipAtPoint(shoot,transform.position);
+
+			spaceship = GetComponent<pSpaceship2> ();
+			spaceship.Shot (transform);
+			AudioSource.PlayClipAtPoint (shoot, transform.position);
+
+			
+		
 		StopCoroutine("attk");
+
+		yield return new WaitForSeconds (0.5f);
 		
 		
 	}
@@ -49,6 +56,7 @@ public class PlayerMobility2 : MonoBehaviour {
 			playerHP -=2;
 			FindObjectOfType<BarController> ().decresebar2 ();
 			Instantiate(Explosion, transform.position, transform.rotation);
+			AudioSource.PlayClipAtPoint(explosion,transform.position);
 			Destroy(c.gameObject);
 		
 			
@@ -119,7 +127,7 @@ public class PlayerMobility2 : MonoBehaviour {
 		//GetComponent<Rigidbody2D>().AddForce (gameObject.transform.up * speedY * verticalInput*2*(Time.deltaTime));
 		//GetComponent<Rigidbody2D>().AddForce (gameObject.transform.right * speed * horizontalInput*2*(Time.deltaTime));
 		
-		if (Input.GetMouseButtonDown(0)) {
+		if (Input.GetMouseButton(0)) {
 			StartCoroutine ("attk");
 			transform.Translate(-Vector2.up *force*Time.deltaTime);
 			

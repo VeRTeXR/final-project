@@ -1,15 +1,35 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class Manager : MonoBehaviour {
 
+	public static Manager instance = null;
+	public BoardManager boardScript;
 	public GameObject player;
-	
+
+	private int level = 3;
+
 	// Title
 	private GameObject title;
 	public Texture2D crosshair;
 	public CursorMode cMode = CursorMode.Auto;
 	public Vector2 hotSpot = Vector2.zero;
+
+	void Awake () {
+		if (instance == null)
+			instance = this;
+		else if (instance != this)
+			Destroy (gameObject);
+
+		DontDestroyOnLoad (gameObject);
+		boardScript = GetComponent<BoardManager> ();
+		InitGame ();
+	}
+
+	void InitGame() {
+		boardScript.SetupScene (level);
+	}
+
 
 	void Start ()
 	{

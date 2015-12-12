@@ -1,12 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+namespace Completed
+{
 public class Loader : MonoBehaviour {
+
+	public GameObject gameManager;
 
 	// Use this for initialization
 	void Awake () {
 		if (Manager.instance == null) {
-			Instantiate(Manager);
+			Instantiate(gameManager);
 		}
 	}
 	
@@ -14,4 +18,5 @@ public class Loader : MonoBehaviour {
 	void Update () {
 	
 	}
+}
 }

@@ -1,10 +1,12 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Manager : MonoBehaviour {
 
+	
 	public static Manager instance = null;
-	public BoardManager boardScript;
+	private BoardManager boardScript;
 	public GameObject player;
 
 	private int level = 3;
@@ -31,14 +33,14 @@ public class Manager : MonoBehaviour {
 	}
 
 
-	void Start ()
+	/*void Start ()
 	{
 		// Search for the Title game object, and save it
 		title = GameObject.Find ("Title");
 		title.SetActive (false);
 		Cursor.SetCursor (crosshair,hotSpot,cMode);
 	}
-	
+	*/
 	void Update ()
 	{
 		// When not playing, check if the X key is being pressed.

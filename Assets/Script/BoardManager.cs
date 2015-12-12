@@ -23,6 +23,7 @@ public class BoardManager : MonoBehaviour {
 	public Count wallCount = new Count (5,5);
 	public GameObject exit;
 	public GameObject[] floorTiles;
+	public GameObject[] enemyTiles;
 	public GameObject[] outerWallTiles;
 
 	private Transform boardHolder;
@@ -41,11 +42,8 @@ public class BoardManager : MonoBehaviour {
 	void BoardSetup () {
 		boardHolder = new GameObject ("Board").transform;
 		for (int x = -1; x < columns; x++) {
-			for(int y = -1; x<rows; y++) {
+			for(int y = -1; x < rows; y++) {
 				GameObject toInstatiate = floorTiles[Random.Range(0, floorTiles.Length)];
-				if (x == -1 || x == columns || y == -1 || y == rows) 
-					toInstatiate = outerWallTiles[Random.Range (0, outerWallTiles.Length)];
-
 				GameObject instance = Instantiate(toInstatiate, new Vector3(x,y,0f), Quaternion.identity) as GameObject;
 
 				instance.transform.SetParent(boardHolder);
@@ -73,9 +71,13 @@ public class BoardManager : MonoBehaviour {
 		BoardSetup ();
 		InitialiseList ();
 		int enemyCount = (int)Mathf.Log (level, 2f);
-
-
+		//Instantiate a random number of enemies based on minimum and maximum, at randomized positions.
+		LayoutObjectAtRandom (enemyTiles, enemyCount, enemyCount);
+		
+		//Instantiate the exit tile in the upper right hand corner of our game board
+		Instantiate (exit, new Vector3 (columns - 1, rows - 1, 0f), Quaternion.identity);
+		
 	}
-
-
+	
+	
 }

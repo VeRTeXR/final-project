@@ -40,7 +40,7 @@ public class PlayerMobility : MonoBehaviour {
 
 		
 
-	
+	// Change to Collision cuz trigger is shite 
 	void OnTriggerEnter2D (Collider2D c) {
 
 		if (c.gameObject.tag == "Enemy") {
@@ -139,15 +139,14 @@ public class PlayerMobility : MonoBehaviour {
 		
 		//GUI.Label (new Rect (10, 280, 200, 60), "HP :  " + playerHP.ToString()); //display hp	
 		if (playerHP <= 0) {
-					Destroy(this.gameObject);
-					FindObjectOfType<Manager>().GameOver();
-					FindObjectOfType<Spawn>().CancelInvoke("Spawner");
-			//Application.LoadLevel(Application.loadedLevel);
-			GUI.Label (new Rect (10, 100, 200, 60), "PRESS R TO RESTART" );
+			Destroy (this.gameObject);
+			FindObjectOfType<PlayerManager> ().GameOver ();
+			FindObjectOfType<Spawn> ().CancelInvoke ("Spawner");
+			if (Input.GetKeyDown (KeyCode.Q)) {
+				Application.LoadLevel(Application.loadedLevel);
+				
 			}
-		if (Input.GetKey (KeyCode.R)) {
-					Application.LoadLevel(Application.loadedLevel);
-			}
+		}
 		}
 }
 	

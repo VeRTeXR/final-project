@@ -18,8 +18,8 @@ public class BoardManager : MonoBehaviour {
 
 	}
 
-	public int columns = 8;
-	public int rows = 8;
+	public int columns = 30;
+	public int rows = 30;
 	public Count wallCount = new Count (5,5);
 	public GameObject exit;
 	public GameObject[] floorTiles;
@@ -53,6 +53,10 @@ public class BoardManager : MonoBehaviour {
 				//Choose a random tile from our array of floor tile prefabs and prepare to instantiate it.
 				GameObject toInstantiate = floorTiles[Random.Range (0,floorTiles.Length)];
 
+				if(x == -1 || x == columns || y == -1 || y == rows)
+					toInstantiate = outerWallTiles [Random.Range (0, outerWallTiles.Length)];
+
+				
 				//Instantiate the GameObject instance using the prefab chosen for toInstantiate at the Vector3 corresponding to current grid position in loop, cast it to GameObject.
 				GameObject instance =
 					Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;

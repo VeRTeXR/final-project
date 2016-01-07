@@ -52,6 +52,8 @@ public class EnemyScript : MonoBehaviour {
 		}
 		}
 
+
+	//Change to collision 
 	void OnTriggerEnter2D (Collider2D c) {
 
 

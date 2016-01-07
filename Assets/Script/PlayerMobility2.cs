@@ -45,13 +45,36 @@ public class PlayerMobility2 : MonoBehaviour {
 		playerHP = maxHP;
 		
 	}
-	
-	
-	
-	
-	void OnTriggerEnter2D (Collider2D c) {
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Enemy") {
+
+            playerHP -= 2;
+            FindObjectOfType<BarController>().decresebar2();
+            Instantiate(Explosion, transform.position, transform.rotation);
+            AudioSource.PlayClipAtPoint(explosion, transform.position);
+            //Destroy(gameObject);
+
+        }
+
+        if (other.gameObject.tag == "enemyBullet")
+        {
+
+            FindObjectOfType<BarController>().decresebar();
+            Destroy(gameObject);
+            //playerHP -= 1;
+
+        }
+
+    }
+
+
+
+
+    void OnTriggerEnter2D (Collider2D c) {
 		
-		if (c.gameObject.tag == "Enemy") {
+		/*if (c.gameObject.tag == "Enemy") {
 			
 			playerHP -=2;
 			FindObjectOfType<BarController> ().decresebar2 ();
@@ -67,7 +90,7 @@ public class PlayerMobility2 : MonoBehaviour {
 			Destroy(c.gameObject);
 			playerHP -= 1; 
 			
-		}
+		}*/
 		
 		/*string layerName = LayerMask.LayerToName (c.gameObject.layer);
 		if (layerName == "playerBullet") {

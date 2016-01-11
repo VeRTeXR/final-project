@@ -9,11 +9,11 @@ public class Manager : MonoBehaviour {
 	private BoardManager boardScript;
 	public GameObject player;
 
-	private int level = 100;
+	private int level = 500;
 
 	// Title
 
-	void Awake () {
+	void Start () {
 
 		if (instance == null)
 			instance = this;
@@ -22,10 +22,13 @@ public class Manager : MonoBehaviour {
 		
 		DontDestroyOnLoad (gameObject);
 		boardScript = GetComponent<BoardManager> ();
-
 		InitGame ();
-	}
 
+	}
+	void OnLevelWasLoaded(int level)  {
+		InitGame ();	
+	}
+		
 
 	void InitGame() {
 		boardScript.SetupScene (level);

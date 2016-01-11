@@ -37,8 +37,9 @@ public class PlayerManager : MonoBehaviour {
 	void Update ()
 	{
 		// When not playing, check if the X key is being pressed.
-		if (Input.GetKeyDown (KeyCode.Q)) {
+		if (Input.GetKeyDown (KeyCode.R)) {
 			Application.LoadLevel(Application.loadedLevel);
+			title.SetActive(false);
 			
 		}
 	}

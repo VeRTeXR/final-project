@@ -8,8 +8,9 @@ public class Manager : MonoBehaviour {
 	//private Manager managerScript;
 	private BoardManager boardScript;
 	public GameObject player;
+	public GameObject title;
 
-	private int level = 500;
+	private int level = 50000;
 
 	// Title
 
@@ -27,6 +28,8 @@ public class Manager : MonoBehaviour {
 	}
 	void OnLevelWasLoaded(int level)  {
 		InitGame ();	
+		title = GameObject.Find ("Title");
+		title.SetActive(false);
 	}
 		
 

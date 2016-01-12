@@ -46,7 +46,6 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Manager.cs" />
      <Compile Include="Assets\Script\BarController.cs" />
      <Compile Include="Assets\Script\BoardManager.cs" />
      <Compile Include="Assets\Script\Bullet.cs" />
@@ -57,8 +56,10 @@
      <Compile Include="Assets\Script\HealboxControlller.cs" />
      <Compile Include="Assets\Script\ItemDetected.cs" />
      <Compile Include="Assets\Script\Loader.cs" />
+     <Compile Include="Assets\Script\Manager.cs" />
      <Compile Include="Assets\Script\PlayerBound.cs" />
      <Compile Include="Assets\Script\PlayerHp.cs" />
+     <Compile Include="Assets\Script\PlayerManager.cs" />
      <Compile Include="Assets\Script\PlayerMobility.cs" />
      <Compile Include="Assets\Script\PlayerMobility2.cs" />
      <Compile Include="Assets\Script\Score.cs" />

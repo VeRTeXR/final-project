@@ -28,12 +28,8 @@ public class PlayerMobility2 : MonoBehaviour {
 			spaceship = GetComponent<pSpaceship2> ();
 			spaceship.Shot (transform);
 			AudioSource.PlayClipAtPoint (shoot, transform.position);
-
-			
-		
-		StopCoroutine("attk");
-
-		yield return new WaitForSeconds (0.5f);
+			StopCoroutine("attk");
+			yield return new WaitForSeconds (0.5f);
 		
 		
 	}
@@ -153,9 +149,6 @@ public class PlayerMobility2 : MonoBehaviour {
 			FindObjectOfType<Spawn>().CancelInvoke("Spawner");
 			//Application.LoadLevel(Application.loadedLevel);
 			GUI.Label (new Rect (10, 100, 200, 60), "PRESS R TO RESTART" );
-		}
-		if (Input.GetKey (KeyCode.R)) {
-			Application.LoadLevel(Application.loadedLevel);
 		}
 
 }

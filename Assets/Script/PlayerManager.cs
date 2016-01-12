@@ -5,7 +5,7 @@ public class PlayerManager : MonoBehaviour {
 
 
 	public static PlayerManager instance = null;
-	private GameObject title;
+	public GameObject title;
 	public Texture2D crosshair;
 	public CursorMode cMode = CursorMode.Auto;
 	public Vector2 hotSpot = Vector2.zero;
@@ -13,10 +13,10 @@ public class PlayerManager : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {
-	
+	void Awake () {
 		title = GameObject.Find ("Title");
-		title.SetActive (false);
+			title.SetActive (false);
+
 		Cursor.SetCursor (crosshair, hotSpot, cMode);
 	
 	}
@@ -36,11 +36,8 @@ public class PlayerManager : MonoBehaviour {
 	
 	void Update ()
 	{
-		// When not playing, check if the X key is being pressed.
 		if (Input.GetKeyDown (KeyCode.R)) {
-			Application.LoadLevel(Application.loadedLevel);
 			title.SetActive(false);
-			
 		}
 	}
 

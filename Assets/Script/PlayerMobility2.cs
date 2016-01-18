@@ -41,13 +41,55 @@ public class PlayerMobility2 : MonoBehaviour {
 		playerHP = maxHP;
 		
 	}
-	
-	
-	
-	
-	void OnTriggerEnter2D (Collider2D c) {
+
+
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            playerHP -= 2;
+            FindObjectOfType<BarController>().decresebar2();
+            Instantiate(Explosion, transform.position, transform.rotation);
+            AudioSource.PlayClipAtPoint(explosion, transform.position);
+        }
+
+        if (other.gameObject.tag == "enemyBullet")
+        {
+            FindObjectOfType<BarController>().decresebar();
+            playerHP -= 1;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "Heal")
+        {
+            if (playerHP >= maxHP)
+            {
+                playerHP = maxHP;
+            }
+
+            playerHP += 5;
+            Destroy(other.gameObject);
+            FindObjectOfType<BarController>().increseBar();
+        }
+
+        if (other.gameObject.tag == "speedUp")
+        {
+            speed += 50;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "MaxHpUp")
+        {
+            maxHP += 5;
+            Destroy(other.gameObject);
+        }
+
+
+    }
+
+    void OnTriggerEnter2D (Collider2D c) {
 		
-		if (c.gameObject.tag == "Enemy") {
+		/*if (c.gameObject.tag == "Enemy") {
 			
 			playerHP -=2;
 			FindObjectOfType<BarController> ().decresebar2 ();
@@ -56,14 +98,14 @@ public class PlayerMobility2 : MonoBehaviour {
 			Destroy(c.gameObject);
 		
 			
-		}				
+		}*/				
 		
-		if (c.gameObject.tag == "enemyBullet") {
+		/*if (c.gameObject.tag == "enemyBullet") {
 			FindObjectOfType<BarController> ().decresebar ();
 			Destroy(c.gameObject);
 			playerHP -= 1; 
 			
-		}
+		}*/
 		
 		/*string layerName = LayerMask.LayerToName (c.gameObject.layer);
 		if (layerName == "playerBullet") {
@@ -81,7 +123,7 @@ public class PlayerMobility2 : MonoBehaviour {
 		}*/
 		
 		
-		
+		/*
 		if (c.CompareTag ("Heal")) {
 			
 			
@@ -102,10 +144,10 @@ public class PlayerMobility2 : MonoBehaviour {
 		
 		if (c.CompareTag ("MaxHpUp")) {
 			
-			//maxHP += 5;
+			maxHP += 5;
 			Destroy (c.gameObject);
 			
-		}
+		}*/
 	}
 	
 	void FixedUpdate() {
@@ -135,6 +177,8 @@ public class PlayerMobility2 : MonoBehaviour {
 			speed -= 50;
 			chargeTime = 0;
 		}
+
+
 		
 	}
 	

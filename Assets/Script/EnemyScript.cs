@@ -12,7 +12,10 @@ public class EnemyScript : MonoBehaviour {
 
 	public AudioClip explosion;
 
-	Spaceship spaceship;
+    public GameObject bodyPart;
+    public int totalParts = 7;
+
+    Spaceship spaceship;
 
 	IEnumerator Start() {
 				spaceship = GetComponent<Spaceship> ();
@@ -65,11 +68,26 @@ public class EnemyScript : MonoBehaviour {
 			enemyHP -= 1;
 			transform.Translate(-Vector2.up *force*Time.deltaTime);
 			Destroy (c.gameObject);
+            OnExplode();
 		} 
 		else { 
 			Destroy (gameObject);
+            OnExplode();
 				}
 
 		spaceship.getAnimator().SetTrigger("Damage");
 	}
+
+    void OnExplode()
+    {
+        for (int i = 0; i < totalParts; i++)
+        {
+            GameObject b = Instantiate(bodyPart, transform.position, Quaternion.identity) as GameObject;
+            b.GetComponent<Rigidbody2D>().AddForce(Vector3.right * Random.Range(-200, 200));
+            b.GetComponent<Rigidbody2D>().AddForce(Vector3.up * Random.Range(-400, 400));
+        }
+        Destroy(this.gameObject);
+    }
+
+
 }

@@ -45,16 +45,20 @@ public class PlayerMobility2 : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Enemy")
-        {
+        if (other.gameObject.tag == "Enemy") {
+
             playerHP -= 2;
             FindObjectOfType<BarController>().decresebar2();
             Instantiate(Explosion, transform.position, transform.rotation);
             AudioSource.PlayClipAtPoint(explosion, transform.position);
+
+            //Destroy(gameObject);
+
         }
 
         if (other.gameObject.tag == "enemyBullet")
         {
+
             FindObjectOfType<BarController>().decresebar();
             playerHP -= 1;
             Destroy(other.gameObject);
@@ -86,6 +90,7 @@ public class PlayerMobility2 : MonoBehaviour {
 
 
     }
+
 
     void OnTriggerEnter2D (Collider2D c) {
 		

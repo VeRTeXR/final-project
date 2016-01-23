@@ -9,6 +9,7 @@ public class PlayerMobility2 : MonoBehaviour {
 	public int maxHP = 100;
 	public int playerHP ; 
 	public float delay = 0.2f;
+	public float restartLevelDelay = 0.2f;
 	private float force = 0.5f;
 
 	public GameObject Explosion;
@@ -42,9 +43,18 @@ public class PlayerMobility2 : MonoBehaviour {
 		
 	}
 
+	private void Restart () {
+		Application.LoadLevel (Application.loadedLevel);
+	}
 
     void OnCollisionEnter2D(Collision2D other)
     {
+
+		if (other.gameObject.tag == "Exit") {
+			Invoke ("Restart", restartLevelDelay);
+
+		}
+
         if (other.gameObject.tag == "Enemy") {
 
             playerHP -= 2;
@@ -194,7 +204,7 @@ public class PlayerMobility2 : MonoBehaviour {
 		//GUI.Label (new Rect (10, 280, 200, 60), "HP :  " + playerHP.ToString()); //display hp	
 		if (playerHP <= 0) {
 			Destroy(this.gameObject);
-			FindObjectOfType<PlayerManager>().GameOver();
+			FindObjectOfType<Manager>().GameOver();
 			FindObjectOfType<Spawn>().CancelInvoke("Spawner");
 			//Application.LoadLevel(Application.loadedLevel);
 			GUI.Label (new Rect (10, 100, 200, 60), "PRESS R TO RESTART" );

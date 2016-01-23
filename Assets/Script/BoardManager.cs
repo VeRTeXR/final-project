@@ -25,6 +25,7 @@ public class BoardManager : MonoBehaviour {
 	public GameObject[] floorTiles;
 	public GameObject[] enemyTiles;
 	public GameObject[] outerWallTiles;
+	public int enemyCount;
 
 	private Transform boardHolder;
 	private List <Vector3> gridPositions = new List <Vector3>();
@@ -88,7 +89,7 @@ public class BoardManager : MonoBehaviour {
 	public void SetupScene(int level) {
 		BoardSetup ();
 		InitialiseList ();
-		int enemyCount = (int)Mathf.Log (level, 2f);
+		enemyCount = (int)Mathf.Log (level, 2f);
 		//Instantiate a random number of enemies based on minimum and maximum, at randomized positions.
 		LayoutObjectAtRandom (enemyTiles, enemyCount, enemyCount);
 		

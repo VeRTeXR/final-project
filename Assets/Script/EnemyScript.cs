@@ -17,7 +17,10 @@ public class EnemyScript : MonoBehaviour {
 
     Spaceship spaceship;
 
-	IEnumerator Start() {
+    public GameObject bodyPart;
+    public int totalParts = 7;
+
+    IEnumerator Start() {
 				spaceship = GetComponent<Spaceship> ();
 				
 		if (spaceship.canShot == false) {
@@ -44,6 +47,7 @@ public class EnemyScript : MonoBehaviour {
 		GetComponent<Rigidbody2D>().AddForce (gameObject.transform.up * speed);
 
 		if (enemyHP <= 0) {
+			
 			Instantiate(Explosion, transform.position, transform.rotation);
             OnExplode();
             FindObjectOfType<Score> ().AddPoint (point);
@@ -99,6 +103,5 @@ public class EnemyScript : MonoBehaviour {
         }
        // Destroy(gameObject);
     }
-
 
 }

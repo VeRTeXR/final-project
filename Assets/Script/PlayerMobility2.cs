@@ -78,7 +78,7 @@ public class PlayerMobility2 : MonoBehaviour {
 		if (other.gameObject.tag == "Exit") {
 
 			Invoke ("Restart", restartLevelDelay);
-			enabled = false;
+
 
 		}
 

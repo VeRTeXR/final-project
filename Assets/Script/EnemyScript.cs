@@ -8,8 +8,10 @@ public class EnemyScript : MonoBehaviour {
 	public Transform player;
 	public int point = 100;
 	public GameObject Explosion;
+	public GameObject ExitTest;
 	public float explosionLifetime = 3.0f;
-
+	public int enemyCount;
+	
 	public AudioClip explosion;
 
     public GameObject bodyPart;
@@ -43,7 +45,8 @@ public class EnemyScript : MonoBehaviour {
 		float z = Mathf.Atan2 ((player.transform.position.y - transform.position.y), (player.transform.position.x - transform.position.x)) * Mathf.Rad2Deg - 90; 
 		transform.eulerAngles = new Vector3 (0, 0, z);
 		GetComponent<Rigidbody2D>().AddForce (gameObject.transform.up * speed);
-
+		enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+			
 		if (enemyHP <= 0) {
 			Instantiate(Explosion, transform.position, transform.rotation); 
 			FindObjectOfType<Score> ().AddPoint (point);
@@ -51,7 +54,10 @@ public class EnemyScript : MonoBehaviour {
             Destroy(gameObject);
 			AudioSource.PlayClipAtPoint(explosion,transform.position);
 		}
-		}
+		Debug.Log (enemyCount);
+
+	}
+		
 
 
 	//Change to collision 
@@ -82,10 +88,13 @@ public class EnemyScript : MonoBehaviour {
 
     void OnExplode()
     {
+		if (enemyCount == 1) {
+			Instantiate (ExitTest, transform.position, transform.rotation);	
+		}
+
         for (int i = 0; i < totalParts; i++)
         {
             GameObject b = Instantiate(bodyPart, transform.position, Quaternion.identity) as GameObject;
-
             b.GetComponent<Rigidbody2D>().AddForce(Vector3.right * Random.Range(-50, 50));
             b.GetComponent<Rigidbody2D>().AddForce(Vector3.up * Random.Range(-100, 100));
         }

@@ -8,9 +8,15 @@ public class Manager : MonoBehaviour {
 	public static Manager instance = null; 
 	//private Manager managerScript;
 	private BoardManager boardScript;
+	public GameObject ExitTest;
+	public GameObject[] enemy;
 	public GameObject player;
 	public GameObject title;
+	//public GameObject ExitTest;
 	public float levelStartDelay = 0.3f;
+	public int HP;
+
+
 
 	private GameObject levelImage;
 	private Text levelText;
@@ -49,14 +55,27 @@ public class Manager : MonoBehaviour {
 		boardScript.SetupScene (level);
 	}
 
+	void update () {
+		if(doingSetup)
+			
+			//If any of these are true, return and do not start MoveEnemies.
+			return;
+
+		enemy = GameObject.FindGameObjectsWithTag("Enemy");
+		if (enemy.Length <= 0) {
+			Instantiate (ExitTest, transform.position, transform.rotation);	
+		}
+		/*if (enemyCount <= 0)
+			Instantiate (ExitTest, transform.position, transform.rotation);*/
+
+	}
+
 	void HideLevelImage () {
 		levelImage.SetActive (false);
 		doingSetup = false;
 	}
 
-	public void LvTransition () {	
 
-	}
 
 	public void GameOver() {
 		FindObjectOfType<Score> ().Save ();

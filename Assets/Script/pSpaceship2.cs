@@ -5,6 +5,7 @@ public class pSpaceship2 : MonoBehaviour {
 
 	public float shotDelay;
 	public GameObject bullet;
+    public GameObject bullet2;
 	int strayFactor = 3;
 
 	public GameObject bulletSpawnRight;
@@ -22,4 +23,15 @@ public class pSpaceship2 : MonoBehaviour {
 		bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.forward * 100*Time.deltaTime);
 		
 	}
+
+    public void shot2(Transform origin) {
+
+        var randomNumberX = Random.Range(-strayFactor, strayFactor);
+        var randomNumberY = Random.Range(-strayFactor, strayFactor);
+        var randomNumberZ = Random.Range(-strayFactor, strayFactor);
+
+        Instantiate(bullet2, transform.position, transform.rotation * Quaternion.Euler(0f, 0f, randomNumberZ));
+        bullet.transform.Rotate(randomNumberX, randomNumberY, randomNumberZ); //rotating teh shot
+        bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.forward * 100);
+    }
 }

@@ -22,9 +22,13 @@ public class PlayerMobility2 : MonoBehaviour {
 	float timeSpeedCountdown = Mathf.Infinity;
 	
 	public AudioClip shoot;
-	
-	
-	IEnumerator attk() {
+
+    public GameObject baria;
+
+    public float chargeFxTime;
+
+
+    IEnumerator attk() {
 		yield return new WaitForSeconds(0.1f);
 
 			spaceship = GetComponent<pSpaceship2> ();
@@ -35,6 +39,18 @@ public class PlayerMobility2 : MonoBehaviour {
 		
 		
 	}
+
+    IEnumerator attk2() {
+
+        yield return new WaitForSeconds(0.1f);
+        spaceship = GetComponent<pSpaceship2>();
+        spaceship.shot2(transform);
+
+        StopCoroutine("attk2");
+        yield return new WaitForSeconds(0.5f);
+
+
+    }
 	
 	public GameObject chargeFx;
 	public float chargeTime;
@@ -74,7 +90,6 @@ public class PlayerMobility2 : MonoBehaviour {
             AudioSource.PlayClipAtPoint(explosion, transform.position);
 
             //Destroy(gameObject);
-
         }
 
         if (other.gameObject.tag == "enemyBullet")
@@ -196,6 +211,25 @@ public class PlayerMobility2 : MonoBehaviour {
 			transform.Translate(-Vector2.up *force*Time.deltaTime);
 			
 		}
+
+        if (Input.GetMouseButton(1)) {
+
+            chargeFxTime += Time.deltaTime;
+
+            if (chargeFxTime >= 2f) {
+
+                StartCoroutine("attk2");
+                transform.Translate(-Vector2.up * force * Time.deltaTime);
+
+                chargeFxTime = 0;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space)) {
+
+            Instantiate(baria, this.transform.position, this.transform.rotation);
+        }
+
 		if (speed > 450) {
 			chargeTime += Time.deltaTime;
 		}

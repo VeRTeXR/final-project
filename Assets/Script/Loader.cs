@@ -8,7 +8,7 @@ public class Loader : MonoBehaviour {
 	public GameObject manager;
 	public GameObject playerManager;
 	public GameObject title;
-
+	public bool gameOver = false;
 	// Use this for initialization
 	void Awake () {
 			title = GameObject.Find ("Title");
@@ -26,15 +26,16 @@ public class Loader : MonoBehaviour {
 			// When the game ends, show the title.
 			FindObjectOfType<Score> ().Save ();
 			title.SetActive (true);
+			gameOver = true;
 			
 		}
-	
-	// Update is called once per frame
-	void Update () {
-			// When not playing, check if the X key is being pressed.
-			if (Input.GetKeyDown (KeyCode.R)) {
-				Application.LoadLevel(Application.loadedLevel);
+	void Update() {
+			if (gameOver) {
+				if (Input.GetKeyDown (KeyCode.R)) {
+					Application.LoadLevel(Application.loadedLevel);
+				}
 			}
-	}
+		}
+
 }
 }

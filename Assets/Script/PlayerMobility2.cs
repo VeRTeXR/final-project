@@ -57,17 +57,10 @@ public class PlayerMobility2 : MonoBehaviour {
 	
 	void Start(){
 
-
 		playerHP = Manager.instance.HP;
 
 	}
 
-	private void OnDisable ()
-	{
-		//When Player object is disabled, store the current local food total in the GameManager so it can be re-loaded in next level.
-		Manager.instance.HP = playerHP;
-	}
-	
 	private void Restart () {
 		Application.LoadLevel (Application.loadedLevel);
 	}
@@ -78,7 +71,7 @@ public class PlayerMobility2 : MonoBehaviour {
 		if (other.gameObject.tag == "Exit") {
 
 			Invoke ("Restart", restartLevelDelay);
-
+			Manager.instance.HP = playerHP;
 
 		}
 
@@ -202,6 +195,8 @@ public class PlayerMobility2 : MonoBehaviour {
 		Vector2 movement = new Vector2 (horizontalInput, verticalInput);
 		GetComponent<Rigidbody2D>().velocity = (movement * speed)*(Time.deltaTime);
 		enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+
+	
 		
 		//GetComponent<Rigidbody2D>().AddForce (gameObject.transform.up * speedY * verticalInput*2*(Time.deltaTime));
 		//GetComponent<Rigidbody2D>().AddForce (gameObject.transform.right * speed * horizontalInput*2*(Time.deltaTime));

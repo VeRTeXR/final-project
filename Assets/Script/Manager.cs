@@ -8,13 +8,19 @@ public class Manager : MonoBehaviour {
 	public static Manager instance = null; 
 	//private Manager managerScript;
 	private BoardManager boardScript;
+	public GameObject ExitTest;
+	public GameObject[] enemy;
 	public GameObject player;
 	public GameObject title;
-	public float levelStartDelay = 0.3f;
+	//public GameObject ExitTest;
+	public float levelStartDelay = 0.1f;
+	public int HP;
+	public int level;
+
+
 
 	private GameObject levelImage;
 	private Text levelText;
-	private int level;
 	private bool doingSetup = true;
 
 	// Title
@@ -49,21 +55,46 @@ public class Manager : MonoBehaviour {
 		boardScript.SetupScene (level);
 	}
 
+	void Update () {
+		
+		if(doingSetup)
+
+			return;
+
+		if (levelImage.activeSelf) {
+			if (Input.GetKeyDown (KeyCode.R)) {
+				level = 0;
+				Application.LoadLevel(Application.loadedLevel);  	//	reload will actually reload from beginning
+			}
+			if (level == 0) {
+				HP = 20;
+			}
+			if (Input.GetKeyDown (KeyCode.Tab)) {
+				Application.LoadLevel(Application.loadedLevel);		//skip lv for dev p
+			}
+		}
+
+		enemy = GameObject.FindGameObjectsWithTag("Enemy");
+		if (enemy.Length <= 0) {
+			Instantiate (ExitTest, transform.position, transform.rotation);	
+		}
+	}
+
 	void HideLevelImage () {
 		levelImage.SetActive (false);
 		doingSetup = false;
 	}
 
-	public void LvTransition () {	
 
-	}
 
 	public void GameOver() {
 		FindObjectOfType<Score> ().Save ();
-		levelText.text = "After " + level + " your shite is done.";
+		levelText.text = "After " + level + " you're dead";
 		levelImage.SetActive (true);
+		
 
-		enabled = false;
+
+
 	}
 
 }

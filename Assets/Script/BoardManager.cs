@@ -89,7 +89,7 @@ public class BoardManager : MonoBehaviour {
 	public void SetupScene(int level) {
 		BoardSetup ();
 		InitialiseList ();
-		enemyCount = (int)Mathf.Log (level, 2f);
+		enemyCount = 5+(int)Mathf.Log (level, 2f);
 		//Instantiate a random number of enemies based on minimum and maximum, at randomized positions.
 		LayoutObjectAtRandom (enemyTiles, enemyCount, enemyCount);
 		

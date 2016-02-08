@@ -6,12 +6,13 @@ public class PlayerMobility2 : MonoBehaviour {
 	// Use this for initialization
 	//public float speedY;
 	public float speed;
-	public int maxHP = 100;
-	public int playerHP ; 
+	public int maxHP;
+	public int playerHP; 
 	public float delay = 0.2f;
 	public float restartLevelDelay = 0.2f;
 	private float force = 0.5f;
-
+	public int enemyCount;
+	
 	public GameObject Explosion;
 	public float explosionLifetime = 3.0f;
 	public AudioClip explosion;
@@ -55,8 +56,9 @@ public class PlayerMobility2 : MonoBehaviour {
 	public float chargeTime;
 	
 	void Start(){
-		playerHP = maxHP;
-		
+
+		playerHP = Manager.instance.HP;
+
 	}
 
 	private void Restart () {
@@ -67,7 +69,9 @@ public class PlayerMobility2 : MonoBehaviour {
     {
 
 		if (other.gameObject.tag == "Exit") {
+
 			Invoke ("Restart", restartLevelDelay);
+			Manager.instance.HP = playerHP;
 
 		}
 
@@ -190,7 +194,9 @@ public class PlayerMobility2 : MonoBehaviour {
 		float horizontalInput = Input.GetAxis ("Horizontal"); 
 		Vector2 movement = new Vector2 (horizontalInput, verticalInput);
 		GetComponent<Rigidbody2D>().velocity = (movement * speed)*(Time.deltaTime);
-		
+		enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+
+	
 		
 		//GetComponent<Rigidbody2D>().AddForce (gameObject.transform.up * speedY * verticalInput*2*(Time.deltaTime));
 		//GetComponent<Rigidbody2D>().AddForce (gameObject.transform.right * speed * horizontalInput*2*(Time.deltaTime));
@@ -235,7 +241,8 @@ public class PlayerMobility2 : MonoBehaviour {
 	
 	void OnGUI(){
 		
-		//GUI.Label (new Rect (10, 280, 200, 60), "HP :  " + playerHP.ToString()); //display hp	
+		GUI.Label (new Rect (10, 280, 200, 60), "HP :  " + playerHP.ToString()); //display hp
+		GUI.Label(new Rect (10,250,200,60), "Enemy : " + enemyCount.ToString()); //disp enemcount
 		if (playerHP <= 0) {
 			Destroy(this.gameObject);
 			FindObjectOfType<Manager>().GameOver();

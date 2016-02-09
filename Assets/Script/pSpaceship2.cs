@@ -6,7 +6,7 @@ public class pSpaceship2 : MonoBehaviour {
 	public float shotDelay;
 	public GameObject bullet;
     public GameObject bullet2;
-	int strayFactor = 3;
+	int strayFactor = 10;
 
 	public GameObject bulletSpawnRight;
 	public GameObject bulletSpawnLeft;

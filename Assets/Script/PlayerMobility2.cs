@@ -19,7 +19,6 @@ public class PlayerMobility2 : MonoBehaviour {
 	public GameObject barrier;
 	public float chargeFxTime;
 	public AudioClip shoot;
-	public int Score;
 	private float force = 0.5f;
 
 	int score;
@@ -53,7 +52,7 @@ public class PlayerMobility2 : MonoBehaviour {
 	void Start(){
 
 		playerHP = Manager.instance.HP;
-		Score = Manager.instance.score;
+		score = Manager.instance.score;
 	}
 
 	private void Restart () {
@@ -67,7 +66,7 @@ public class PlayerMobility2 : MonoBehaviour {
 
 			Invoke ("Restart", restartLevelDelay);
 			Manager.instance.HP = playerHP;
-			Manager.instance.score = Score;
+			Manager.instance.score = score;
 
 		}
 

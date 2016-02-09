@@ -16,7 +16,7 @@ public class Manager : MonoBehaviour {
 	public float levelStartDelay = 0.1f;
 	public float HP = 20;
 	public int level;
-	public int score;
+	public int score = 0;
 
 
 
@@ -61,9 +61,10 @@ public class Manager : MonoBehaviour {
 
 			return;
 
-        if (level < 2)
+        if (level < 1)
         {
             HP = 20;
+			score = 0;
         }
 
         if (levelImage.activeSelf) {

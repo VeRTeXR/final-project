@@ -21,7 +21,8 @@ public class Score : MonoBehaviour {
 		if (highScore < score) {
 			highScore = score;
 		}
-		
+		Debug.Log (score);
+		Manager.instance.score = score;
 		// Display both the Score and High Score
 		scoreGUIText.text = score.ToString ();
 		highScoreGUIText.text = "HighScore : " + highScore.ToString ();
@@ -29,7 +30,7 @@ public class Score : MonoBehaviour {
 	}
 
 	private void Initialise () {
-		score = 0;
+		score = Manager.instance.score;
 		highScore = PlayerPrefs.GetInt (highScoreKey, 0);
 	}
 

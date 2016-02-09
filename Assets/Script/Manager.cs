@@ -11,7 +11,7 @@ public class Manager : MonoBehaviour {
 	public GameObject ExitTest;
 	public GameObject[] enemy;
 	public GameObject player;
-	public GameObject title;
+
 	//public GameObject ExitTest;
 	public float levelStartDelay = 0.1f;
 	public float HP = 20;
@@ -40,8 +40,7 @@ public class Manager : MonoBehaviour {
 	void OnLevelWasLoaded(int index)  {
 		level++;
 		InitGame ();	
-		title = GameObject.Find ("Title");
-		title.SetActive(false);
+
 	}
 
 

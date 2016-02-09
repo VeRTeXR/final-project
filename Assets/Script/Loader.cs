@@ -7,11 +7,10 @@ public class Loader : MonoBehaviour {
 
 	public GameObject manager;
 	public GameObject playerManager;
-	public GameObject title;
+
 	public bool gameOver = false;
 	// Use this for initialization
 	void Awake () {
-			title = GameObject.Find ("Title");
 
 			if (Manager.instance==null) {
 			Instantiate(manager);
@@ -25,7 +24,6 @@ public class Loader : MonoBehaviour {
 	public void GameOver () {
 			// When the game ends, show the title.
 			FindObjectOfType<Score> ().Save ();
-			title.SetActive (true);
 			gameOver = true;
 			
 		}

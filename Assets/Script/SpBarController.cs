@@ -21,8 +21,13 @@ public class SpBarController : MonoBehaviour {
 	
 
     public void decreseBar() {
-
-        curSp -= 5;
+        if( curSp <= miinSp) {
+            curSp = miinSp;
+        }else
+        {
+            curSp -= 5;
+        }
+       
 
         float calSpBar = curSp / maxSP;
 
@@ -32,8 +37,15 @@ public class SpBarController : MonoBehaviour {
     }
 
     public void increseBar() {
-
-        curSp += 2;
+        if (curSp >= maxSP)
+        {
+            curSp = maxSP;
+        }
+        else
+        {
+            curSp += 1;
+        }
+       
 
         float calSpBar = curSp / maxSP;
 
@@ -50,7 +62,7 @@ public class SpBarController : MonoBehaviour {
 
     }
 
-    void Update()
+    void FixedUpdate()
     {
 
         if (curSp < maxSP)
@@ -58,16 +70,18 @@ public class SpBarController : MonoBehaviour {
 
             chargeTime += Time.deltaTime;
 
+            if (chargeTime >= 3)
+            {
+
+                increseBar();
+
+                chargeTime = 0;
+
+            }
+
         }
 
-        if (chargeTime == 3)
-        {
-
-            increseBar();
-
-            chargeTime = 0;
-
-        }
+        
 
 
 

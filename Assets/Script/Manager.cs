@@ -14,7 +14,7 @@ public class Manager : MonoBehaviour {
 	public GameObject title;
 	//public GameObject ExitTest;
 	public float levelStartDelay = 0.1f;
-	public int HP;
+	public float HP = 20;
 	public int level;
 
 
@@ -61,22 +61,16 @@ public class Manager : MonoBehaviour {
 
 			return;
 
-		if (levelImage.activeSelf) {
+        if (level == 0)
+        {
+            HP = 20;
+        }
+
+        if (levelImage.activeSelf) {
 			if (Input.GetKeyDown (KeyCode.R)) {
 				level = 0;
 				Application.LoadLevel(Application.loadedLevel);  	//	reload will actually reload from beginning
 			}
-			if (level == 0) {
-				HP = 20;
-			}
-			if (Input.GetKeyDown (KeyCode.Tab)) {
-				Application.LoadLevel(Application.loadedLevel);		//skip lv for dev p
-			}
-		}
-
-		enemy = GameObject.FindGameObjectsWithTag("Enemy");
-		if (enemy.Length <= 0) {
-			Instantiate (ExitTest, transform.position, transform.rotation);	
 		}
 	}
 

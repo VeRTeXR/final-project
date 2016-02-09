@@ -3,21 +3,39 @@ using System.Collections;
 
 public class BarController : MonoBehaviour {
 
-	public float curHp;
+    //public float hp = Manager.instance.HP;
+    public float curHp ;
 	public float Maxhp = 20;
 	public GameObject healthBar;
 	float minHP = 0;
-	// Use this for initialization
-	void Start () {
 
-		curHp = Maxhp;
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
+   
+    // Use this for initialization
 
-		/*if (Input.GetKeyDown (KeyCode.Space)) {
+    void setOnstart()
+    {
+       curHp = FindObjectOfType<PlayerMobility2>().playerHP;
+
+        float calHpBar = curHp / Maxhp;
+
+        sethealtbar(calHpBar);
+    }
+
+
+    void Start () {
+
+       // curHp = hp;
+        curHp = Maxhp;
+        //setOnstart();
+
+    }
+
+
+
+    // Update is called once per frame
+    void Update () {
+
+        /*if (Input.GetKeyDown (KeyCode.Space)) {
 
 			decresebar();
 
@@ -29,6 +47,8 @@ public class BarController : MonoBehaviour {
 			decresebar2();
 
 		}*/
+
+        setOnstart();
 	
 	}
 

@@ -7,7 +7,7 @@ public class PlayerMobility2 : MonoBehaviour {
 	//public float speedY;
 	public float speed;
 	public int maxHP;
-	public int playerHP; 
+	public float playerHP = 20 ; 
 	public float delay = 0.2f;
 	public float restartLevelDelay = 0.2f;
 	private float force = 0.5f;
@@ -196,12 +196,15 @@ public class PlayerMobility2 : MonoBehaviour {
 		GetComponent<Rigidbody2D>().velocity = (movement * speed)*(Time.deltaTime);
 		enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
 
-	
-		
-		//GetComponent<Rigidbody2D>().AddForce (gameObject.transform.up * speedY * verticalInput*2*(Time.deltaTime));
-		//GetComponent<Rigidbody2D>().AddForce (gameObject.transform.right * speed * horizontalInput*2*(Time.deltaTime));
-		
-		if (Input.GetMouseButton(0)) {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            Application.LoadLevel(Application.loadedLevel);     //skip lv for dev p
+        }
+
+        //GetComponent<Rigidbody2D>().AddForce (gameObject.transform.up * speedY * verticalInput*2*(Time.deltaTime));
+        //GetComponent<Rigidbody2D>().AddForce (gameObject.transform.right * speed * horizontalInput*2*(Time.deltaTime));
+
+        if (Input.GetMouseButton(0)) {
 			StartCoroutine ("attk");
 			transform.Translate(-Vector2.up *force*Time.deltaTime);
 			
@@ -223,6 +226,8 @@ public class PlayerMobility2 : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space)) {
 
             Instantiate(baria, this.transform.position, this.transform.rotation);
+            FindObjectOfType<SpBarController>().decreseBar();
+
         }
 
 		if (speed > 450) {

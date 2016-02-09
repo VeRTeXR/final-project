@@ -80,7 +80,7 @@ public class EnemyScript : MonoBehaviour {
         } 
 
 		else { 
-			Destroy (gameObject);
+			//Destroy (gameObject);
             //OnExplode();
 
         }

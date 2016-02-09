@@ -16,6 +16,7 @@ public class Manager : MonoBehaviour {
 	public float levelStartDelay = 0.1f;
 	public float HP = 20;
 	public int level;
+	public int score;
 
 
 
@@ -26,7 +27,7 @@ public class Manager : MonoBehaviour {
 	// Title
 
 	void Start () {
-
+		HP = 20;
 		if (instance == null)
 			instance = this;
 		else if (instance != this)
@@ -60,7 +61,7 @@ public class Manager : MonoBehaviour {
 
 			return;
 
-        if (level == 1)
+        if (level < 2)
         {
             HP = 20;
         }

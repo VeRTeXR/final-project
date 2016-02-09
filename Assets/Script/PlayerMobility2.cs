@@ -7,7 +7,7 @@ public class PlayerMobility2 : MonoBehaviour {
 	//public float speedY;
 	public float speed;
 	public int maxHP;
-	public float playerHP = 20 ; 
+	public float playerHP = 20; 
 	public float delay = 0.2f;
 	public float restartLevelDelay = 0.2f;
 	public int enemyCount;
@@ -19,7 +19,7 @@ public class PlayerMobility2 : MonoBehaviour {
 	public GameObject barrier;
 	public float chargeFxTime;
 	public AudioClip shoot;
-	
+	public int Score;
 	private float force = 0.5f;
 
 	int score;
@@ -53,7 +53,7 @@ public class PlayerMobility2 : MonoBehaviour {
 	void Start(){
 
 		playerHP = Manager.instance.HP;
-
+		Score = Manager.instance.score;
 	}
 
 	private void Restart () {
@@ -67,6 +67,7 @@ public class PlayerMobility2 : MonoBehaviour {
 
 			Invoke ("Restart", restartLevelDelay);
 			Manager.instance.HP = playerHP;
+			Manager.instance.score = Score;
 
 		}
 
@@ -225,13 +226,11 @@ public class PlayerMobility2 : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space)) {
 
             float sp = FindObjectOfType<SpBarController>().curSp;
-			Instantiate(barrier, this.transform.position, this.transform.rotation);
-			FindObjectOfType<SpBarController>().decreseBar();
-            /*if(sp >= 5)
+			if(sp >= 5)
             {
                 Instantiate(barrier, this.transform.position, this.transform.rotation);
                 FindObjectOfType<SpBarController>().decreseBar();
-            }*/
+            }
         }
 
 		if (speed > 450) {

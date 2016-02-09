@@ -36,6 +36,23 @@ public class SpBarController : MonoBehaviour {
 
     }
 
+    public void decreseBar2()
+    {
+        if (curSp <= miinSp)
+        {
+            curSp = miinSp;
+        }
+        else
+        {
+            curSp -= 2;
+        }
+
+
+        float calSpBar = curSp / maxSP;
+
+        seSpbar(calSpBar);
+    }
+
     public void increseBar() {
         if (curSp >= maxSP)
         {

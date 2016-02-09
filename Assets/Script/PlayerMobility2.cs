@@ -10,23 +10,21 @@ public class PlayerMobility2 : MonoBehaviour {
 	public float playerHP = 20 ; 
 	public float delay = 0.2f;
 	public float restartLevelDelay = 0.2f;
-	private float force = 0.5f;
 	public int enemyCount;
-	
+	public GameObject chargeFx;
+	public float chargeTime;
 	public GameObject Explosion;
 	public float explosionLifetime = 3.0f;
 	public AudioClip explosion;
+	public GameObject barrier;
+	public float chargeFxTime;
+	public AudioClip shoot;
 	
+	private float force = 0.5f;
+
 	int score;
 	pSpaceship2 spaceship;
 	float timeSpeedCountdown = Mathf.Infinity;
-	
-	public AudioClip shoot;
-
-    public GameObject baria;
-
-    public float chargeFxTime;
-
 
     IEnumerator attk() {
 		yield return new WaitForSeconds(0.1f);
@@ -51,9 +49,6 @@ public class PlayerMobility2 : MonoBehaviour {
 
 
     }
-	
-	public GameObject chargeFx;
-	public float chargeTime;
 	
 	void Start(){
 
@@ -230,13 +225,13 @@ public class PlayerMobility2 : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space)) {
 
             float sp = FindObjectOfType<SpBarController>().curSp;
-            if(sp >= 5)
+			Instantiate(barrier, this.transform.position, this.transform.rotation);
+			FindObjectOfType<SpBarController>().decreseBar();
+            /*if(sp >= 5)
             {
-                Instantiate(baria, this.transform.position, this.transform.rotation);
+                Instantiate(barrier, this.transform.position, this.transform.rotation);
                 FindObjectOfType<SpBarController>().decreseBar();
-            }
-            
-
+            }*/
         }
 
 		if (speed > 450) {

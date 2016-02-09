@@ -47,7 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Script\BarController.cs" />
-     <Compile Include="Assets\Script\BariaController.cs" />
+     <Compile Include="Assets\Script\BarrierController.cs" />
      <Compile Include="Assets\Script\BoardManager.cs" />
      <Compile Include="Assets\Script\Bullet.cs" />
      <Compile Include="Assets\Script\CameraBound.cs" />

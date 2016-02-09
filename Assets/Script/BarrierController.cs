@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BariaController : MonoBehaviour {
+public class BarrierController : MonoBehaviour {
 
     public GameObject player;
 	// Use this for initialization

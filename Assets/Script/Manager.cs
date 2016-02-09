@@ -60,7 +60,7 @@ public class Manager : MonoBehaviour {
 
 			return;
 
-        if (level == 0)
+        if (level == 1)
         {
             HP = 20;
         }

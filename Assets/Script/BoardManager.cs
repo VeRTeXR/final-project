@@ -25,7 +25,9 @@ public class BoardManager : MonoBehaviour {
 	public GameObject[] floorTiles;
 	public GameObject[] enemyTiles;
 	public GameObject[] outerWallTiles;
+	public GameObject[] itemTiles;
 	public int enemyCount;
+	public int itemCount;
 
 	private Transform boardHolder;
 	private List <Vector3> gridPositions = new List <Vector3>();
@@ -89,9 +91,11 @@ public class BoardManager : MonoBehaviour {
 	public void SetupScene(int level) {
 		BoardSetup ();
 		InitialiseList ();
-		enemyCount = 5+(int)Mathf.Log (level, 2f);
+		enemyCount = 1+(int)Mathf.Log (level, 2f)*3;
+		itemCount = (int)Mathf.Log (level, 2f);
 		//Instantiate a random number of enemies based on minimum and maximum, at randomized positions.
 		LayoutObjectAtRandom (enemyTiles, enemyCount, enemyCount);
+		LayoutObjectAtRandom (itemTiles, itemCount, itemCount);
 		
 		//Instantiate the exit tile in the upper right hand corner of our game board
 		Instantiate (exit, new Vector3 (columns - 1, rows - 1, 0f), Quaternion.identity);

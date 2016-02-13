@@ -73,8 +73,8 @@ public class PlayerMobility2 : MonoBehaviour {
 
             playerHP -= 2;
             FindObjectOfType<BarController>().decresebar2();
-            Instantiate(Explosion, transform.position, transform.rotation);
-            AudioSource.PlayClipAtPoint(explosion, transform.position);
+            //Instantiate(Explosion, transform.position, transform.rotation);
+            //AudioSource.PlayClipAtPoint(explosion, transform.position);
 
             //Destroy(gameObject);
         }

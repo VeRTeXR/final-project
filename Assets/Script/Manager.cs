@@ -16,7 +16,7 @@ public class Manager : MonoBehaviour {
 	public float levelStartDelay = 0.1f;
 	public float HP = 20;
 	public int level;
-	public int score = 0;
+	public int score;
 
 
 
@@ -65,12 +65,17 @@ public class Manager : MonoBehaviour {
         {
             HP = 20;
 			score = 0;
+			 //check score, health, reset it! 
         }
 
         if (levelImage.activeSelf) {
 			if (Input.GetKeyDown (KeyCode.R)) {
-				level = 0;
-				Application.LoadLevel(Application.loadedLevel);  	//	reload will actually reload from beginning
+				Application.LoadLevel("StartScn");
+				level = -1;
+				score = 0;
+				HP = 20;
+				Debug.Log(level);
+				//	reload will actually reload from beginning
 			}
 		}
 	}
@@ -79,17 +84,11 @@ public class Manager : MonoBehaviour {
 		levelImage.SetActive (false);
 		doingSetup = false;
 	}
-
-
-
+	
 	public void GameOver() {
 		FindObjectOfType<Score> ().Save ();
 		levelText.text = "After " + level + " you're dead";
 		levelImage.SetActive (true);
-		
-
-
-
 	}
 
 }

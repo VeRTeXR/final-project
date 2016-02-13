@@ -55,7 +55,7 @@ public class EnemyScript : MonoBehaviour {
 			Destroy(gameObject);
 			AudioSource.PlayClipAtPoint(explosion,transform.position);
 		}
-		Debug.Log (enemyCount);
+		//Debug.Log (enemyCount);
 
 	}
 

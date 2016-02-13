@@ -21,7 +21,10 @@ public class Score : MonoBehaviour {
 		if (highScore < score) {
 			highScore = score;
 		}
-		Debug.Log (score);
+		if (Manager.instance.level < 1) {
+			score = 0;
+		}
+		//Debug.Log (score);
 		Manager.instance.score = score;
 		// Display both the Score and High Score
 		scoreGUIText.text = score.ToString ();

@@ -4,7 +4,6 @@ using System.Collections;
 public class PlayerMobility2 : MonoBehaviour {
 
 	// Use this for initialization
-	//public float speedY;
 	public float speed;
 	public int maxHP;
 	public float playerHP = 20; 

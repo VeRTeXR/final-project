@@ -67,6 +67,15 @@ public class Manager : MonoBehaviour {
 			score = 0;
 			 //check score, health, reset it! 
         }
+		if (Input.GetKeyDown (KeyCode.Z)) {
+			Application.LoadLevel("StartScn");
+			level = -1;
+			score = 0;
+			HP = 20;
+			Debug.Log(level);
+			//	reload will actually reload from beginning
+		}
+
 
         if (levelImage.activeSelf) {
 			if (Input.GetKeyDown (KeyCode.R)) {

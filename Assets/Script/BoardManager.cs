@@ -23,11 +23,16 @@ public class BoardManager : MonoBehaviour {
 	public Count wallCount = new Count (5,5);
 	public GameObject exit;
 	public GameObject[] floorTiles;
+	public GameObject[] environmentTiles;
 	public GameObject[] enemyTiles;
 	public GameObject[] outerWallTiles;
 	public GameObject[] itemTiles;
-	public int enemyCount;
-	public int itemCount;
+	public int minEnemyCount;
+	public int maxEnemyCount;
+	public int minItemCount;
+	public int maxItemCount;
+	public int minEnvironmentCount;
+	public int maxEnvironmentCount;
 
 	private Transform boardHolder;
 	private List <Vector3> gridPositions = new List <Vector3>();
@@ -56,6 +61,7 @@ public class BoardManager : MonoBehaviour {
 				//Choose a random tile from our array of floor tile prefabs and prepare to instantiate it.
 				GameObject toInstantiate = floorTiles[Random.Range (0,floorTiles.Length)];
 
+
 				if(x == -1 || x == columns || y == -1 || y == rows)
 					toInstantiate = outerWallTiles [Random.Range (0, outerWallTiles.Length)];
 
@@ -80,10 +86,11 @@ public class BoardManager : MonoBehaviour {
 	}
 	
 	void LayoutObjectAtRandom (GameObject[] tileArray, int minimum, int maximum) {
-		int objectCount = Random.Range (minimum, maximum + 1);
+		int objectCount = Random.Range (minimum, maximum + 1); //3-7
+		Debug.Log (objectCount);
 		for (int i = 0; i < objectCount; i++) {
 			Vector3 randompPos = RandomPos();
-			GameObject tileChoice = tileArray [Random.Range(0, tileArray.Length)];
+			GameObject tileChoice = tileArray [Random.Range(0, tileArray.Length-1)];
 			Instantiate (tileChoice, randompPos, Quaternion.identity);
 		}
 	}
@@ -91,14 +98,22 @@ public class BoardManager : MonoBehaviour {
 	public void SetupScene(int level) {
 		BoardSetup ();
 		InitialiseList ();
-		enemyCount = 1+(int)Mathf.Log (level, 2f)*5;
-		itemCount = (int)Mathf.Log (level, 2f)*2;
+
+		minEnemyCount = 1+(int)Mathf.Log (level, 2f) * 2;
+		maxEnemyCount = 1 + (int)Mathf.Log (level, 2f) * 5;
+		minItemCount = (int)Mathf.Log (level, 2f) * 2;
+		maxItemCount = (int)Mathf.Log (level, 2f) * 5;
+		minEnvironmentCount = (int)Mathf.Log (level, 2f) * 5;
+		maxEnvironmentCount = (int)Mathf.Log (level, 2f) * 5; 
+
+		Debug.Log (minEnemyCount);
+		Debug.Log (maxEnemyCount);
 		//Instantiate a random number of enemies based on minimum and maximum, at randomized positions.
 
-		LayoutObjectAtRandom (enemyTiles, enemyCount, enemyCount);
-		LayoutObjectAtRandom (itemTiles, itemCount, itemCount);
+		//LayoutObjectAtRandom (environmentTiles, minEnvironmentCount, maxEnvironmentCount);
+		LayoutObjectAtRandom (enemyTiles, minEnemyCount, maxEnemyCount);
+		LayoutObjectAtRandom (itemTiles, minItemCount, maxItemCount);
 
-		
 		//Instantiate the exit tile in the upper right hand corner of our game board
 		Instantiate (exit, new Vector3 (columns - 1, rows - 1, 0f), Quaternion.identity);
 		

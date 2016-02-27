@@ -72,7 +72,7 @@ public class Manager : MonoBehaviour {
 			level = -1;
 			score = 0;
 			HP = 20;
-			Debug.Log(level);
+			//Debug.Log(level);
 			//	reload will actually reload from beginning
 		}
 
@@ -83,7 +83,7 @@ public class Manager : MonoBehaviour {
 				level = -1;
 				score = 0;
 				HP = 20;
-				Debug.Log(level);
+				//Debug.Log(level);
 				//	reload will actually reload from beginning
 			}
 		}
@@ -96,7 +96,7 @@ public class Manager : MonoBehaviour {
 	
 	public void GameOver() {
 		FindObjectOfType<Score> ().Save ();
-		levelText.text = "After " + level + " you're dead";
+		levelText.text = "You survived " + level + " levels";
 		levelImage.SetActive (true);
 	}
 

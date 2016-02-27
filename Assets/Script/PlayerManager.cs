@@ -15,8 +15,8 @@ public class PlayerManager : MonoBehaviour {
 	// Use this for initialization
 	void Awake () {
 
-		Cursor.visible = false;
-		//Cursor.SetCursor (crosshair, hotSpot, cMode);
+		//Cursor.visible = false;
+		Cursor.SetCursor (crosshair, hotSpot, cMode);
 	
 	}
 

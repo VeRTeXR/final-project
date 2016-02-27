@@ -208,7 +208,7 @@ public class PlayerMobility2 : MonoBehaviour {
             float sp = FindObjectOfType<SpBarController>().curSp;
             chargeFxTime += Time.deltaTime;
 
-            if (chargeFxTime >= 2f) {
+            if (chargeFxTime >= -0.4f) {
                 if(sp >= 2)
                 {
                     StartCoroutine("attk2");
@@ -248,13 +248,13 @@ public class PlayerMobility2 : MonoBehaviour {
 	void OnGUI(){
 		
 		//GUI.Label (new Rect (10, 280, 200, 60), "HP :  " + playerHP.ToString()); //display hp
-		//GUI.Label(new Rect (10,250,200,60), "Enemy : " + enemyCount.ToString()); //disp enemcount
+		GUI.Label(new Rect (10,250,200,60), "Enemy : " + enemyCount.ToString()); //disp enemcount
 		if (playerHP <= 0) {
 			Destroy(this.gameObject);
 			FindObjectOfType<Manager>().GameOver();
 			FindObjectOfType<Spawn>().CancelInvoke("Spawner");
 			//Application.LoadLevel(Application.loadedLevel);
-			GUI.Label (new Rect (10, 100, 200, 60), "PRESS R TO RESTART" );
+			//GUI.Label (new Rect (10, 100, 200, 60), "PRESS R TO RESTART" );
 		}
 
 }

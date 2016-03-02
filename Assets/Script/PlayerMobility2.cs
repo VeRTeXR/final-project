@@ -17,6 +17,7 @@ public class PlayerMobility2 : MonoBehaviour {
 	public AudioClip explosion;
 	public GameObject barrier;
 	public float chargeFxTime;
+	public float slowTimeCountdown;
 	public AudioClip shoot;
 	private float force = 0.5f;
 
@@ -190,6 +191,15 @@ public class PlayerMobility2 : MonoBehaviour {
 		GetComponent<Rigidbody2D>().velocity = (movement * speed)*(Time.deltaTime);
 		enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
 
+		if(Time.timeScale==0.7f){
+			slowTimeCountdown += Time.deltaTime;
+		}
+
+		if (slowTimeCountdown > 3) {
+			Time.timeScale = 1;
+		}
+
+
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             Application.LoadLevel(Application.loadedLevel);     //skip lv for dev p
@@ -226,7 +236,8 @@ public class PlayerMobility2 : MonoBehaviour {
             float sp = FindObjectOfType<SpBarController>().curSp;
 			if(sp >= 5)
             {
-                Instantiate(barrier, this.transform.position, this.transform.rotation);
+				Time.timeScale = 0.7f; 
+                //Instantiate(barrier, this.transform.position, this.transform.rotation);
                 FindObjectOfType<SpBarController>().decreseBar();
             }
         }

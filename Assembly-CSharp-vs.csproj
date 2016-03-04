@@ -71,6 +71,7 @@
      <Compile Include="Assets\Script\SpBarController.cs" />
      <Compile Include="Assets\Script\Spaceship.cs" />
      <Compile Include="Assets\Script\Spawn.cs" />
+     <Compile Include="Assets\Script\delayExpld.cs" />
      <Compile Include="Assets\Script\pSpaceship.cs" />
      <Compile Include="Assets\Script\pSpaceship2.cs" />
  <Reference Include="UnityEngine.UI">

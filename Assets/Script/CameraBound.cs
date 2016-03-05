@@ -24,7 +24,7 @@ public class CameraBound : MonoBehaviour {
 		target = GameObject.FindWithTag("Player").transform;
 		
 		minX = (float)(0+3.5);
-		maxX = (float)(50-4);
+		maxX = (float)(50-4.7);
 		minY = (float)(0+2);
 		maxY = (float)(20-4);
 		//fuck it 

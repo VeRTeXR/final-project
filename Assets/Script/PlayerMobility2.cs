@@ -217,17 +217,15 @@ public class PlayerMobility2 : MonoBehaviour {
         if (Input.GetMouseButton(1)) {
             float sp = FindObjectOfType<SpBarController>().curSp;
             chargeFxTime += Time.deltaTime;
-
-            if (chargeFxTime >= -0.4f) {
+            if (chargeFxTime >= 0.5f) {
                 if(sp >= 2)
                 {
                     StartCoroutine("attk2");
                     transform.Translate(-Vector2.up * force * Time.deltaTime);
                     FindObjectOfType<SpBarController>().decreseBar2();
-                }
-                
-
-                chargeFxTime = 0;
+					chargeFxTime = 0;
+				}
+   
             }
         }
 

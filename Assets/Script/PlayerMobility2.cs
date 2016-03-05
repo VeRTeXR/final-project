@@ -15,7 +15,8 @@ public class PlayerMobility2 : MonoBehaviour {
 	public GameObject Explosion;
 	public float explosionLifetime = 3.0f;
 	public AudioClip explosion;
-	public GameObject barrier;
+	public GameObject[] special;
+	public GameObject[] secondary;
 	public float chargeFxTime;
 	public float slowTimeCountdown;
 	public AudioClip shoot;
@@ -111,6 +112,20 @@ public class PlayerMobility2 : MonoBehaviour {
             maxHP += 5;
             Destroy(other.gameObject);
         }
+
+		if (other.gameObject.tag == "altChange") {
+			int i = Random.Range (0,secondary.Length);
+			Debug.Log ("i+"+i);
+			spaceship.bullet2 = secondary[i];
+			Destroy(other.gameObject);
+		}
+
+		/*if (other.gameObject.tag == "spChange") {
+			int i = Random.Range (0,sec.Length);
+			Debug.Log ("i+"+i);
+			playermobility2.barriar = sec[i]; // fucking rename this!!
+			Destroy(other.gameObject);
+		}*/ // use this 2 change special also
 
 
     }

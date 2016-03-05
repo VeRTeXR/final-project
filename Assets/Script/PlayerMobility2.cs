@@ -17,6 +17,7 @@ public class PlayerMobility2 : MonoBehaviour {
 	public AudioClip explosion;
 	public GameObject[] special;
 	public GameObject[] secondary;
+	public GameObject barrier;
 	public float chargeFxTime;
 	public float slowTimeCountdown;
 	public AudioClip shoot;
@@ -119,6 +120,7 @@ public class PlayerMobility2 : MonoBehaviour {
 			spaceship.bullet2 = secondary[i];
 			Destroy(other.gameObject);
 		}
+		spaceship.getAnimator().SetTrigger("Damage");
 
 		/*if (other.gameObject.tag == "spChange") {
 			int i = Random.Range (0,sec.Length);
@@ -249,8 +251,7 @@ public class PlayerMobility2 : MonoBehaviour {
             float sp = FindObjectOfType<SpBarController>().curSp;
 			if(sp >= 5)
             {
-				Time.timeScale = 0.7f; 
-                //Instantiate(barrier, this.transform.position, this.transform.rotation);
+				slowTime();
                 FindObjectOfType<SpBarController>().decreseBar();
             }
         }
@@ -266,7 +267,14 @@ public class PlayerMobility2 : MonoBehaviour {
 
 		
 	}
-	
+
+	void slowTime() {
+		Time.timeScale = 0.7f;
+	}
+
+	void armor() {
+		Instantiate(barrier, this.transform.position, this.transform.rotation);
+	}
 	
 	
 	void OnGUI(){

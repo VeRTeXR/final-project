@@ -18,15 +18,20 @@ public class PlayerBound : MonoBehaviour {
 		float vertExtent = Camera.main.GetComponent<Camera>().orthographicSize;
 		float horzExtent = vertExtent * Screen.width / Screen.height;
 		
-		spriteBounds = GameObject.Find("Background").GetComponentInChildren<SpriteRenderer>();
+		//spriteBounds = GameObject.Find("Background").GetComponentInChildren<SpriteRenderer>();
 		
 		target = GameObject.FindWithTag("Player").transform;
-		
-		leftBound = (float)(horzExtent - spriteBounds.sprite.bounds.size.x / 1.1f);
+
+		leftBound = (float)(-1.5);
+		rightBound = (float)(50);
+		bottomBound = (float)(-.4);
+		topBound = (float)(19.5);
+
+		/*leftBound = (float)(horzExtent - spriteBounds.sprite.bounds.size.x / 1.1f);
 		rightBound = (float)(spriteBounds.sprite.bounds.size.x / 1.1f - horzExtent);
 		bottomBound = (float)(vertExtent - spriteBounds.sprite.bounds.size.y / 1.35f);
 		topBound = (float)(spriteBounds.sprite.bounds.size.y / 1.35f - vertExtent);
-		
+		*/
 	}
 	// Update is called once per frame
 	void Update ()

@@ -18,6 +18,7 @@ public class pSpaceship : MonoBehaviour {
 		bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.forward * 100);
 
 	}
-	
+
+
 
 }

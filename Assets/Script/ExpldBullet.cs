@@ -7,37 +7,28 @@ public class ExpldBullet : MonoBehaviour {
 	public int speed = 10;
 	public GameObject bullet;
 
-	public GameObject lilSpawn;
-	public GameObject lilSpawn2;
-	public GameObject lilSpawn3;
-	public GameObject lilSpawn4;
-	public GameObject lilSpawn5;
-	public GameObject lilSpawn6;
+	public GameObject[] lilSpawn;
 
 	void Start () {
-		int strayFactor = Random.Range(1, 10);
-		int strayFactor2 = Random.Range(1, 10);
-		int strayFactor3 = Random.Range(1, 10);
-		int strayFactor4 = Random.Range(1, 10);
-		int strayFactor5 = Random.Range(1, 10);
-		int strayFactor6 = Random.Range(1, 10);
-		var randomNumberZ = Random.Range(-strayFactor, strayFactor);
-		var randomNumberZ2 = Random.Range(-strayFactor2, strayFactor2);
-		var randomNumberZ3 = Random.Range(-strayFactor3, strayFactor3);
-		var randomNumberZ4 = Random.Range(-strayFactor4, strayFactor4);
-		var randomNumberZ5 = Random.Range(-strayFactor5, strayFactor5);
-		var randomNumberZ6 = Random.Range(-strayFactor6, strayFactor6);
-
+		int[] strayFactor = new int[6];
+		int[] randomNumberZ = new int[6];
+		for (int i=0; i<6; i++) {
+			strayFactor[i] = Random.Range(1,10);
+		}
+		for (int i=0; i<6; i++) {
+			randomNumberZ[i] = Random.Range(-strayFactor[i], strayFactor[i]);
+		}
+	
 		GetComponent<Rigidbody2D>().velocity = transform.up.normalized * speed;
 
 		Instantiate (bullet, transform.position, transform.rotation);	
 
-		Instantiate (bullet, transform.position, transform.rotation * Quaternion.Euler(0f, 0f, randomNumberZ));
-		Instantiate (bullet, lilSpawn.transform.position, lilSpawn.transform.rotation* Quaternion.Euler(0f, 0f, randomNumberZ));
-		Instantiate (bullet, lilSpawn2.transform.position, lilSpawn2.transform.rotation* Quaternion.Euler(0f, 0f, randomNumberZ2));
-		Instantiate (bullet, lilSpawn3.transform.position, lilSpawn3.transform.rotation* Quaternion.Euler(0f, 0f, randomNumberZ3));
-		Instantiate (bullet, lilSpawn4.transform.position, lilSpawn4.transform.rotation* Quaternion.Euler(0f, 0f, randomNumberZ4));
-		Instantiate (bullet, lilSpawn5.transform.position, lilSpawn5.transform.rotation* Quaternion.Euler(0f, 0f, randomNumberZ5));
+		Instantiate (bullet, transform.position, transform.rotation * Quaternion.Euler(0f, 0f, randomNumberZ[0]));
+		Instantiate (bullet, lilSpawn[0].transform.position, lilSpawn[0].transform.rotation* Quaternion.Euler(0f, 0f, randomNumberZ[1]));
+		Instantiate (bullet, lilSpawn[1].transform.position, lilSpawn[1].transform.rotation* Quaternion.Euler(0f, 0f, randomNumberZ[2]));
+		Instantiate (bullet, lilSpawn[2].transform.position, lilSpawn[2].transform.rotation* Quaternion.Euler(0f, 0f, randomNumberZ[3]));
+		Instantiate (bullet, lilSpawn[3].transform.position, lilSpawn[3].transform.rotation* Quaternion.Euler(0f, 0f, randomNumberZ[4]));
+		Instantiate (bullet, lilSpawn[4].transform.position, lilSpawn[4].transform.rotation* Quaternion.Euler(0f, 0f, randomNumberZ[5]));
 
 	}
 

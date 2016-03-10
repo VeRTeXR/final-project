@@ -110,12 +110,13 @@ public class BoardManager : MonoBehaviour {
 		Debug.Log (maxEnemyCount);
 		//Instantiate a random number of enemies based on minimum and maximum, at randomized positions.
 
-		//LayoutObjectAtRandom (environmentTiles, minEnvironmentCount, maxEnvironmentCount);
+
 		LayoutObjectAtRandom (enemyTiles, minEnemyCount, maxEnemyCount);
+		LayoutObjectAtRandom (environmentTiles, minEnvironmentCount, maxEnvironmentCount);
 		LayoutObjectAtRandom (itemTiles, minItemCount, maxItemCount);
 
 		//Instantiate the exit tile in the upper right hand corner of our game board
-		Instantiate (exit, new Vector3 (columns - 1, rows - 1, 0f), Quaternion.identity);
+		//Instantiate (exit, new Vector3 (columns - 1, rows - 1, 0f), Quaternion.identity);
 		
 	}
 	

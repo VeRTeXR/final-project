@@ -10,7 +10,16 @@ public class pSpaceship2 : MonoBehaviour {
 
 	public GameObject bulletSpawnRight;
 	public GameObject bulletSpawnLeft;
+	private Animator animator;
 	
+	void Start () {
+		animator = GetComponent<Animator> ();
+	}
+
+	public Animator getAnimator () {
+		return animator;
+	}
+
 	public void Shot (Transform origin){
 		var randomNumberX = Random.Range(-strayFactor, strayFactor);
 		var randomNumberY = Random.Range(-strayFactor, strayFactor);

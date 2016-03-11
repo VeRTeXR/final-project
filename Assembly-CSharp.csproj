@@ -38,10 +38,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>/Volumes/Untitled 1/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>/Volumes/Untitled 1 1/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>/Volumes/Untitled 1/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>/Volumes/Untitled 1 1/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -59,6 +59,7 @@
      <Compile Include="Assets\Script\ItemDetected.cs" />
      <Compile Include="Assets\Script\Loader.cs" />
      <Compile Include="Assets\Script\Manager.cs" />
+     <Compile Include="Assets\Script\MapGenerator.cs" />
      <Compile Include="Assets\Script\ObjectivePointer.cs" />
      <Compile Include="Assets\Script\PlayerBound.cs" />
      <Compile Include="Assets\Script\PlayerHp.cs" />
@@ -75,10 +76,10 @@
      <Compile Include="Assets\Script\pSpaceship.cs" />
      <Compile Include="Assets\Script\pSpaceship2.cs" />
  <Reference Include="UnityEngine.UI">
- <HintPath>/Volumes/Untitled 1/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>/Volumes/Untitled 1 1/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>/Volumes/Untitled 1/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>/Volumes/Untitled 1 1/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

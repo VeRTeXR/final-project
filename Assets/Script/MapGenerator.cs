@@ -23,7 +23,7 @@ public class MapGenerator : MonoBehaviour {
 	
 	void Start() {
 		boardHolder = new GameObject ("Board").transform;
-		randomFillPercent = Random.Range (35,);
+		randomFillPercent = Random.Range (35,55);
 		GenerateMap();
 		OnDraw ();
 

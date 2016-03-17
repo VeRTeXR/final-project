@@ -12,18 +12,27 @@ public class MapGenerator : MonoBehaviour {
 	public bool useRandomSeed;
 	public GameObject[] tileArray;
 	public GameObject tileChoice;
+	
 
 	[Range(0,100)]
 	public int randomFillPercent;
-	
+
+	private Transform boardHolder;
+
 	int[,] map;
 	
 	void Start() {
+		boardHolder = new GameObject ("Board").transform;
+		randomFillPercent = Random.Range (35,);
 		GenerateMap();
+		OnDraw ();
+
 	}
 	
 	void Update() {
 		if (Input.GetMouseButtonDown(0)) {
+			Application.LoadLevel(Application.loadedLevel);
+			DestroyMap();
 			GenerateMap();
 		}
 	}
@@ -36,7 +45,13 @@ public class MapGenerator : MonoBehaviour {
 			SmoothMap();
 		}
 	}
-	
+
+	void DestroyMap(){
+		GameObject c = GameObject.FindWithTag("Background");
+		if (c != null) {
+						Destroy (c);
+				}
+	}
 	
 	void RandomFillMap() {
 		if (useRandomSeed) {
@@ -51,7 +66,7 @@ public class MapGenerator : MonoBehaviour {
 					map[x,y] = 1;
 				}
 				else {
-					map[x,y] = (pseudoRandom.Next(0,100) < randomFillPercent)? 1: 0;
+					map[x,y] = (pseudoRandom.Next(0,100) < randomFillPercent)? 1: 0; //this choose if the shit will be 0 or 1 from fill percent 
 				}
 			}
 		}
@@ -63,9 +78,9 @@ public class MapGenerator : MonoBehaviour {
 				int neighbourWallTiles = GetSurroundingWallCount(x,y);
 				
 				if (neighbourWallTiles > 4)
-					map[x,y] = 1;
+					map[x,y] = 1; //if neighbour is alive > 4 therefore this tile is alive
 				else if (neighbourWallTiles < 4)
-					map[x,y] = 0;
+					map[x,y] = 0; // else dead
 				
 			}
 		}
@@ -90,11 +105,12 @@ public class MapGenerator : MonoBehaviour {
 	}
 	
 	
-	void OnDrawGizmos() {
+	void OnDraw() {
+
 		if (map != null) {
+
 			for (int x = 0; x < width; x ++) {
 				for (int y = 0; y < height; y ++) {
-					//Gizmos.color = (map[x,y] == 1)?Color.black:Color.white;
 					Vector3 pos = new Vector3(-width/2 + x + .5f,-height/2 + y+.5f, 1);
 					if(map[x,y]==1) {
 						tileChoice = tileArray [0];
@@ -102,9 +118,9 @@ public class MapGenerator : MonoBehaviour {
 					else {
 						tileChoice = tileArray [1];
 					}
-					Instantiate (tileChoice, pos, Quaternion.identity);
+					GameObject instance = Instantiate (tileChoice, pos, Quaternion.identity) as GameObject;
+					instance.transform.SetParent (boardHolder);
 
-					//Gizmos.DrawCube(pos,new Vector3(1, 1, .5f));
 				}
 			}
 		}

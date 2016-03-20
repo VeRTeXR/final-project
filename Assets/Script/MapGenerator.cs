@@ -11,8 +11,9 @@ public class MapGenerator : MonoBehaviour {
 	public string seed;
 	public bool useRandomSeed;
 	public GameObject[] tileArray;
+	public GameObject[] altTileArray;
 	public GameObject tileChoice;
-	
+	public int randIndex;
 
 	[Range(0,100)]
 	public int randomFillPercent;
@@ -28,15 +29,7 @@ public class MapGenerator : MonoBehaviour {
 		OnDraw ();
 
 	}
-	
-	void Update() {
-		if (Input.GetMouseButtonDown(0)) {
-			Application.LoadLevel(Application.loadedLevel);
-			DestroyMap();
-			GenerateMap();
-		}
-	}
-	
+
 	void GenerateMap() {
 		map = new int[width,height];
 		RandomFillMap();
@@ -113,10 +106,12 @@ public class MapGenerator : MonoBehaviour {
 				for (int y = 0; y < height; y ++) {
 					Vector3 pos = new Vector3(-width/2 + x + .5f,-height/2 + y+.5f, 1);
 					if(map[x,y]==1) {
-						tileChoice = tileArray [0];
+						randIndex = Random.Range(0,tileArray.Length);
+						tileChoice = tileArray [randIndex];
 					}
 					else {
-						tileChoice = tileArray [1];
+						randIndex = Random.Range(0,altTileArray.Length);
+						tileChoice = altTileArray [randIndex];
 					}
 					GameObject instance = Instantiate (tileChoice, pos, Quaternion.identity) as GameObject;
 					instance.transform.SetParent (boardHolder);

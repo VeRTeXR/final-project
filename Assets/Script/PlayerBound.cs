@@ -4,17 +4,24 @@ using System.Collections;
 
 public class PlayerBound : MonoBehaviour {
 	
-	private float rightBound;
-	private float leftBound;
-	private float topBound;
-	private float bottomBound;
+	private GameObject map;
+	private float minX;
+	private float maxX;
+	private float minY;
+	private float maxY;
 	
+	
+	private float width;
+	private float height;
 	private Vector3 pos;
 	private Transform target;
 	private SpriteRenderer spriteBounds;
 	// Use this for initialization
 	void Start ()
 	{
+		map = GameObject.Find ("CellularAutomata");
+		width = map.GetComponent<MapGenerator>().width;
+		height = map.GetComponent<MapGenerator>().height;
 		float vertExtent = Camera.main.GetComponent<Camera>().orthographicSize;
 		float horzExtent = vertExtent * Screen.width / Screen.height;
 		
@@ -22,10 +29,10 @@ public class PlayerBound : MonoBehaviour {
 		
 		target = GameObject.FindWithTag("Player").transform;
 
-		leftBound = (float)(-1.5);
-		rightBound = (float)(50);
-		bottomBound = (float)(-.4);
-		topBound = (float)(19.5);
+		minX = (float)(horzExtent - width/2.0f)-(6.5f); 
+		maxX = (float)(width/2.0f-horzExtent)+(6.5f);
+		minY = (float)(vertExtent-height/2.0f)-(2.8f);
+		maxY = (float)(height/2.0f-vertExtent)+(2.8f);
 
 		/*leftBound = (float)(horzExtent - spriteBounds.sprite.bounds.size.x / 1.1f);
 		rightBound = (float)(spriteBounds.sprite.bounds.size.x / 1.1f - horzExtent);
@@ -39,8 +46,8 @@ public class PlayerBound : MonoBehaviour {
 		//Debug.Log();
 		
 		var pos = new Vector3(target.position.x, target.position.y, transform.position.z);
-		pos.x = Mathf.Clamp(pos.x, leftBound, rightBound);
-		pos.y = Mathf.Clamp(pos.y, bottomBound, topBound);
+		pos.x = Mathf.Clamp(pos.x, minX, maxX);
+		pos.y = Mathf.Clamp(pos.y, minY, maxY);
 		transform.position = pos;
 	}
 	

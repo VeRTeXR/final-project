@@ -12,14 +12,22 @@ public class Paused : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
-        CanPause = true;
-        pausedCanvas = GameObject.Find("PausedCanvas");
-        pausedCanvas.SetActive(true);
-        //pauseObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
-        //hidePaused();
-        hidePaused();
+		inSession ();
     }
 
+	void inSession () {
+		CanPause = true;
+		pausedCanvas = GameObject.Find("PausedCanvas");
+		pausedCanvas.SetActive(true);
+		//pauseObjects = GameObject.FindGameObjectsWithTag("ShowOnPause");
+		//Invoke("hidePaused",0);
+		hidePaused ();
+	}
+
+	void OnLevelWasLoaded () {
+		inSession ();
+		hidePaused ();
+	}
    
 
     void Update()

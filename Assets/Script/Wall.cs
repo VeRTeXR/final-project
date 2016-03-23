@@ -7,17 +7,21 @@ public class Wall : MonoBehaviour {
 	public int randIndex;
 	public GameObject wallPieces;
 
+	void OnTriggerEnter2D(Collider2D c){
+		if (c.gameObject.CompareTag ("playerBullet")) {
+			wallHp = wallHp - 1;
+			Debug.Log ("co");
+			Destroy (c.gameObject);
+			if (wallHp <= 0) {
+				onContact ();
+				Destroy (c.gameObject); 
+			}
+		}
+	}
 
 	void OnCollisionEnter2D(Collision2D c){
 
-		if (c.gameObject.tag == "PlayerBullet") {
-			wallHp = wallHp - 1;
-			if (wallHp <= 0) {
-				onContact ();
-				Destroy (c.gameObject);
-			}
-		}
-		if (c.gameObject.tag == "EnemyBullet") {
+		if (c.gameObject.tag == "enemyBullet") {
 			wallHp = wallHp - 1;
 			if (wallHp <= 0) {
 				onContact ();

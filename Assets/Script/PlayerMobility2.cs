@@ -3,7 +3,6 @@ using System.Collections;
 
 public class PlayerMobility2 : MonoBehaviour {
 
-	// Use this for initialization
 	public float speed;
 	public int maxHP;
 	public float playerHP = 20; 
@@ -52,7 +51,6 @@ public class PlayerMobility2 : MonoBehaviour {
     }
 	
 	void Start(){
-
 		playerHP = Manager.instance.HP;
 		score = Manager.instance.score;
 	}
@@ -63,28 +61,22 @@ public class PlayerMobility2 : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D other)
     {
-
 		if (other.gameObject.tag == "Exit") {
-
 			Invoke ("Restart", restartLevelDelay);
 			Manager.instance.HP = playerHP;
 			Manager.instance.score = score;
-
 		}
 
         if (other.gameObject.tag == "Enemy") {
-
             playerHP -= 2;
             FindObjectOfType<BarController>().decresebar2();
             //Instantiate(Explosion, transform.position, transform.rotation);
             //AudioSource.PlayClipAtPoint(explosion, transform.position);
-
             //Destroy(gameObject);
         }
 
         if (other.gameObject.tag == "enemyBullet")
         {
-
             FindObjectOfType<BarController>().decresebar();
             playerHP -= 1;
             Destroy(other.gameObject);
@@ -96,7 +88,6 @@ public class PlayerMobility2 : MonoBehaviour {
             {
                 playerHP = maxHP;
             }
-
             playerHP += 5;
             Destroy(other.gameObject);
             FindObjectOfType<BarController>().increseBar();

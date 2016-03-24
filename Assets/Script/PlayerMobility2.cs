@@ -3,7 +3,6 @@ using System.Collections;
 
 public class PlayerMobility2 : MonoBehaviour {
 
-	// Use this for initialization
 	public float speed;
 	public int maxHP;
 	public float playerHP = 20; 
@@ -71,7 +70,6 @@ public class PlayerMobility2 : MonoBehaviour {
     }
 	
 	void Start(){
-
 		playerHP = Manager.instance.HP;
 		score = Manager.instance.score;
 	}
@@ -83,50 +81,45 @@ public class PlayerMobility2 : MonoBehaviour {
     void OnCollisionEnter2D(Collision2D other)
     {
 
-		if (other.gameObject.tag == "Exit") {
-
+		if (other.gameObject.CompareTag("Exit")) {
 			Invoke ("Restart", restartLevelDelay);
 			Manager.instance.HP = playerHP;
 			Manager.instance.score = score;
-
 		}
 
-        if (other.gameObject.tag == "Enemy") {
-
+		if (other.gameObject.CompareTag("Enemy")) {
             playerHP -= 2;
             FindObjectOfType<BarController>().decresebar2();
             //Instantiate(Explosion, transform.position, transform.rotation);
             //AudioSource.PlayClipAtPoint(explosion, transform.position);
-
             //Destroy(gameObject);
         }
 
-        if (other.gameObject.tag == "enemyBullet")
+		if (other.gameObject.CompareTag("enemyBullet"))
         {
-
             FindObjectOfType<BarController>().decresebar();
             playerHP -= 1;
             Destroy(other.gameObject);
         }
 
-        if (other.gameObject.tag == "Heal")
+		if (other.gameObject.CompareTag("Heal"))
         {
             if (playerHP >= maxHP)
             {
                 playerHP = maxHP;
             }
-
             playerHP += 5;
             Destroy(other.gameObject);
             FindObjectOfType<BarController>().increseBar();
         }
 
-        if (other.gameObject.tag == "speedUp")
+		if (other.gameObject.CompareTag("speedUp"))
         {
             speed += 50;
             Destroy(other.gameObject);
         }
 
+<<<<<<< HEAD
         if (other.gameObject.tag == "gunupgrade")
         {
             gunUpgradeCount += 1;
@@ -134,12 +127,15 @@ public class PlayerMobility2 : MonoBehaviour {
         }
 
         if (other.gameObject.tag == "MaxHpUp")
+=======
+		if (other.gameObject.CompareTag("MaxHpUp"))
+>>>>>>> 6256ae93ef165e21a25d93f7b463253d064f0ace
         {
             maxHP += 5;
             Destroy(other.gameObject);
         }
 
-		if (other.gameObject.tag == "altChange") {
+		if (other.gameObject.CompareTag("altChange")) {
 			int i = Random.Range (0,secondary.Length);
 			Debug.Log ("i+"+i);
 			spaceship.bullet2 = secondary[i];

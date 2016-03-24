@@ -11,7 +11,10 @@ public class PlayerManager : MonoBehaviour {
 	public Vector2 hotSpot = Vector2.zero;
 
 
-
+	void Start () {
+		if (instance == null)
+						instance = this;
+	}
 	// Use this for initialization
 	void Awake () {
 

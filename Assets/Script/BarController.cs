@@ -85,17 +85,18 @@ public class BarController : MonoBehaviour {
 	}
 
 	public void increseBar(){
-		
-		if (curHp >= Maxhp) {
+
+        float calHpBar = curHp / Maxhp;
+
+        if (curHp >= Maxhp) {
 			curHp = Maxhp;
+            sethealtbar(calHpBar);
 		} 
 		else {
 			curHp += 5;
 		}
-		
-		float calHpBar = curHp / Maxhp;
-		
-		sethealtbar (calHpBar);
+
+        sethealtbar (calHpBar);
 		
 		
 	}

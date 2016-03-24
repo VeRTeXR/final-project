@@ -23,7 +23,9 @@ public class PlayerMobility2 : MonoBehaviour {
 	public AudioClip shoot;
 	private float force = 0.5f;
 
-	int score;
+    public int gunUpgradeCount ;
+
+    int score;
 	pSpaceship2 spaceship;
 	float timeSpeedCountdown = Mathf.Infinity;
 
@@ -32,12 +34,29 @@ public class PlayerMobility2 : MonoBehaviour {
 
 			spaceship = GetComponent<pSpaceship2> ();
 			spaceship.Shot (transform);
+            if(gunUpgradeCount > 1)
+            {
+                spaceship.Shot3(transform);
+            }
 			AudioSource.PlayClipAtPoint (shoot, transform.position);
 			StopCoroutine("attk");
 			yield return new WaitForSeconds (0.5f);
 		
 		
 	}
+
+    IEnumerator attk3()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+        spaceship = GetComponent<pSpaceship2>();
+        spaceship.Shot3(transform);
+        AudioSource.PlayClipAtPoint(shoot, transform.position);
+        StopCoroutine("attk3");
+        yield return new WaitForSeconds(0.5f);
+
+
+    }
 
     IEnumerator attk2() {
 
@@ -105,6 +124,12 @@ public class PlayerMobility2 : MonoBehaviour {
         if (other.gameObject.tag == "speedUp")
         {
             speed += 50;
+            Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.tag == "gunupgrade")
+        {
+            gunUpgradeCount += 1;
             Destroy(other.gameObject);
         }
 
@@ -208,7 +233,9 @@ public class PlayerMobility2 : MonoBehaviour {
 		GetComponent<Rigidbody2D>().velocity = (movement * speed)*(Time.deltaTime);
 		enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
 
-		if(Time.timeScale==0.7f){
+        
+
+        if (Time.timeScale==0.7f){
 			slowTimeCountdown += Time.deltaTime;
 		}
 
@@ -225,11 +252,17 @@ public class PlayerMobility2 : MonoBehaviour {
         //GetComponent<Rigidbody2D>().AddForce (gameObject.transform.up * speedY * verticalInput*2*(Time.deltaTime));
         //GetComponent<Rigidbody2D>().AddForce (gameObject.transform.right * speed * horizontalInput*2*(Time.deltaTime));
 
-        if (Input.GetMouseButton(0)) {
-			StartCoroutine ("attk");
+        if (Input.GetMouseButton(0))
+        {
+            if (gunUpgradeCount > 1)
+            {
+                StartCoroutine("attk3");
+                transform.Translate(-Vector2.up * force * Time.deltaTime);
+            }
+            StartCoroutine ("attk");
 			transform.Translate(-Vector2.up *force*Time.deltaTime);
-			
-		}
+
+        }
 
         if (Input.GetMouseButton(1)) {
             float sp = FindObjectOfType<SpBarController>().curSp;
@@ -246,7 +279,8 @@ public class PlayerMobility2 : MonoBehaviour {
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
 
             float sp = FindObjectOfType<SpBarController>().curSp;
 			if(sp >= 5)
@@ -256,10 +290,13 @@ public class PlayerMobility2 : MonoBehaviour {
             }
         }
 
-		if (speed > 450) {
+		if (speed > 450)
+        {
 			chargeTime += Time.deltaTime;
 		}
-		if (chargeTime >= 3) {
+
+		if (chargeTime >= 3)
+        {
 			speed -= 50;
 			chargeTime = 0;
 		}
@@ -268,16 +305,19 @@ public class PlayerMobility2 : MonoBehaviour {
 		
 	}
 
-	void slowTime() {
+	void slowTime()
+    {
 		Time.timeScale = 0.7f;
 	}
 
-	void armor() {
+	void armor()
+    {
 		Instantiate(barrier, this.transform.position, this.transform.rotation);
 	}
 	
 	
-	void OnGUI(){
+	void OnGUI()
+    {
 		
 		//GUI.Label (new Rect (10, 280, 200, 60), "HP :  " + playerHP.ToString()); //display hp
 		GUI.Label(new Rect (10,250,200,60), "Enemy : " + enemyCount.ToString()); //disp enemcount
@@ -288,6 +328,6 @@ public class PlayerMobility2 : MonoBehaviour {
 			//Application.LoadLevel(Application.loadedLevel);
 			//GUI.Label (new Rect (10, 100, 200, 60), "PRESS R TO RESTART" );
 		}
-
-}
+    }
+    
 }

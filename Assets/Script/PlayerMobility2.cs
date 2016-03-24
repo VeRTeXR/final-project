@@ -61,13 +61,14 @@ public class PlayerMobility2 : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D other)
     {
-		if (other.gameObject.tag == "Exit") {
+
+		if (other.gameObject.CompareTag("Exit")) {
 			Invoke ("Restart", restartLevelDelay);
 			Manager.instance.HP = playerHP;
 			Manager.instance.score = score;
 		}
 
-        if (other.gameObject.tag == "Enemy") {
+		if (other.gameObject.CompareTag("Enemy")) {
             playerHP -= 2;
             FindObjectOfType<BarController>().decresebar2();
             //Instantiate(Explosion, transform.position, transform.rotation);
@@ -75,14 +76,14 @@ public class PlayerMobility2 : MonoBehaviour {
             //Destroy(gameObject);
         }
 
-        if (other.gameObject.tag == "enemyBullet")
+		if (other.gameObject.CompareTag("enemyBullet"))
         {
             FindObjectOfType<BarController>().decresebar();
             playerHP -= 1;
             Destroy(other.gameObject);
         }
 
-        if (other.gameObject.tag == "Heal")
+		if (other.gameObject.CompareTag("Heal"))
         {
             if (playerHP >= maxHP)
             {
@@ -93,19 +94,19 @@ public class PlayerMobility2 : MonoBehaviour {
             FindObjectOfType<BarController>().increseBar();
         }
 
-        if (other.gameObject.tag == "speedUp")
+		if (other.gameObject.CompareTag("speedUp"))
         {
             speed += 50;
             Destroy(other.gameObject);
         }
 
-        if (other.gameObject.tag == "MaxHpUp")
+		if (other.gameObject.CompareTag("MaxHpUp"))
         {
             maxHP += 5;
             Destroy(other.gameObject);
         }
 
-		if (other.gameObject.tag == "altChange") {
+		if (other.gameObject.CompareTag("altChange")) {
 			int i = Random.Range (0,secondary.Length);
 			Debug.Log ("i+"+i);
 			spaceship.bullet2 = secondary[i];

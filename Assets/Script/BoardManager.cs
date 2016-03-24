@@ -47,7 +47,7 @@ public class BoardManager : MonoBehaviour {
 		}
 	}
 
-	/*void BoardSetup ()
+	void BoardSetup ()
 	{
 		//Instantiate Board and set boardHolder to its transform.
 		boardHolder = new GameObject ("Board").transform;
@@ -67,14 +67,14 @@ public class BoardManager : MonoBehaviour {
 
 				
 				//Instantiate the GameObject instance using the prefab chosen for toInstantiate at the Vector3 corresponding to current grid position in loop, cast it to GameObject.
-				//GameObject instance =
-				//	Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
+				GameObject instance =
+					Instantiate (toInstantiate, new Vector3 (x, y, 0f), Quaternion.identity) as GameObject;
 				
 				//Set the parent of our newly instantiated object instance to boardHolder, this is just organizational to avoid cluttering hierarchy.
-				//instance.transform.SetParent (boardHolder);
+				instance.transform.SetParent (boardHolder);
 			}
 		}
-	}*/
+	}
 	
 
 	
@@ -98,6 +98,7 @@ public class BoardManager : MonoBehaviour {
 	public void SetupScene(int level) {
 
 		InitialiseList ();
+		//BoardSetup ();
 
 		minEnemyCount = 1+(int)Mathf.Log (level, 2f) * 2;
 		maxEnemyCount = 1 + (int)Mathf.Log (level, 2f) * 5;

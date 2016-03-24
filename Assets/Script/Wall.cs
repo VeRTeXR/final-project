@@ -10,28 +10,29 @@ public class Wall : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D c){
 		if (c.gameObject.CompareTag ("playerBullet")) {
 			wallHp = wallHp - 1;
-			Debug.Log ("co");
+			//Debug.Log ("co");
 			Destroy (c.gameObject);
 			if (wallHp <= 0) {
 				onContact ();
-				Destroy (c.gameObject); 
+				Destroy (gameObject); 
 			}
 		}
 	}
 
 	void OnCollisionEnter2D(Collision2D c){
 
-		if (c.gameObject.tag == "enemyBullet") {
+		if (c.gameObject.CompareTag("enemyBullet")) {
 			wallHp = wallHp - 1;
+			Destroy (gameObject);
 			if (wallHp <= 0) {
 				onContact ();
 				Destroy (c.gameObject);
 			}
 		}
-		if (c.gameObject.tag == "Player") {
+		if (c.gameObject.CompareTag("Player")) {
 			onContact ();
 		}
-		if (c.gameObject.tag == "Enemy") {
+		if (c.gameObject.CompareTag("Enemy")) {
 			onContact ();
 		}
 	}

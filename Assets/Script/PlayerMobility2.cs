@@ -118,8 +118,7 @@ public class PlayerMobility2 : MonoBehaviour {
             speed += 50;
             Destroy(other.gameObject);
         }
-
-<<<<<<< HEAD
+			
         if (other.gameObject.tag == "gunupgrade")
         {
             gunUpgradeCount += 1;
@@ -127,9 +126,7 @@ public class PlayerMobility2 : MonoBehaviour {
         }
 
         if (other.gameObject.tag == "MaxHpUp")
-=======
-		if (other.gameObject.CompareTag("MaxHpUp"))
->>>>>>> 6256ae93ef165e21a25d93f7b463253d064f0ace
+
         {
             maxHP += 5;
             Destroy(other.gameObject);

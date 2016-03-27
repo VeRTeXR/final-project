@@ -119,9 +119,12 @@ public class MapGenerator : MonoBehaviour {
 						instance.transform.SetParent (boardHolder);
 
 					}
+					 
 					Instantiate (bg,pos,Quaternion.identity);
-
-
+					GameObject f = GameObject.FindGameObjectWithTag ("Backboard");
+					if (f != null) {
+						f.transform.SetParent (boardHolder);
+					}
 				}
 			}
 		}

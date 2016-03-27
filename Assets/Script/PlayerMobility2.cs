@@ -134,7 +134,7 @@ public class PlayerMobility2 : MonoBehaviour {
 
 		if (other.gameObject.CompareTag("altChange")) {
 			int i = Random.Range (0,secondary.Length);
-			Debug.Log ("i+"+i);
+			//Debug.Log ("i+"+i);
 			spaceship.bullet2 = secondary[i];
 			Destroy(other.gameObject);
 		}
@@ -150,10 +150,10 @@ public class PlayerMobility2 : MonoBehaviour {
 
     }
 
-
+	/*				Obsolete Shit 
     void OnTriggerEnter2D (Collider2D c) {
 		
-		/*if (c.gameObject.tag == "Enemy") {
+		if (c.gameObject.tag == "Enemy") {
 			
 			playerHP -=2;
 			FindObjectOfType<BarController> ().decresebar2 ();
@@ -211,8 +211,8 @@ public class PlayerMobility2 : MonoBehaviour {
 			maxHP += 5;
 			Destroy (c.gameObject);
 			
-		}*/
-	}
+		}
+	}*/
 	
 	void FixedUpdate() {
 		var mousePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
@@ -241,9 +241,6 @@ public class PlayerMobility2 : MonoBehaviour {
         {
             Application.LoadLevel(Application.loadedLevel);     //skip lv for dev p
         }
-
-        //GetComponent<Rigidbody2D>().AddForce (gameObject.transform.up * speedY * verticalInput*2*(Time.deltaTime));
-        //GetComponent<Rigidbody2D>().AddForce (gameObject.transform.right * speed * horizontalInput*2*(Time.deltaTime));
 
         if (Input.GetMouseButton(0))
         {

@@ -50,7 +50,7 @@ public class BoardManager : MonoBehaviour {
 	void BoardSetup ()
 	{
 		//Instantiate Board and set boardHolder to its transform.
-		boardHolder = new GameObject ("Board").transform;
+		boardHolder = new GameObject ("BackgroundBoard").transform;
 		
 		//Loop along x axis, starting from -1 (to fill corner) with floor or outerwall edge tiles.
 		for(int x = -1; x < columns + 1; x++)
@@ -107,8 +107,8 @@ public class BoardManager : MonoBehaviour {
 		minEnvironmentCount = (int)Mathf.Log (level, 2f) * 5;
 		maxEnvironmentCount = (int)Mathf.Log (level, 2f) * 5; 
 
-		Debug.Log (minEnemyCount);
-		Debug.Log (maxEnemyCount);
+		//Debug.Log (minEnemyCount);
+		//Debug.Log (maxEnemyCount);
 		//Instantiate a random number of enemies based on minimum and maximum, at randomized positions.
 
 

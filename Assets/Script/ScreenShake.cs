@@ -7,8 +7,7 @@ public class ScreenShake : MonoBehaviour
 	Vector3 originalCameraPosition;
 	
 	public float shakeAmt;
-	
-	private Camera mainCamera;
+	Camera mainCamera;
 
 	void Start () {
 		mainCamera = Camera.main;
@@ -23,6 +22,11 @@ public class ScreenShake : MonoBehaviour
 		InvokeRepeating("CameraShake", 0, .1f);
 		Invoke("StopShaking", 0.2f);
 		
+	}
+
+	void OnCollisionEnter2D(Collision2D c) {
+		InvokeRepeating("CameraShake", 0, .1f);
+		Invoke("StopShaking", 0.2f);
 	}
 	
 	void CameraShake()

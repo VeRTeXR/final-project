@@ -20,11 +20,14 @@ public class MapGenerator : MonoBehaviour {
 	public int randomFillPercent;
 
 	private Transform boardHolder;
+	private Transform backHolder;
 
 	int[,] map;
 	
 	void Start() {
 		boardHolder = new GameObject ("Board").transform;
+		backHolder = new GameObject ("backboardHolder").transform; 
+
 		randomFillPercent = Random.Range (40,50);
 		GenerateMap();
 		OnDraw ();
@@ -106,25 +109,20 @@ public class MapGenerator : MonoBehaviour {
 			for (int x = 0; x < width; x ++) {
 				for (int y = 0; y < height; y ++) {
 					Vector3 pos = new Vector3(-width/2 + x + .5f,-height/2 + y+.5f, 1);
-					if(map[x,y]==1) {
-						randIndex = Random.Range(0,tileArray.Length);
+					if (map [x, y] == 1) {
+						
+						randIndex = Random.Range (0, tileArray.Length);
 						tileChoice = tileArray [randIndex];
 						GameObject instance = Instantiate (tileChoice, pos, Quaternion.identity) as GameObject;
 						instance.transform.SetParent (boardHolder);
-					}
-					else {
-						randIndex = Random.Range(0,altTileArray.Length);
+						GameObject filler = Instantiate (bg, pos, Quaternion.identity) as GameObject ;
+						filler.transform.SetParent (backHolder);
+					} else {
+						randIndex = Random.Range (0, altTileArray.Length);
 						tileChoice = altTileArray [randIndex];
 						GameObject instance = Instantiate (tileChoice, pos, Quaternion.identity) as GameObject;
 						instance.transform.SetParent (boardHolder);
-
-					}
-					 
-					Instantiate (bg,pos,Quaternion.identity);
-					GameObject f = GameObject.FindGameObjectWithTag ("Backboard");
-					if (f != null) {
-						f.transform.SetParent (boardHolder);
-					}
+					}	
 				}
 			}
 		}

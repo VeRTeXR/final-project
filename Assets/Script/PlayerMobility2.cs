@@ -222,6 +222,7 @@ public class PlayerMobility2 : MonoBehaviour {
 		GetComponent<Rigidbody2D>().angularVelocity = 0.5f;
 		float verticalInput = Input.GetAxis ("Vertical");
 		float horizontalInput = Input.GetAxis ("Horizontal"); 
+		horizontalInput = horizontalInput*0.75f;
 		Vector2 movement = new Vector2 (horizontalInput, verticalInput);
 		GetComponent<Rigidbody2D>().velocity = (movement * speed)*(Time.deltaTime);
 		enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;

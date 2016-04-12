@@ -19,14 +19,14 @@ public class ScreenShake : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D coll) 
 	{
-		InvokeRepeating("CameraShake", 0, .1f);
-		Invoke("StopShaking", 0.2f);
+		InvokeRepeating("CameraShake", 0, .5f);
+		Invoke("StopShaking", 0.1f);
 		
 	}
 
 	void OnCollisionEnter2D(Collision2D c) {
-		InvokeRepeating("CameraShake", 0, .1f);
-		Invoke("StopShaking", 0.2f);
+		InvokeRepeating("CameraShake", 0, .5f);
+		Invoke("StopShaking", 0.1f);
 	}
 	
 	void CameraShake()

@@ -34,6 +34,14 @@ public class MapGenerator : MonoBehaviour {
 
 	}
 
+	/*void Update() {
+		if (Input.GetMouseButton(0)) {
+			Start ();
+			DestroyMap ();
+		}
+	}
+	*/
+
 	void GenerateMap() {
 		map = new int[width,height];
 		RandomFillMap();

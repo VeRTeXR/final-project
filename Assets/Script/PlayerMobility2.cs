@@ -240,7 +240,8 @@ public class PlayerMobility2 : MonoBehaviour {
 		Vector2 movement = new Vector2 (horizontalInput, verticalInput);
 		GetComponent<Rigidbody2D>().velocity = (movement * speed)*(Time.deltaTime);
 		enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
-
+		
+		animator.SetBool("IsATK", true);
         
 
         if (Time.timeScale==0.7f){
@@ -259,8 +260,6 @@ public class PlayerMobility2 : MonoBehaviour {
 
         if (Input.GetMouseButton(0))
         {
-
-            animator.SetBool("IsATK", true);
             if (gunUpgradeCount > 1)
             {
                 StartCoroutine("attk3");

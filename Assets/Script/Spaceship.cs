@@ -8,7 +8,7 @@ public class Spaceship : MonoBehaviour {
 	public float shotDelay;
 	public GameObject bullet;
 	public bool canShot;
-	private Animator animator;
+    public Animator animator;
 
 	void Start () {
 		animator = GetComponent<Animator> ();
@@ -16,6 +16,7 @@ public class Spaceship : MonoBehaviour {
 
 
 	public void Shot (Transform origin){
+        animator.SetBool("IsATK", true);
 		Instantiate (bullet, origin.position, origin.rotation);
 
 	}

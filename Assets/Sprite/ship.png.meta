@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2f334ebdfaa264c1eb7eac6ad0dfc6be
+guid: 9102310346510b6409a4e3fc684e795a
 timeCreated: 1445917951
 licenseType: Free
 TextureImporter:
@@ -27,7 +27,7 @@ TextureImporter:
   bumpmap:
     convertToNormalMap: 0
     externalNormalMap: 0
-    heightScale: .25
+    heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
   grayScaleToAlpha: 0
@@ -52,7 +52,7 @@ TextureImporter:
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
-  spritePivot: {x: .5, y: .5}
+  spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
@@ -68,8 +68,16 @@ TextureImporter:
         width: 38
         height: 56
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3, y: 28}
+        - {x: -19, y: 6}
+        - {x: -19, y: -28}
+        - {x: 10, y: -28}
+        - {x: 19, y: -18}
+        - {x: 19, y: 5}
+        - {x: 10, y: 28}
     - name: ship_1
       rect:
         serializedVersion: 2
@@ -78,8 +86,17 @@ TextureImporter:
         width: 38
         height: 56
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 28}
+        - {x: -19, y: -1}
+        - {x: -19, y: -22}
+        - {x: -15, y: -28}
+        - {x: 19, y: -28}
+        - {x: 19, y: 4}
+        - {x: 16, y: 11}
+        - {x: 7, y: 28}
     - name: ship_2
       rect:
         serializedVersion: 2
@@ -88,8 +105,29 @@ TextureImporter:
         width: 38
         height: 56
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2, y: -27}
+        - {x: 5, y: -26}
+        - {x: 5, y: -23}
+        - {x: 2, y: -22}
+        - {x: 0, y: -24}
+      - - {x: -6, y: -25}
+        - {x: -3, y: -24}
+        - {x: -3, y: -21}
+        - {x: -6, y: -20}
+        - {x: -8, y: -22}
+      - - {x: 3, y: 28}
+        - {x: -3, y: 28}
+        - {x: -16, y: 11}
+        - {x: -19, y: -6}
+        - {x: -19, y: -20}
+        - {x: -9, y: -23}
+        - {x: 9, y: -23}
+        - {x: 19, y: -20}
+        - {x: 19, y: -5}
+        - {x: 16, y: 12}
     - name: ship_3
       rect:
         serializedVersion: 2
@@ -98,8 +136,22 @@ TextureImporter:
         width: 38
         height: 56
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10, y: -15}
+        - {x: 19, y: -19}
+        - {x: 19, y: -2}
+        - {x: 18, y: 11}
+        - {x: 7, y: 28}
+        - {x: -3, y: 28}
+        - {x: -17, y: 10}
+        - {x: -19, y: -5}
+        - {x: -19, y: -21}
+        - {x: -13, y: -22}
+        - {x: 10, y: -22}
+        - {x: 10, y: -19}
+        - {x: 8, y: -17}
     - name: ship_4
       rect:
         serializedVersion: 2
@@ -108,8 +160,17 @@ TextureImporter:
         width: 38
         height: 56
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3, y: 28}
+        - {x: -19, y: 12}
+        - {x: -19, y: -21}
+        - {x: -11, y: -28}
+        - {x: 12, y: -28}
+        - {x: 19, y: -19}
+        - {x: 19, y: 7}
+        - {x: 11, y: 28}
     - name: ship_5
       rect:
         serializedVersion: 2
@@ -118,8 +179,18 @@ TextureImporter:
         width: 38
         height: 56
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -19, y: -21}
+        - {x: -6, y: -28}
+        - {x: 8, y: -28}
+        - {x: 19, y: -19}
+        - {x: 19, y: 11}
+        - {x: 12, y: 28}
+        - {x: -3, y: 28}
+        - {x: -18, y: 12}
+        - {x: -19, y: 5}
     - name: ship_6
       rect:
         serializedVersion: 2
@@ -128,8 +199,28 @@ TextureImporter:
         width: 38
         height: 56
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 2, y: -28}
+        - {x: 5, y: -27}
+        - {x: 5, y: -24}
+        - {x: 2, y: -23}
+        - {x: 0, y: -25}
+      - - {x: -6, y: -26}
+        - {x: -3, y: -25}
+        - {x: -3, y: -22}
+        - {x: -6, y: -21}
+        - {x: -8, y: -23}
+      - - {x: -19, y: -20}
+        - {x: -12, y: -24}
+        - {x: 10, y: -24}
+        - {x: 19, y: -20}
+        - {x: 19, y: -6}
+        - {x: 16, y: 12}
+        - {x: 12, y: 28}
+        - {x: -13, y: 28}
+        - {x: -19, y: 25}
     - name: ship_7
       rect:
         serializedVersion: 2
@@ -138,8 +229,22 @@ TextureImporter:
         width: 38
         height: 56
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 10, y: -14}
+        - {x: 15, y: -16}
+        - {x: 19, y: -17}
+        - {x: 19, y: 5}
+        - {x: 10, y: 28}
+        - {x: -3, y: 28}
+        - {x: -17, y: 11}
+        - {x: -19, y: -4}
+        - {x: -19, y: -20}
+        - {x: -13, y: -21}
+        - {x: 10, y: -21}
+        - {x: 10, y: -18}
+        - {x: 8, y: -16}
     - name: ship_8
       rect:
         serializedVersion: 2
@@ -148,8 +253,18 @@ TextureImporter:
         width: 38
         height: 56
       alignment: 0
-      pivot: {x: .5, y: .5}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -3, y: 28}
+        - {x: -16, y: 10}
+        - {x: -19, y: -7}
+        - {x: -19, y: -18}
+        - {x: 19, y: -18}
+        - {x: 19, y: -5}
+        - {x: 16, y: 11}
+        - {x: 4, y: 28}
+    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 

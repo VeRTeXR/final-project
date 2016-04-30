@@ -1,0 +1,13 @@
+2016/04/29-18:34:46.760 1fa4 Recovering log #12
+2016/04/29-18:34:46.760 1fa4 Level-0 table #14: started
+2016/04/29-18:34:46.789 1fa4 Level-0 table #14: 865 bytes OK
+2016/04/29-18:34:46.827 1fa4 Delete type=0 #12
+2016/04/29-18:34:46.828 1fa4 Delete type=3 #10
+2016/04/29-18:34:46.828 24ac Compacting 4@0 + 0@1 files
+2016/04/29-18:34:46.854 24ac Generated table #16: 141 keys, 14784 bytes
+2016/04/29-18:34:46.854 24ac Compacted 4@0 + 0@1 files => 14784 bytes
+2016/04/29-18:34:46.872 24ac Delete type=2 #5
+2016/04/29-18:34:46.872 24ac Delete type=2 #8
+2016/04/29-18:34:46.872 24ac Delete type=2 #11
+2016/04/29-18:34:46.872 24ac Delete type=2 #14
+2016/04/29-18:34:46.872 24ac compacted to: files[ 0 1 0 0 0 0 0 ]

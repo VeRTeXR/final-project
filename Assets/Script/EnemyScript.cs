@@ -19,8 +19,14 @@ public class EnemyScript : MonoBehaviour {
 
     Spaceship spaceship;
 
+    private Animator animator;
 
-    IEnumerator Start() {
+
+    IEnumerator Start()
+    {
+
+
+        animator = GetComponent<Animator>();
 				spaceship = GetComponent<Spaceship> ();
 				
 		if (spaceship.canShot == false) {
@@ -71,6 +77,8 @@ public class EnemyScript : MonoBehaviour {
 		string layerName = LayerMask.LayerToName (c.gameObject.layer);
 
 		if (layerName == "playerBullet") {
+
+            animator.SetBool("IsATKED", true);
 			float force = 20;
 			enemyHP -= 1;
 			transform.Translate(-Vector2.up *force*Time.deltaTime);
@@ -92,12 +100,13 @@ public class EnemyScript : MonoBehaviour {
 
         }*/
 
-		spaceship.getAnimator().SetTrigger("Damage");
+		//spaceship.getAnimator().SetTrigger("Damage");
 	}
 
     void OnExplode()
     {
 		if (enemyCount == 1) {
+           
 			Instantiate (ExitTest, transform.position, transform.rotation);	
 		}
 
@@ -109,5 +118,9 @@ public class EnemyScript : MonoBehaviour {
         }
        // Destroy(gameObject);
     }
-
+    public void ResetAnimation()
+    {
+        animator.SetBool("IsATKED", false);
+        animator.SetBool("IsATK", false);
+    }
 }

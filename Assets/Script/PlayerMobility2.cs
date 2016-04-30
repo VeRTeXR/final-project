@@ -28,9 +28,21 @@ public class PlayerMobility2 : MonoBehaviour {
 	pSpaceship2 spaceship;
 	float timeSpeedCountdown = Mathf.Infinity;
 
+    public Animator animator;
+
+ 
+    void Start()
+    {
+        playerHP = Manager.instance.HP;
+        score = Manager.instance.score;
+        animator = GetComponent<Animator>();
+    }
+
     IEnumerator attk() {
+      
 		yield return new WaitForSeconds(0.1f);
 
+        
 			spaceship = GetComponent<pSpaceship2> ();
 			spaceship.Shot (transform);
             if(gunUpgradeCount > 1)
@@ -40,14 +52,16 @@ public class PlayerMobility2 : MonoBehaviour {
 			AudioSource.PlayClipAtPoint (shoot, transform.position);
 			StopCoroutine("attk");
 			yield return new WaitForSeconds (0.5f);
+           
 		
 		
 	}
 
     IEnumerator attk3()
     {
+        
         yield return new WaitForSeconds(0.1f);
-
+    
         spaceship = GetComponent<pSpaceship2>();
         spaceship.Shot3(transform);
         AudioSource.PlayClipAtPoint(shoot, transform.position);
@@ -60,6 +74,7 @@ public class PlayerMobility2 : MonoBehaviour {
     IEnumerator attk2() {
 
         yield return new WaitForSeconds(0.1f);
+   
         spaceship = GetComponent<pSpaceship2>();
         spaceship.shot2(transform);
 
@@ -69,10 +84,7 @@ public class PlayerMobility2 : MonoBehaviour {
 
     }
 	
-	void Start(){
-		playerHP = Manager.instance.HP;
-		score = Manager.instance.score;
-	}
+
 
 	private void Restart () {
 		Application.LoadLevel (Application.loadedLevel);
@@ -88,6 +100,8 @@ public class PlayerMobility2 : MonoBehaviour {
 		}
 
 		if (other.gameObject.CompareTag("Enemy")) {
+
+            animator.SetBool("IsATKED", true);
             playerHP -= 2;
             FindObjectOfType<BarController>().decresebar2();
             //Instantiate(Explosion, transform.position, transform.rotation);
@@ -97,6 +111,7 @@ public class PlayerMobility2 : MonoBehaviour {
 
 		if (other.gameObject.CompareTag("enemyBullet"))
         {
+            animator.SetBool("IsATKED", true);
             FindObjectOfType<BarController>().decresebar();
             playerHP -= 1;
             Destroy(other.gameObject);
@@ -132,13 +147,13 @@ public class PlayerMobility2 : MonoBehaviour {
             Destroy(other.gameObject);
         }
 
-		if (other.gameObject.CompareTag("altChange")) {
+	/*	if (other.gameObject.CompareTag("altChange")) {
 			int i = Random.Range (0,secondary.Length);
 			//Debug.Log ("i+"+i);
 			spaceship.bullet2 = secondary[i];
 			Destroy(other.gameObject);
-		}
-		spaceship.getAnimator().SetTrigger("Damage");
+		}*/
+		//spaceship.getAnimator().SetTrigger("Damage");
 
 		/*if (other.gameObject.tag == "spChange") {
 			int i = Random.Range (0,sec.Length);
@@ -244,6 +259,8 @@ public class PlayerMobility2 : MonoBehaviour {
 
         if (Input.GetMouseButton(0))
         {
+
+            animator.SetBool("IsATK", true);
             if (gunUpgradeCount > 1)
             {
                 StartCoroutine("attk3");
@@ -254,7 +271,11 @@ public class PlayerMobility2 : MonoBehaviour {
 
         }
 
-        if (Input.GetMouseButton(1)) {
+        if (Input.GetMouseButton(1))
+        {
+
+
+            animator.SetBool("IsATK", true);
             float sp = FindObjectOfType<SpBarController>().curSp;
             chargeFxTime += Time.deltaTime;
             if (chargeFxTime >= 0.5f) {
@@ -268,6 +289,7 @@ public class PlayerMobility2 : MonoBehaviour {
    
             }
         }
+      
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -318,6 +340,13 @@ public class PlayerMobility2 : MonoBehaviour {
 			//Application.LoadLevel(Application.loadedLevel);
 			//GUI.Label (new Rect (10, 100, 200, 60), "PRESS R TO RESTART" );
 		}
+    }
+
+    public void ResetAnimation()
+    {
+  
+        animator.SetBool("IsATKED", false);
+        animator.SetBool("IsATK", false);
     }
     
 }

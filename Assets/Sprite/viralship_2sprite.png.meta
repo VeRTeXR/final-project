@@ -1,9 +1,18 @@
 fileFormatVersion: 2
 guid: df4aed0d6ed6e404785a55e405cfe54d
-timeCreated: 1457638867
+timeCreated: 1461925726
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: viralship_2sprite_0
+    21300002: viralship_2sprite_1
+    21300004: viralship_2sprite_2
+    21300006: viralship_2sprite_3
+    21300008: viralship_2sprite_4
+    21300010: viralship_2sprite_5
+    21300012: viralship_2sprite_6
+    21300014: viralship_2sprite_7
+    21300016: viralship_2sprite_8
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,15 +39,14 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 16
     mipBias: -1
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   rGBM: 0
   compressionQuality: 50
-  allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -49,7 +57,97 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: viralship_2sprite_0
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 210
+        width: 26
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: viralship_2sprite_1
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 208
+        width: 26
+        height: 77
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: viralship_2sprite_2
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 206
+        width: 26
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: viralship_2sprite_3
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 214
+        width: 26
+        height: 71
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: viralship_2sprite_4
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 112
+        width: 26
+        height: 90
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: viralship_2sprite_5
+      rect:
+        serializedVersion: 2
+        x: 171
+        y: 126
+        width: 26
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: viralship_2sprite_6
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 126
+        width: 26
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: viralship_2sprite_7
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 130
+        width: 26
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: viralship_2sprite_8
+      rect:
+        serializedVersion: 2
+        x: 106
+        y: 46
+        width: 26
+        height: 60
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 
   assetBundleName: 

@@ -11,6 +11,7 @@ public class PlayerMobility2 : MonoBehaviour {
 	public int enemyCount;
 	public GameObject chargeFx;
 	public float chargeTime;
+	public float degradeTime;
 	public GameObject Explosion;
 	public float explosionLifetime = 3.0f;
 	public AudioClip explosion;
@@ -242,6 +243,15 @@ public class PlayerMobility2 : MonoBehaviour {
 		enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
 		
 		animator.SetBool("IsATK", true);
+
+		degradeTime += Time.deltaTime;
+		//Debug.Log (degradeTime);
+		if (degradeTime > 100) {
+			//Debug.Log (playerHP);
+			FindObjectOfType<BarController>().decresebar();
+			playerHP -= 1;
+			degradeTime = 0;
+		}
         
 
         if (Time.timeScale==0.7f){

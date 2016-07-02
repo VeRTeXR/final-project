@@ -13,7 +13,8 @@ public class Manager : MonoBehaviour {
 	public GameObject player;
 
 	//public GameObject ExitTest;
-	public float levelStartDelay = 0.1f;
+	public float levelStartDelay = 0.3f;
+	public float levelStartCountdown;
 	public float HP = 20;
 	public int level;
 	public int score;
@@ -32,6 +33,7 @@ public class Manager : MonoBehaviour {
 			instance = this;
 		else if (instance != this)
 			Destroy (gameObject);
+
 		
 		DontDestroyOnLoad (gameObject);
 		boardScript = GetComponent<BoardManager> ();
@@ -47,19 +49,26 @@ public class Manager : MonoBehaviour {
 
 	void InitGame() {
 		doingSetup = true;
+		//levelStartCountdown += Time.unscaledTime;
+		Time.timeScale = 0;
 		levelImage = GameObject.Find ("LevelImage");
 		levelText = GameObject.Find ("LevelText").GetComponent<Text> ();
 		levelText.text = "Dive " + level;
 		levelImage.SetActive (true);
-		Invoke ("HideLevelImage", levelStartDelay);
+		Invoke ("HideLevelImage", 1);
 		boardScript.SetupScene (level);
 	}
 
 	void Update () {
-		
-		if(doingSetup)
 
+		Debug.Log (levelStartCountdown);
+
+		if (doingSetup) {
+			levelStartCountdown += Time.unscaledTime;
+			if (levelStartCountdown > 2)
+				Time.timeScale = 1;
 			return;
+		}
 
         if (level < 1)
         {

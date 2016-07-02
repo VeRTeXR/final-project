@@ -19,16 +19,23 @@ public class ScreenShake : MonoBehaviour
 
 	void OnTriggerEnter2D(Collider2D coll) 
 	{
-		InvokeRepeating("CameraShake", 0, .1f);
-		Invoke("StopShaking", 0.2f);
-		
+		if (coll.CompareTag ("enemyBullet")) {
+			InvokeRepeating ("CameraShake", 0, .15f);
+			Invoke ("StopShaking", 0.2f);
+		}
 	}
 
 	void OnCollisionEnter2D(Collision2D c) {
-		InvokeRepeating("CameraShake", 0, .1f);
-		Invoke("StopShaking", 0.2f);
+		if (c.gameObject.tag == "enemyBullet") {
+			InvokeRepeating ("CameraShake", 0, .15f);
+			Invoke ("StopShaking", 0.2f);
+		}
+		if (c.gameObject.tag == "Enemy") {
+			InvokeRepeating ("CameraShake", 0, .15f);
+			Invoke ("StopShaking", 0.2f);
+		}
 	}
-	
+
 	void CameraShake()
 	{
 		if(shakeAmt>0) 

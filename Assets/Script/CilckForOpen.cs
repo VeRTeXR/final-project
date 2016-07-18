@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class CilckForOpen : MonoBehaviour {
 
@@ -13,8 +14,8 @@ public class CilckForOpen : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Space)) {
 
-            Application.LoadLevel("mission");
-
+            //Application.LoadLevel("mission");
+            SceneManager.LoadScene("mission");
         }
 
 

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class PlayerMobility2 : MonoBehaviour {
@@ -27,7 +28,7 @@ public class PlayerMobility2 : MonoBehaviour {
 
     int score;
 	pSpaceship2 spaceship;
-	float timeSpeedCountdown = Mathf.Infinity;
+	
 
     public Animator animator;
 
@@ -88,7 +89,8 @@ public class PlayerMobility2 : MonoBehaviour {
 
 
 	private void Restart () {
-		Application.LoadLevel (Application.loadedLevel);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		//Application.LoadLevel (Application.loadedLevel);
 	}
 
     void OnCollisionEnter2D(Collision2D other)
@@ -262,10 +264,13 @@ public class PlayerMobility2 : MonoBehaviour {
 			Time.timeScale = 1;
 		}
 
-
+		if (Input.GetKeyDown(KeyCode.P)) {
+			Application.Quit();
+		}
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            Application.LoadLevel(Application.loadedLevel);     //skip lv for dev p
+        	SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //Application.LoadLevel(Application.loadedLevel);     //skip lv for dev p
         }
 
         if (Input.GetMouseButton(0))

@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
+
 
 namespace Completed
 {
@@ -30,7 +32,9 @@ public class Loader : MonoBehaviour {
 	void Update() {
 			if (gameOver) {
 				if (Input.GetKeyDown (KeyCode.R)) {
-					Application.LoadLevel(Application.loadedLevel);
+					//Application.LoadLevel(Application.loadedLevel);
+					string sceneName = SceneManager.GetActiveScene().name;
+					SceneManager.LoadScene(sceneName,LoadSceneMode.Single);
 				}
 			}
 		}

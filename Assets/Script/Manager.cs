@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Manager : MonoBehaviour {
 	
@@ -77,7 +78,8 @@ public class Manager : MonoBehaviour {
 			 //check score, health, reset it! 
         }
 		if (Input.GetKeyDown (KeyCode.Z)) {
-			Application.LoadLevel("StartScn");
+			SceneManager.LoadScene("StartScn", LoadSceneMode.Single);
+			//Application.LoadLevel("StartScn");
 			level = -1;
 			score = 0;
 			HP = 20;
@@ -88,7 +90,7 @@ public class Manager : MonoBehaviour {
 
         if (levelImage.activeSelf) {
 			if (Input.GetKeyDown (KeyCode.R)) {
-				Application.LoadLevel("StartScn");
+				SceneManager.LoadScene("StartScn", LoadSceneMode.Single);
 				level = -1;
 				score = 0;
 				HP = 20;

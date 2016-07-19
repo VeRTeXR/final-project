@@ -232,7 +232,8 @@ public class PlayerMobility2 : MonoBehaviour {
 		}
 	}*/
 	
-	void FixedUpdate() {
+	void Update() {
+		animator.SetFloat("speed", Mathf.Abs(Input.GetAxis ("Horizontal")));
 		var mousePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 		Quaternion roit = Quaternion.LookRotation (transform.position - mousePosition, Vector3.forward);
 		transform.rotation = roit;
@@ -240,11 +241,14 @@ public class PlayerMobility2 : MonoBehaviour {
 		GetComponent<Rigidbody2D>().angularVelocity = 0.5f;
 		float verticalInput = Input.GetAxis ("Vertical");
 		float horizontalInput = Input.GetAxis ("Horizontal"); 
+		
 		Vector2 movement = new Vector2 (horizontalInput, verticalInput);
 		GetComponent<Rigidbody2D>().velocity = (movement * speed)*(Time.deltaTime);
 		enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+
 		
-		animator.SetBool("IsATK", true);
+
+		//animator.SetBool("IsATK", true);
 
 		degradeTime += Time.deltaTime;
 		//Debug.Log (degradeTime);

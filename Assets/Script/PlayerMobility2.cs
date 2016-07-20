@@ -233,7 +233,6 @@ public class PlayerMobility2 : MonoBehaviour {
 	}*/
 	
 	void Update() {
-		animator.SetFloat("speed", Mathf.Abs(Input.GetAxis ("Horizontal")));
 		var mousePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 		Quaternion roit = Quaternion.LookRotation (transform.position - mousePosition, Vector3.forward);
 		transform.rotation = roit;

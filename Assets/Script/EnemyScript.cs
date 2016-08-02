@@ -73,16 +73,14 @@ public class EnemyScript : MonoBehaviour {
 		//Destroy (gameObject);
 		//FindObjectOfType<Score> ().AddPoint (point);
 
-
-		string layerName = LayerMask.LayerToName (c.gameObject.layer);
-
-		if (layerName == "playerBullet") {
+		if (c.gameObject.CompareTag("playerBullet")) {
 
             animator.SetBool("IsATKED", true);
 			float force = 20;
 			enemyHP -= 1;
 			transform.Translate(-Vector2.up *force*Time.deltaTime);
-			Destroy (c.gameObject);
+			c.gameObject.SetActive(false);
+			
             //OnExplode();
 
         } 

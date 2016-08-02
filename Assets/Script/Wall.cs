@@ -11,7 +11,7 @@ public class Wall : MonoBehaviour {
 		if (c.gameObject.CompareTag ("playerBullet")) {
 			wallHp = wallHp - 1;
 			//Debug.Log ("co");
-			Destroy (c.gameObject);
+			c.gameObject.SetActive(false);
 			if (wallHp <= 0) {
 				onContact ();
 				Destroy (gameObject); 
@@ -26,7 +26,7 @@ public class Wall : MonoBehaviour {
 			Destroy (gameObject);
 			if (wallHp <= 0) {
 				onContact ();
-				Destroy (c.gameObject);
+				c.gameObject.SetActive(false);
 			}
 		}
 		if (c.gameObject.CompareTag("Player")) {

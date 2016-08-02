@@ -29,12 +29,15 @@ public class pSpaceship2 : MonoBehaviour {
 		var randomNumberX = Random.Range(-strayFactor, strayFactor);
 		var randomNumberY = Random.Range(-strayFactor, strayFactor);
 		var randomNumberZ = Random.Range(-strayFactor, strayFactor);
-		
+		GameObject puller = GameObject.Find ("ObjectPooler_PlayerBullets");
+        GameObject obj = puller.GetComponent<ObjectPoolingScript>().GetPooledObject();
+        obj.transform.position = transform.position;
+        obj.transform.rotation = transform.rotation;
 		//Instantiate(bullet, transform.position, transform.rotation * Quaternion.Euler(0f, 0f, randomNumberZ));
-		Instantiate (bullet, bulletSpawnRight.transform.position, bulletSpawnRight.transform.rotation* Quaternion.Euler(0f, 0f, randomNumberZ));
-		Instantiate (bullet, bulletSpawnLeft.transform.position, bulletSpawnLeft.transform.rotation* Quaternion.Euler(0f, 0f, randomNumberZ));
-		bullet.transform.Rotate(randomNumberX, randomNumberY, randomNumberZ); //rotating teh shot
-		bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.forward * 100*Time.deltaTime);
+		//Instantiate (bullet, bulletSpawnRight.transform.position, bulletSpawnRight.transform.rotation* Quaternion.Euler(0f, 0f, randomNumberZ));
+		//Instantiate (bullet, bulletSpawnLeft.transform.position, bulletSpawnLeft.transform.rotation* Quaternion.Euler(0f, 0f, randomNumberZ));
+		obj.transform.Rotate(randomNumberX, randomNumberY, randomNumberZ); //rotating teh shot
+        obj.SetActive(true);
 		
 	}
 

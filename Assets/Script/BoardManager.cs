@@ -37,7 +37,10 @@ public class BoardManager : MonoBehaviour {
 	private Transform boardHolder;
 	private List <Vector3> gridPositions = new List <Vector3>();
 
-	void InitialiseList () {
+    public int level;
+    public GameObject[] enemyTiles2;
+
+    void InitialiseList () {
 		gridPositions.Clear();
 		for (int x=1; x<columns-1; x++) {
 			for (int y=1; y<rows-1; y++) {
@@ -111,9 +114,21 @@ public class BoardManager : MonoBehaviour {
 		//Debug.Log (maxEnemyCount);
 		//Instantiate a random number of enemies based on minimum and maximum, at randomized positions.
 
+        if(level < 2) {
 
-		LayoutObjectAtRandom (enemyTiles, minEnemyCount, maxEnemyCount);
-		LayoutObjectAtRandom (environmentTiles, minEnvironmentCount, maxEnvironmentCount);
+            LayoutObjectAtRandom(enemyTiles, minEnemyCount, maxEnemyCount);
+
+        }
+
+        if (level > 2)
+        {
+
+            LayoutObjectAtRandom(enemyTiles2, minEnemyCount, maxEnemyCount);
+
+        }
+
+
+        LayoutObjectAtRandom (environmentTiles, minEnvironmentCount, maxEnvironmentCount);
 		LayoutObjectAtRandom (itemTiles, minItemCount, maxItemCount);
 
 		//Instantiate the exit tile in the upper right hand corner of our game board

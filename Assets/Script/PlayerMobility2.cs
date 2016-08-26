@@ -168,70 +168,6 @@ public class PlayerMobility2 : MonoBehaviour {
 
     }
 
-	/*				Obsolete Shit 
-    void OnTriggerEnter2D (Collider2D c) {
-		
-		if (c.gameObject.tag == "Enemy") {
-			
-			playerHP -=2;
-			FindObjectOfType<BarController> ().decresebar2 ();
-			Instantiate(Explosion, transform.position, transform.rotation);
-			AudioSource.PlayClipAtPoint(explosion,transform.position);
-			Destroy(c.gameObject);
-		
-			
-		}*/				
-		
-		/*if (c.gameObject.tag == "enemyBullet") {
-			FindObjectOfType<BarController> ().decresebar ();
-			Destroy(c.gameObject);
-			playerHP -= 1; 
-			
-		}*/
-		
-		/*string layerName = LayerMask.LayerToName (c.gameObject.layer);
-		if (layerName == "playerBullet") {
-		} else if (layerName == "enemyBullet") {
-			playerHP -= 1;
-			Destroy (c.gameObject);
-			FindObjectOfType<PlayerHp> ().decreaseHp ();
-		} else if (layerName == "Enemy") {
-			//add explosion
-			float force = 10;
-			playerHP -= 2;	
-			transform.Translate (-Vector2.up * force * Time.deltaTime);
-			Destroy (c.gameObject);
-			FindObjectOfType<PlayerHp> ().decreaseHp ();
-		}*/
-		
-		
-		/*
-		if (c.CompareTag ("Heal")) {
-			
-			
-			if (playerHP >= maxHP) {
-				playerHP = maxHP;
-			}
-			
-			playerHP += 5;
-			Destroy (c.gameObject);
-			FindObjectOfType<BarController> ().increseBar ();
-			
-		}
-		
-		if (c.CompareTag ("speedUp")) {
-			speed += 50;
-			Destroy (c.gameObject);
-		}
-		
-		if (c.CompareTag ("MaxHpUp")) {
-			
-			maxHP += 5;
-			Destroy (c.gameObject);
-			
-		}
-	}*/
-	
 	void Update() {
 		var mousePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 		Quaternion roit = Quaternion.LookRotation (transform.position - mousePosition, Vector3.forward);
@@ -270,10 +206,15 @@ public class PlayerMobility2 : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.P)) {
 			Application.Quit();
 		}
+
         if (Input.GetKeyDown(KeyCode.Tab))
         {
         	SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             //Application.LoadLevel(Application.loadedLevel);     //skip lv for dev p
+        }
+
+        if(Input.GetKeyDown(KeyCode.E)){
+        	//change to alt fire
         }
 
         if (Input.GetMouseButton(0))
@@ -290,8 +231,6 @@ public class PlayerMobility2 : MonoBehaviour {
 
         if (Input.GetMouseButton(1))
         {
-
-
             animator.SetBool("IsATK", true);
             float sp = FindObjectOfType<SpBarController>().curSp;
             chargeFxTime += Time.deltaTime;
@@ -328,10 +267,7 @@ public class PlayerMobility2 : MonoBehaviour {
         {
 			speed -= 50;
 			chargeTime = 0;
-		}
-
-
-		
+		}	
 	}
 
 	void slowTime()

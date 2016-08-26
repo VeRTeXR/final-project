@@ -6,6 +6,7 @@ public class ObjectPoolingScript : MonoBehaviour {
 
 	
 	public GameObject pooledObject;
+	private Transform bulletHolder;
 	public int pooledAmount = 30;
 	public bool willGrow = true;
 
@@ -14,9 +15,11 @@ public class ObjectPoolingScript : MonoBehaviour {
 
 
 	void Start () {
+		bulletHolder = new GameObject ("BulletHolder").transform;
 		pooledObjects = new List<GameObject>();
 		for(int i = 0; i < pooledAmount; i++) {
 			GameObject obj = (GameObject) Instantiate (pooledObject);
+			obj.transform.SetParent (bulletHolder);
 			obj.SetActive (false);
 			pooledObjects.Add(obj);
 		}

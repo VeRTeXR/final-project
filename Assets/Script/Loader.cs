@@ -9,15 +9,22 @@ public class Loader : MonoBehaviour {
 
 	public GameObject manager;
 	public GameObject playerManager;
+	public GameObject musicManager;
 
 	public bool gameOver = false;
 	// Use this for initialization
 	void Awake () {
 
-			if (Manager.instance==null) {
+	
+		if (Manager.instance==null) {
 			Instantiate(manager);
+			if(MusicController.instance==null) 
+				{
+				Instantiate(musicManager);
+				}
 
-			if (PlayerManager.instance==null) {
+			if (PlayerManager.instance==null) 
+				{
 					Instantiate(playerManager);
 				}
 		}

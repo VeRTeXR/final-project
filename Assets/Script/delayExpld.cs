@@ -3,8 +3,8 @@ using System.Collections;
 
 public class delayExpld : MonoBehaviour {
 
-	public float lifeTime = 0.3f; //up lifetime
-	public double delayed; 
+	public float lifeTime = 1.0f; //up lifetime
+	public float delayed; 
 	public int speed = 10;
 	public GameObject bullet;
 
@@ -22,11 +22,11 @@ public class delayExpld : MonoBehaviour {
 	}
 
 	void Update() {
-		Debug.Log (delayed);
+		Debug.Log ("D:"+delayed);
 		delayed += Time.deltaTime;
-		if (delayed > 0.3f) {
-	
+		if (delayed >= 0.4f && delayed < 0.45f) {
 			nova ();
+			delayed = 0;
 		} 
 	}
 

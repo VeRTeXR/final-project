@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyScript : MonoBehaviour {
+public class EnemyScript_2 : MonoBehaviour {
 
 	public int enemyHP;
 	public float speed;
@@ -24,6 +24,8 @@ public class EnemyScript : MonoBehaviour {
 
     IEnumerator Start()
     {
+
+
         animator = GetComponent<Animator>();
 				spaceship = GetComponent<Spaceship> ();
 				
@@ -31,15 +33,17 @@ public class EnemyScript : MonoBehaviour {
 		{
 			yield break;
 		}
-		while (true) 
-			{
-				for (int i = 0; i < transform.childCount; i++) 
-					{
-							Transform shotPos = transform.GetChild(i);
-							spaceship.Shot (shotPos);
-					}
-				yield return new WaitForSeconds (spaceship.shotDelay);
-			}
+				while (true) 
+				{
+						for (int i = 0; i < transform.childCount; i++) 
+						{
+
+								Transform shotPos = transform.GetChild(i);
+								spaceship.Shot (shotPos);
+						}
+
+						yield return new WaitForSeconds (spaceship.shotDelay);
+				}
 
 		}
 
@@ -52,19 +56,27 @@ public class EnemyScript : MonoBehaviour {
 		GetComponent<Rigidbody2D>().AddForce (gameObject.transform.up * speed);
 		enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
 			
-		if (enemyHP <= 0) {
-			
+		if (enemyHP <= 0) 
+		{
 			Instantiate(Explosion, transform.position, transform.rotation);
             OnExplode();
             FindObjectOfType<Score> ().AddPoint (point);
 			Destroy(gameObject);
 			AudioSource.PlayClipAtPoint(explosion,transform.position);
 		}
+		//Debug.Log (enemyCount);
+
 	}
 
-	void OnTriggerEnter2D (Collider2D c) {
+	//Change to collision 
+	void OnTriggerEnter2D (Collider2D c) 
+	{
+		//Destroy (c.gameObject);
+		//Destroy (gameObject);
+		//FindObjectOfType<Score> ().AddPoint (point);
+		if (c.gameObject.CompareTag("playerBullet")) 
+		{
 
-		if (c.gameObject.CompareTag("playerBullet")) {
             animator.SetBool("IsATKED", true);
 			float force = 20;
 			enemyHP -= 1;
@@ -75,10 +87,10 @@ public class EnemyScript : MonoBehaviour {
 
         } 
 
-		else { 
+		else 
+		{ 
 			//Destroy (gameObject);
             //OnExplode();
-
         }
 
         /*if (enemyHP <= 0) {
@@ -93,8 +105,8 @@ public class EnemyScript : MonoBehaviour {
 
     void OnExplode()
     {
-		if (enemyCount == 1) {
-           
+		if (enemyCount == 1) 
+		{   
 			Instantiate (ExitTest, transform.position, transform.rotation);	
 		}
 

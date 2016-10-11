@@ -3,7 +3,7 @@ using System.Collections;
 
 public class delayExpld : MonoBehaviour {
 
-	public float lifeTime = 1.0f; //up lifetime
+	public float lifeTime = 0.2f; //up lifetime
 	public float delayed; 
 	public int speed = 10;
 	public GameObject bullet;
@@ -17,17 +17,18 @@ public class delayExpld : MonoBehaviour {
 
 		//Instantiate (bullet, transform.position, transform.rotation);
 
-		Destroy (gameObject, lifeTime);
 
 	}
 
 	void Update() {
-		Debug.Log ("D:"+delayed);
+//		Debug.Log ("D:"+delayed);
 		delayed += Time.deltaTime;
 		if (delayed >= 0.4f && delayed < 0.45f) {
 			nova ();
+			//nova ();
 			delayed = 0;
 		} 
+		
 	}
 
 	void nova () {
@@ -40,13 +41,14 @@ public class delayExpld : MonoBehaviour {
 		for (int i=0; i<6; i++) {
 			randomNumberZ[i] = Random.Range(-strayFactor[i], strayFactor[i]);
 		}
+		Destroy (gameObject);
 		Instantiate (bullet, transform.position, transform.rotation * Quaternion.Euler(0f, 0f, randomNumberZ[0]));
 		Instantiate (bullet, lilSpawn[0].transform.position, lilSpawn[0].transform.rotation* Quaternion.Euler(0f, 0f, randomNumberZ[1]));
 		Instantiate (bullet, lilSpawn[1].transform.position, lilSpawn[1].transform.rotation* Quaternion.Euler(0f, 0f, randomNumberZ[2]));
 		Instantiate (bullet, lilSpawn[2].transform.position, lilSpawn[2].transform.rotation* Quaternion.Euler(0f, 0f, randomNumberZ[3]));
 		Instantiate (bullet, lilSpawn[3].transform.position, lilSpawn[3].transform.rotation* Quaternion.Euler(0f, 0f, randomNumberZ[4]));
 		Instantiate (bullet, lilSpawn[4].transform.position, lilSpawn[4].transform.rotation* Quaternion.Euler(0f, 0f, randomNumberZ[5]));
-
+		
 	}
 
 	void OnTriggerEnter2D (Collider2D c) {

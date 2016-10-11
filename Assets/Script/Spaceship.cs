@@ -12,12 +12,19 @@ public class Spaceship : MonoBehaviour {
 
 	void Start () {
 		animator = GetComponent<Animator> ();
+		
 	}
 
 
 	public void Shot (Transform origin){
+		//GameObject puller = GameObject.Find ("ObjectPooler_EnemyBullets");
         animator.SetBool("IsATK", true);
+        //GameObject obj = puller.GetComponent<ObjectPoolingScript>().GetPooledObject();
+        //obj.transform.position = transform.position;
+        //obj.transform.rotation = transform.rotation;
+        //obj2.transform.position = 
 		Instantiate (bullet, origin.position, origin.rotation);
+		//obj.SetActive(true);
 
 	}
 

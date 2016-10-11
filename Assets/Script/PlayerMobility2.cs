@@ -117,7 +117,8 @@ public class PlayerMobility2 : MonoBehaviour {
             animator.SetBool("IsATKED", true);
             FindObjectOfType<BarController>().decresebar();
             playerHP -= 1;
-            Destroy(other.gameObject);
+            other.gameObject.SetActive(false);
+           // Destroy(other.gameObject);
         }
 
 		if (other.gameObject.CompareTag("Heal"))

@@ -38,7 +38,8 @@ public class EnemyScript_2 : MonoBehaviour {
 						for (int i = 0; i < transform.childCount; i++) 
 						{
 
-								Transform shotPos = transform.GetChild(i);
+								Transform shotPos = transform.GetChild(i).transform;
+								
 								spaceship.Shot (shotPos);
 						}
 
@@ -50,6 +51,7 @@ public class EnemyScript_2 : MonoBehaviour {
 
 	void FixedUpdate() 
 	{	
+		Debug.Log("transform"+transform.childCount);
 		player = GameObject.FindWithTag("Player").transform;
 		float z = Mathf.Atan2 ((player.transform.position.y - transform.position.y), (player.transform.position.x - transform.position.x)) * Mathf.Rad2Deg - 90; 
 		transform.eulerAngles = new Vector3 (0, 0, z);

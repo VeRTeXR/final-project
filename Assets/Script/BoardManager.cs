@@ -87,7 +87,7 @@ public class BoardManager : MonoBehaviour {
 	
 	void LayoutObjectAtRandom (GameObject[] tileArray, int minimum, int maximum) {
 		int objectCount = Random.Range (minimum, maximum + 1); //3-7
-		Debug.Log (objectCount);
+//		Debug.Log (objectCount);
 		for (int i = 0; i < objectCount; i++) {
 			Vector3 randompPos = RandomPos();
 			GameObject tileChoice = tileArray [Random.Range(0, tileArray.Length-1)];

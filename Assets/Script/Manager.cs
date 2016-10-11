@@ -62,7 +62,7 @@ public class Manager : MonoBehaviour {
 
 	void Update () {
 
-		Debug.Log (levelStartCountdown);
+//		Debug.Log (levelStartCountdown);
 
 		if (doingSetup) {
 			levelStartCountdown += Time.unscaledTime;

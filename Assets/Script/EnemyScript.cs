@@ -17,7 +17,7 @@ public class EnemyScript : MonoBehaviour {
     public GameObject bodyPart;
     public int totalParts = 7;
 
-    Spaceship spaceship;
+    Spaceship2 spaceship;
 
     private Animator animator;
 
@@ -25,7 +25,7 @@ public class EnemyScript : MonoBehaviour {
     IEnumerator Start()
     {
         animator = GetComponent<Animator>();
-				spaceship = GetComponent<Spaceship> ();
+		spaceship = GetComponent<Spaceship2> ();
 				
 		if (spaceship.canShot == false) 
 		{

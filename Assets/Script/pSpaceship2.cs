@@ -31,8 +31,8 @@ public class pSpaceship2 : MonoBehaviour {
 		var randomNumberZ = Random.Range(-strayFactor, strayFactor);
 		GameObject puller = GameObject.Find ("ObjectPooler_PlayerBullets");
         GameObject obj = puller.GetComponent<ObjectPoolingScript>().GetPooledObject();
-        obj.transform.position = transform.position;
-        obj.transform.rotation = transform.rotation;
+        obj.transform.position = origin.transform.position;
+        obj.transform.rotation = origin.transform.rotation;
 		//Instantiate(bullet, transform.position, transform.rotation * Quaternion.Euler(0f, 0f, randomNumberZ));
 		//Instantiate (bullet, bulletSpawnRight.transform.position, bulletSpawnRight.transform.rotation* Quaternion.Euler(0f, 0f, randomNumberZ));
 		//Instantiate (bullet, bulletSpawnLeft.transform.position, bulletSpawnLeft.transform.rotation* Quaternion.Euler(0f, 0f, randomNumberZ));

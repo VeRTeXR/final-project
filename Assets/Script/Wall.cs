@@ -30,7 +30,7 @@ public class Wall : MonoBehaviour {
 			}
 		}
 		if (c.gameObject.CompareTag("Player")) {
-			onContact ();
+			//onContact ();
 		}
 		if (c.gameObject.CompareTag("Enemy")) {
 			onContact ();

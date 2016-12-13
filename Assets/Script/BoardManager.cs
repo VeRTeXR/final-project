@@ -91,7 +91,12 @@ public class BoardManager : MonoBehaviour {
 		for (int i = 0; i < objectCount; i++) {
 			Vector3 randompPos = RandomPos();
 			GameObject tileChoice = tileArray [Random.Range(0, tileArray.Length-1)];
+
+			//if can spawn then
 			Instantiate (tileChoice, randompPos, Quaternion.identity);
+			//else shift it to the next can spawn node then instantiate
+			// if the fucking thing run out of list then fucking break the fn
+			
 		}
 	}
 

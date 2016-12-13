@@ -9,6 +9,7 @@ public class ActivateTextAtLine : MonoBehaviour {
 	public int endLine;
 	public bool requiredButtonPress;
 	private bool waitForPress;
+	public bool isTrigger = false;
 
 	public TextBoxManager theTextBox;
 
@@ -25,10 +26,13 @@ public class ActivateTextAtLine : MonoBehaviour {
 			theTextBox.endAtLine = endLine;
 			theTextBox.EnableTextBox();
 	 }
+	 if(isTrigger == false) {
+	 	theTextBox.DisableTextBox();
+	 }
 	}
 
 	void OnTriggerEnter2D(Collider2D c) {
-
+			isTrigger = true;
 		if(c.name == "Player2"){
 			if(requiredButtonPress) {
 				waitForPress = true;
@@ -42,6 +46,7 @@ public class ActivateTextAtLine : MonoBehaviour {
 	}
 
 	void OnTriggerExit2D(Collider2D c) {
+			isTrigger = false;
 		if(c.name == "Player") {
 			waitForPress = false;
 		}

@@ -62,7 +62,7 @@ public class Manager : MonoBehaviour {
 
 	void Update () {
 
-		Debug.Log (levelStartCountdown);
+//		Debug.Log (levelStartCountdown);
 
 		if (doingSetup) {
 			levelStartCountdown += Time.unscaledTime;
@@ -77,7 +77,7 @@ public class Manager : MonoBehaviour {
 			score = 0;
 			 //check score, health, reset it! 
         }
-		if (Input.GetKeyDown (KeyCode.Z)) {
+		/*if (Input.GetKeyDown (KeyCode.Z)) {
 			SceneManager.LoadScene("StartScn", LoadSceneMode.Single);
 			//Application.LoadLevel("StartScn");
 			level = -1;
@@ -85,7 +85,7 @@ public class Manager : MonoBehaviour {
 			HP = 20;
 			//Debug.Log(level);
 			//	reload will actually reload from beginning
-		}
+		}*/
 
 
         if (levelImage.activeSelf) {

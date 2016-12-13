@@ -4,7 +4,7 @@ using System.Collections;
 
 public class PlayerMobility_SideScroll : MonoBehaviour {
 
-	public float speed;
+	public float speed = 3.0f;
 	public int maxHP;
 	public float playerHP = 20; 
 	public float delay = 0.2f;
@@ -21,8 +21,28 @@ public class PlayerMobility_SideScroll : MonoBehaviour {
 	public GameObject barrier;
 	public float chargeFxTime;
 	public float slowTimeCountdown;
+
+	public bool isGrounded = false;
+	public Transform groundCheck;
+	float groundRad = 0.2f;
+	public LayerMask whatIsGround;
 	public AudioClip shoot;
 	private float force = 0.5f;
+
+	public float jumpcd;
+	public float jumpHeight = 1.0f;
+	public float timeToJumpApex = 5.0f;
+
+	Vector3 velocity;
+	public float gravity;
+	public float jumpVelocity;
+	float accelerationTimeAirborne = .1f;
+	float accelerationTimeGrounded = .2f;
+	float velocityXSmoothing;
+
+	float targetVelocityX;
+
+
 
     public int gunUpgradeCount ;
 
@@ -31,6 +51,7 @@ public class PlayerMobility_SideScroll : MonoBehaviour {
 	
 
     public Animator animator;
+    public Rigidbody2D rigidbody2d;
 
  
     void Start()
@@ -38,12 +59,17 @@ public class PlayerMobility_SideScroll : MonoBehaviour {
         playerHP = Manager.instance.HP;
         score = Manager.instance.score;
         animator = GetComponent<Animator>();
+        rigidbody2d = GetComponent<Rigidbody2D>();
+
+
+		gravity = -(2 * jumpHeight) / Mathf.Pow (timeToJumpApex, 2);
+        jumpVelocity = Mathf.Abs(gravity) * timeToJumpApex;
+    		print ("Gravity: " + gravity + "  Jump Velocity: " + jumpVelocity);
     }
 
     IEnumerator attk() {
       
 		yield return new WaitForSeconds(0.1f);
-
         
 			spaceship = GetComponent<pSpaceship2> ();
 			spaceship.Shot (transform);
@@ -137,17 +163,26 @@ public class PlayerMobility_SideScroll : MonoBehaviour {
             Destroy(other.gameObject);
         }
 			
-        if (other.gameObject.tag == "gunupgrade")
+        if (other.gameObject.CompareTag("gunupgrade"))
         {
             gunUpgradeCount += 1;
             Destroy(other.gameObject);
         }
 
-        if (other.gameObject.tag == "MaxHpUp")
+        if (other.gameObject.CompareTag("MaxHpUp"))
 
         {
             maxHP += 5;
             Destroy(other.gameObject);
+        }
+
+        if (other.gameObject.CompareTag("Wall"))
+
+        {
+            isGrounded = true;
+            velocity.x = 0;
+            velocity.y = 0;
+            Debug.Log("hit"+isGrounded);
         }
 
 	/*	if (other.gameObject.CompareTag("altChange")) {
@@ -169,24 +204,70 @@ public class PlayerMobility_SideScroll : MonoBehaviour {
     }
 
 	void Update() {
+
+		isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRad, whatIsGround);
+
+		if(isGrounded)
+		{
+			velocity.y = 0;
+			velocity.x = 0;
+		}
+		Debug.Log("v:"+velocity);
+//		Debug.Log("v:"+velocity);
+		//Debug.Log("g"+isGrounded);
 		var mousePosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-		Quaternion roit = Quaternion.LookRotation (transform.position - mousePosition, Vector3.forward);
+		/*Quaternion roit = Quaternion.LookRotation (transform.position - mousePosition, Vector3.forward);
 		transform.rotation = roit;
 		transform.eulerAngles = new Vector3 (0, 0, transform.eulerAngles.z);
-		GetComponent<Rigidbody2D>().angularVelocity = 0.5f;
-		float verticalInput = Input.GetAxis ("Vertical");
-		float horizontalInput = Input.GetAxis ("Horizontal"); 
-		
-		Vector2 movement = new Vector2 (horizontalInput, verticalInput);
-		GetComponent<Rigidbody2D>().velocity = (movement * speed)*(Time.deltaTime);
-		enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+		*/
 
+		Vector2 input = new Vector2 (Input.GetAxisRaw ("Vertical"), Input.GetAxisRaw ("Horizontal")); 
+
+		//GetComponent<Rigidbody2D>().velocity = (movement * speed)*(Time.deltaTime);
+		//rigidbody2d.velocity = (movement * speed);
+
+		//float targetVelocityX = verticalInput * speed;
+		//velocity.x = Mathf.SmoothDamp (velocity.x, targetVelocityX, ref velocityXSmoothing, (controller.collisions.below)?accelerationTimeGrounded:accelerationTimeAirborne);
+
+
+		enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
+		//Debug.Log("vInpu:"+verticalInput);
 		
 
 		//animator.SetBool("IsATK", true);
 
 		degradeTime += Time.deltaTime;
 		//Debug.Log (degradeTime);
+
+		if (Input.GetKeyDown(KeyCode.O)) 
+		{
+			velocity.x = gravity*Time.deltaTime;
+			
+			Debug.Log(velocity.x);
+			Debug.Log("wut");
+		}
+
+		if (Input.GetKeyDown(KeyCode.M)) //&& isGrounded 
+		{
+			isGrounded = false;
+ 			velocity.x = -jumpVelocity;
+ 			Debug.Log("jV:"+jumpVelocity);
+ 			
+ 			//jumpcd += Time.deltaTime;
+ 			//Debug.Log(jumpcd);
+ 			
+		}
+	//velocity.x = gravity*Time.deltaTime;
+	targetVelocityX = input.y * speed;
+	velocity.y = Mathf.SmoothDamp (velocity.y, targetVelocityX, 
+	ref velocityXSmoothing, (isGrounded)?accelerationTimeGrounded:accelerationTimeAirborne);
+		//velocity.y = input.x * speed;
+		
+
+//		Debug.Log("v*t"+velocity*Time.deltaTime);
+		transform.Translate (velocity*Time.deltaTime);
+
+
 		if (degradeTime > 100) {
 			//Debug.Log (playerHP);
 			FindObjectOfType<BarController>().decresebar();

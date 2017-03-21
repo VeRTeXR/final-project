@@ -138,13 +138,13 @@ public class PlayerMobility2 : MonoBehaviour {
             Destroy(other.gameObject);
         }
 			
-        if (other.gameObject.tag == "gunupgrade")
+        if (other.gameObject.CompareTag("gunupgrade"))
         {
             gunUpgradeCount += 1;
             Destroy(other.gameObject);
         }
 
-        if (other.gameObject.tag == "MaxHpUp")
+        if (other.gameObject.CompareTag("MaxHpUp"))
 
         {
             maxHP += 5;
